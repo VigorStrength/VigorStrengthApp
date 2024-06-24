@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
+import Icon from "./components/Icon";
+import { Colors } from "./GlobalStyles";
 
 const App = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -28,6 +30,7 @@ const App = () => {
       <Text style={{ fontFamily: "IntegralCF", fontSize: 24 }}>
         Hello Integral CF
       </Text>
+      <Icon width={48} height={48} name="home" fill={Colors.orange100} />
       <StatusBar style="auto" />
     </View>
   );
