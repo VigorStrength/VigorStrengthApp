@@ -19,3 +19,18 @@ export const Colors = {
   orange80: "#FF9F59",
   orange100: "#FF832A",
 };
+
+export const Padding = {
+  p_base: 16,
+  p_9xs: 4,
+  p_11xs: 2,
+};
+/* border radiuses */
+export const Border = {
+  br_7xs: 6,
+};
+
+export const FontSize = {
+  bodyBold12_size: 12,
+  bodyRegular16_size: 16,
+};

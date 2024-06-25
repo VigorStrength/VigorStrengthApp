@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
 import Icon from "./components/Icon";
+import CustomTextInput from "./components/CustomTextInput";
 import { Colors } from "./GlobalStyles";
 
 const App = () => {
@@ -31,6 +32,14 @@ const App = () => {
         Hello Integral CF
       </Text>
       <Icon width={48} height={48} name="home" fill={Colors.orange100} />
+      <CustomTextInput placeholder="Email" variant="primary" />
+      <CustomTextInput
+        placeholder="Placeholder"
+        variant="secondary"
+        label="Label Name"
+      />
+      <CustomTextInput placeholder="Placeholder" variant="search" />
+      <CustomTextInput placeholder="Placeholder" />
       <StatusBar style="auto" />
     </View>
   );
