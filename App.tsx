@@ -13,6 +13,7 @@ const App = () => {
     const loadFonts = async () => {
       await Font.loadAsync({
         Satoshi: require("./assets/fonts/Satoshi/Satoshi-Regular.otf"),
+        SatoshiBold: require("./assets/fonts/Satoshi/Satoshi-Medium.otf"),
         IntegralCF: require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
       });
       setFontLoaded(true);
@@ -31,15 +32,36 @@ const App = () => {
       <Text style={{ fontFamily: "IntegralCF", fontSize: 24 }}>
         Hello Integral CF
       </Text>
-      <Icon width={48} height={48} name="home" fill={Colors.orange100} />
-      <CustomTextInput placeholder="Email" variant="primary" />
-      <CustomTextInput
-        placeholder="Placeholder"
-        variant="secondary"
-        label="Label Name"
-      />
-      <CustomTextInput placeholder="Placeholder" variant="search" />
-      <CustomTextInput placeholder="Placeholder" />
+      <Text style={{ fontFamily: "Satoshi", fontSize: 16 }}>
+        armelhell@icloud.com
+      </Text>
+      {/* <Icon width={48} height={48} name="home" fill={Colors.orange100} /> */}
+      <View style={styles.textInputContainer}>
+        <CustomTextInput placeholder="Email" variant="primary" />
+      </View>
+      <View style={styles.textInputContainer}>
+        <CustomTextInput
+          placeholder="Email"
+          variant="primary"
+          iconName="target"
+        />
+      </View>
+      <View style={styles.textInputContainer}>
+        <CustomTextInput placeholder="Placeholder" variant="secondary" />
+      </View>
+      <View style={styles.textInputContainer}>
+        <CustomTextInput
+          placeholder="Placeholder"
+          variant="secondary"
+          iconName="arrowRight"
+        />
+      </View>
+      <View style={styles.searchTextInputContainer}>
+        <CustomTextInput placeholder="Placeholder" variant="search" />
+      </View>
+      <View style={styles.searchTextInputContainer}>
+        <CustomTextInput placeholder="Placeholder" variant="filled" />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -53,5 +75,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  textInputContainer: {
+    marginBottom: 8,
+  },
+  searchTextInputContainer: {
+    alignSelf: "flex-end",
+    marginBottom: 8,
+    marginEnd: 30,
   },
 });

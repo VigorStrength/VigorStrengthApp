@@ -32,5 +32,6 @@ export const Border = {
 
 export const FontSize = {
   bodyBold12_size: 12,
+  bodyBold14_size: 14,
   bodyRegular16_size: 16,
 };

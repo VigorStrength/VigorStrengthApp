@@ -31,14 +31,23 @@ const CustomTextInput = ({
     <View style={[styles.container, variantStyles[variant].container]}>
       {label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.inputContainer}>
-        {variant === "search" && <Icon name="search" style={styles.icon} />}
+        {variant === "search" && (
+          <Icon name="search" fill={Colors.neutral350} />
+        )}
       </View>
       <TextInput
         style={[styles.input, variantStyles[variant].input]}
-        placeholderTextColor={"primary" ? Colors.orange100 : Colors.neutral350}
+        placeholderTextColor={
+          variant === "primary" ? Colors.orange100 : Colors.neutral350
+        }
         {...props}
       />
-      {iconName && <Icon name={iconName} style={styles.icon} />}
+      {iconName && (
+        <Icon
+          name={iconName}
+          fill={variant === "primary" ? Colors.orange100 : Colors.neutral350}
+        />
+      )}
     </View>
   );
 };
@@ -46,13 +55,10 @@ const CustomTextInput = ({
 export default CustomTextInput;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
   inputContainer: {},
   input: {},
   label: {},
-  icon: {},
 });
 
 const variantStyles: {
@@ -60,47 +66,36 @@ const variantStyles: {
 } = {
   primary: {
     container: {
-      flex: 1,
-      flexDirection: "row",
       width: 324,
-      height: 56,
+      padding: 16,
+      borderWidth: 2,
       borderRadius: 6,
+      flexDirection: "row",
+      justifyContent: "space-between",
       backgroundColor: Colors.neutral600,
       borderStyle: "solid",
       borderColor: Colors.orange100,
-      borderWidth: 2,
+    },
+    input: {
+      flex: 1,
+      lineHeight: 24,
+      fontSize: FontSize.bodyRegular16_size,
+    },
+  },
+  secondary: {
+    container: {
+      flexDirection: "row",
+      width: 324,
+      borderRadius: 6,
+      justifyContent: "space-between",
+      backgroundColor: Colors.neutral800,
       alignItems: "center",
       padding: 16,
     },
     input: {
       flex: 1,
-      fontSize: FontSize.bodyRegular16_size,
       lineHeight: 24,
-      fontFamily: "Satoshi",
-      color: Colors.orange100,
-      textAlign: "left",
-    },
-  },
-  secondary: {
-    container: {
-      flex: 1,
-      flexDirection: "row",
-      width: "100%",
-      //   width: 324,
-      //   height: 56,
-      borderRadius: 6,
-      backgroundColor: Colors.neutral800,
-      alignItems: "center",
-      paddingHorizontal: 16,
-      paddingVertical: 11,
-    },
-    input: {
-      flex: 1,
       fontSize: FontSize.bodyRegular16_size,
-      lineHeight: 24,
-      fontFamily: "Satoshi",
-      color: Colors.neutral350,
-      textAlign: "left",
     },
   },
   active: {
@@ -113,20 +108,20 @@ const variantStyles: {
   },
   search: {
     container: {
-      flex: 1,
+      width: 138,
+      height: 32,
+      borderRadius: 50,
       flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      width: "100%",
+      justifyContent: "space-between",
       paddingHorizontal: 12,
       paddingVertical: 4,
+      backgroundColor: Colors.neutral800,
     },
     input: {
-      fontFamily: "Satoshi",
-      fontSize: FontSize.bodyBold12_size,
       lineHeight: 18,
+      fontFamily: "SatoshiBold",
+      fontSize: FontSize.bodyBold14_size,
       color: Colors.neutral350,
-      marginLeft: 25,
     },
   },
 };
