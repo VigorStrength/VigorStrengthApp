@@ -5,6 +5,16 @@ import { useEffect, useState } from "react";
 import Icon from "./components/Icon";
 import CustomTextInput from "./components/CustomTextInput";
 import { Colors } from "./GlobalStyles";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.orange100,
+    onSurfaceVariant: Colors.neutral350,
+  },
+};
 
 const App = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -27,43 +37,37 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: "Satoshi", fontSize: 24 }}>Hello Satoshi</Text>
-      <Text style={{ fontFamily: "IntegralCF", fontSize: 24 }}>
-        Hello Integral CF
-      </Text>
-      <Text style={{ fontFamily: "Satoshi", fontSize: 16 }}>
-        armelhell@icloud.com
-      </Text>
-      {/* <Icon width={48} height={48} name="home" fill={Colors.orange100} /> */}
-      <View style={styles.textInputContainer}>
-        <CustomTextInput placeholder="Email" variant="primary" />
+    <PaperProvider theme={theme}>
+      <View style={styles.container}>
+        <Text style={{ fontFamily: "Satoshi", fontSize: 24 }}>
+          Hello Satoshi
+        </Text>
+        <Text style={{ fontFamily: "IntegralCF", fontSize: 24 }}>
+          Hello Integral CF
+        </Text>
+        <Text style={{ fontFamily: "Satoshi", fontSize: 16 }}>
+          armelhell@icloud.com
+        </Text>
+        <View style={styles.textInputContainer}>
+          <CustomTextInput variant="primary" label="Email" />
+        </View>
+        <View style={styles.textInputContainer}>
+          <CustomTextInput
+            variant="primary"
+            label="Label Name"
+            iconName="target"
+          />
+        </View>
+        <View style={styles.textInputContainer}>
+          <CustomTextInput
+            variant="secondary"
+            placeholder="Placeholder"
+            iconName="arrowRight"
+          />
+        </View>
+        <StatusBar style="auto" />
       </View>
-      <View style={styles.textInputContainer}>
-        <CustomTextInput
-          placeholder="Email"
-          variant="primary"
-          iconName="target"
-        />
-      </View>
-      <View style={styles.textInputContainer}>
-        <CustomTextInput placeholder="Placeholder" variant="secondary" />
-      </View>
-      <View style={styles.textInputContainer}>
-        <CustomTextInput
-          placeholder="Placeholder"
-          variant="secondary"
-          iconName="arrowRight"
-        />
-      </View>
-      <View style={styles.searchTextInputContainer}>
-        <CustomTextInput placeholder="Placeholder" variant="search" />
-      </View>
-      <View style={styles.searchTextInputContainer}>
-        <CustomTextInput placeholder="Placeholder" variant="filled" />
-      </View>
-      <StatusBar style="auto" />
-    </View>
+    </PaperProvider>
   );
 };
 
