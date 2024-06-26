@@ -4,6 +4,7 @@ import * as Font from "expo-font";
 import { useEffect, useState } from "react";
 import Icon from "./components/Icon";
 import CustomTextInput from "./components/CustomTextInput";
+import CustomButton from "./components/CustomButton";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
@@ -39,7 +40,7 @@ const App = () => {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Text style={{ fontFamily: "Satoshi", fontSize: 24 }}>
+        {/* <Text style={{ fontFamily: "Satoshi", fontSize: 24 }}>
           Hello Satoshi
         </Text>
         <Text style={{ fontFamily: "IntegralCF", fontSize: 24 }}>
@@ -71,6 +72,36 @@ const App = () => {
             filledLabel="You'll be using this email to log in"
             filledValue="armelhell@icloud.com"
           />
+        </View> */}
+        {/* <View style={styles.textInputContainer}>
+          <CustomTextInput
+            variant="filled"
+            filledLabel="You'll be using this email to log in"
+            filledValue="armelhell@icloud.com"
+          />
+        </View> */}
+        <View style={styles.buttonContainer}>
+          <CustomButton size="small">Start Workout</CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="large" left="schedule" right="arrowRight">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="large" left="playFilled">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="medium" right="arrowRight">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="xlarge" left="playFilled">
+            Start Workout
+          </CustomButton>
         </View>
         <StatusBar style="auto" />
       </View>
@@ -84,11 +115,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
+    paddingHorizontal: 20,
   },
   textInputContainer: {
     marginBottom: 8,
+  },
+  buttonContainer: {
+    marginBottom: 40,
   },
   searchTextInputContainer: {
     alignSelf: "flex-end",
