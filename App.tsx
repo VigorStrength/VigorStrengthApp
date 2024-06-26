@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
 import Icon from "./components/Icon";
@@ -7,6 +7,7 @@ import CustomTextInput from "./components/CustomTextInput";
 import CustomButton from "./components/CustomButton";
 import CustomChip from "./components/CustomChip";
 import CustomIconChip from "./components/CustomIconChip";
+import CustomProgressBar from "./components/CustomProgressBar";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
@@ -107,17 +108,29 @@ const App = () => {
         </View>
         <StatusBar style="auto" />
       </View> */}
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <CustomChip>Mark as completed</CustomChip>
         </View>
         <View style={styles.buttonContainer}>
-          <CustomChip left="favoriteEmpty" right="moreHorizontal" />
+          <CustomChip left="favoriteEmpty" right="moreHorizontal" children="" />
         </View>
         <View style={styles.buttonContainer}>
           <CustomIconChip iconName="chevronLeft" size="small" children="" />
         </View>
         <View style={styles.buttonContainer}>
           <CustomIconChip iconName="close" size="large" children="" />
+        </View> */}
+        <View style={styles.buttonContainer}>
+          <CustomProgressBar progress={15} size="xlarge" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomProgressBar progress={15} size="large" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomProgressBar progress={15} size="medium" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomProgressBar progress={15} size="small" />
         </View>
       </View>
     </PaperProvider>
@@ -130,15 +143,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
+    marginTop: 200,
   },
   textInputContainer: {
     marginBottom: 8,
   },
   buttonContainer: {
-    marginBottom: 40,
+    marginBottom: 10,
+    // alignItems: "flex-start",
+    // textAlign: "right",
   },
   searchTextInputContainer: {
     alignSelf: "flex-end",
