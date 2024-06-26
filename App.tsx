@@ -65,6 +65,13 @@ const App = () => {
             iconName="arrowRight"
           />
         </View>
+        <View style={styles.textInputContainer}>
+          <CustomTextInput
+            variant="filled"
+            filledLabel="You'll be using this email to log in"
+            filledValue="armelhell@icloud.com"
+          />
+        </View>
         <StatusBar style="auto" />
       </View>
     </PaperProvider>
