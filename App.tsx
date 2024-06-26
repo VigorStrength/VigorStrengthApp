@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Icon from "./components/Icon";
 import CustomTextInput from "./components/CustomTextInput";
 import CustomButton from "./components/CustomButton";
+import CustomChip from "./components/CustomChip";
+import CustomIconChip from "./components/CustomIconChip";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
@@ -80,7 +82,7 @@ const App = () => {
             filledValue="armelhell@icloud.com"
           />
         </View> */}
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <CustomButton size="small">Start Workout</CustomButton>
         </View>
         <View style={styles.buttonContainer}>
@@ -104,6 +106,19 @@ const App = () => {
           </CustomButton>
         </View>
         <StatusBar style="auto" />
+      </View> */}
+        <View style={styles.buttonContainer}>
+          <CustomChip>Mark as completed</CustomChip>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomChip left="favoriteEmpty" right="moreHorizontal" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomIconChip iconName="chevronLeft" size="small" children="" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomIconChip iconName="close" size="large" children="" />
+        </View>
       </View>
     </PaperProvider>
   );

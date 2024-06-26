@@ -15,10 +15,12 @@ import Close from "../assets/icons/close.svg";
 import Community from "../assets/icons/community.svg";
 import EditProfile from "../assets/icons/edit-profile.svg";
 import EnableAudio from "../assets/icons/enable-audio.svg";
+import FavoriteEmpty from "../assets/icons/favorite-empty.svg";
 import Google from "../assets/icons/google.svg";
 import Home from "../assets/icons/home.svg";
 import Insights from "../assets/icons/insights.svg";
 import Menu from "../assets/icons/menu.svg";
+import MoreHorizontal from "../assets/icons/more-horizontal.svg";
 import MoreHorizontalCircle from "../assets/icons/more-horizontal-circle.svg";
 import NewMessage from "../assets/icons/new-message.svg";
 import Nutrition from "../assets/icons/nutrition.svg";
@@ -54,10 +56,12 @@ export const icons = {
   community: Community,
   editProfile: EditProfile,
   enableAudio: EnableAudio,
+  favoriteEmpty: FavoriteEmpty,
   google: Google,
   home: Home,
   insights: Insights,
   menu: Menu,
+  moreHorizontal: MoreHorizontal,
   moreHorizontalCircle: MoreHorizontalCircle,
   newMessage: NewMessage,
   nutrition: Nutrition,

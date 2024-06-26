@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { ButtonProps, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TouchableRipple, TouchableRippleProps } from "react-native-paper";
 import { icons } from "../constants/icons";
 import Icon from "./Icon";
