@@ -8,6 +8,7 @@ import CustomButton from "./components/CustomButton";
 import CustomChip from "./components/CustomChip";
 import CustomIconChip from "./components/CustomIconChip";
 import CustomProgressBar from "./components/CustomProgressBar";
+import CustomDivider from "./components/CustomDivider";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
@@ -105,8 +106,8 @@ const App = () => {
           <CustomButton size="xlarge" left="playFilled">
             Start Workout
           </CustomButton>
-        </View>
-        <StatusBar style="auto" />
+        </View> */}
+        {/* <StatusBar style="auto" />
       </View> */}
         {/* <View style={styles.buttonContainer}>
           <CustomChip>Mark as completed</CustomChip>
@@ -120,7 +121,7 @@ const App = () => {
         <View style={styles.buttonContainer}>
           <CustomIconChip iconName="close" size="large" children="" />
         </View> */}
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <CustomProgressBar progress={15} size="xlarge" />
         </View>
         <View style={styles.buttonContainer}>
@@ -131,6 +132,18 @@ const App = () => {
         </View>
         <View style={styles.buttonContainer}>
           <CustomProgressBar progress={15} size="small" />
+        </View> */}
+        <View style={styles.dividerContainer}>
+          <CustomDivider rightLabel="Label Name" />
+        </View>
+        <View style={styles.dividerContainer}>
+          <CustomDivider leftLabel="Label Name" />
+        </View>
+        <View style={styles.dividerContainer}>
+          <CustomDivider leftLabel="Label Name" rightLabel="Label Name" />
+        </View>
+        <View style={styles.dividerContainer}>
+          <CustomDivider middleLabel="Label Name" />
         </View>
       </View>
     </PaperProvider>
@@ -155,6 +168,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     // alignItems: "flex-start",
     // textAlign: "right",
+  },
+  dividerContainer: {
+    marginBottom: 10,
+    width: "100%",
   },
   searchTextInputContainer: {
     alignSelf: "flex-end",
