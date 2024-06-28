@@ -12,6 +12,7 @@ import CustomDivider from "./components/CustomDivider";
 import CustomAvatar from "./components/CustomAvatar";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import CustomSearchBar from "./components/CustomSearchBar";
 
 const theme = {
   ...DefaultTheme,
@@ -146,7 +147,7 @@ const App = () => {
         <View style={styles.dividerContainer}>
           <CustomDivider middleLabel="Label Name" />
         </View> */}
-        <View style={styles.avatarContainer}>
+        {/* <View style={styles.avatarContainer}>
           <CustomAvatar
             avatarUrl={require("./assets/michael-dam-mEZ3PoFGs_k-unsplash.jpg")}
           />
@@ -162,6 +163,12 @@ const App = () => {
         </View>
         <View style={styles.avatarContainer}>
           <CustomAvatar size="large" />
+        </View> */}
+        <View style={styles.searchContainer}>
+          <CustomSearchBar size="small" value="" />
+        </View>
+        <View style={styles.searchContainer}>
+          <CustomSearchBar value="" />
         </View>
       </View>
     </PaperProvider>
@@ -187,10 +194,14 @@ const styles = StyleSheet.create({
     // textAlign: "right",
   },
   dividerContainer: {
-    marginBottom: 10,
+    // marginBottom: 10,
     width: "100%",
   },
   avatarContainer: {
+    marginTop: 20,
+  },
+  searchContainer: {
+    width: "100%",
     marginTop: 20,
   },
   searchTextInputContainer: {
