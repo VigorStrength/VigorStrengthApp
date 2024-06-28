@@ -9,6 +9,7 @@ import CustomChip from "./components/CustomChip";
 import CustomIconChip from "./components/CustomIconChip";
 import CustomProgressBar from "./components/CustomProgressBar";
 import CustomDivider from "./components/CustomDivider";
+import CustomAvatar from "./components/CustomAvatar";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
@@ -133,7 +134,7 @@ const App = () => {
         <View style={styles.buttonContainer}>
           <CustomProgressBar progress={15} size="small" />
         </View> */}
-        <View style={styles.dividerContainer}>
+        {/* <View style={styles.dividerContainer}>
           <CustomDivider rightLabel="Label Name" />
         </View>
         <View style={styles.dividerContainer}>
@@ -144,6 +145,23 @@ const App = () => {
         </View>
         <View style={styles.dividerContainer}>
           <CustomDivider middleLabel="Label Name" />
+        </View> */}
+        <View style={styles.avatarContainer}>
+          <CustomAvatar
+            avatarUrl={require("./assets/michael-dam-mEZ3PoFGs_k-unsplash.jpg")}
+          />
+        </View>
+        <View style={styles.avatarContainer}>
+          <CustomAvatar
+            size="large"
+            avatarUrl={require("./assets/michael-dam-mEZ3PoFGs_k-unsplash.jpg")}
+          />
+        </View>
+        <View style={styles.avatarContainer}>
+          <CustomAvatar />
+        </View>
+        <View style={styles.avatarContainer}>
+          <CustomAvatar size="large" />
         </View>
       </View>
     </PaperProvider>
@@ -159,7 +177,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
-    marginTop: 200,
   },
   textInputContainer: {
     marginBottom: 8,
@@ -172,6 +189,9 @@ const styles = StyleSheet.create({
   dividerContainer: {
     marginBottom: 10,
     width: "100%",
+  },
+  avatarContainer: {
+    marginTop: 20,
   },
   searchTextInputContainer: {
     alignSelf: "flex-end",
