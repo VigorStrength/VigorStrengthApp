@@ -14,6 +14,7 @@ import CustomButton2 from "./components/CustomButton2";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import CustomSearchBar from "./components/CustomSearchBar";
+import CalendarNumberChip from "./components/CalendarNumberChip";
 
 const theme = {
   ...DefaultTheme,
@@ -172,7 +173,7 @@ const App = () => {
           <CustomSearchBar value="" />
         </View> */}
 
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <CustomButton size="small">Start Workout</CustomButton>
         </View>
         <View style={styles.buttonContainer}>
@@ -194,6 +195,15 @@ const App = () => {
           <CustomButton size="xlarge" left="playFilled">
             Start Workout
           </CustomButton>
+        </View> */}
+        <View style={styles.calendarChipContainer}>
+          <CalendarNumberChip children={2} />
+        </View>
+        <View style={styles.calendarChipContainer}>
+          <CalendarNumberChip variant="completed" children={2} />
+        </View>
+        <View style={styles.calendarChipContainer}>
+          <CalendarNumberChip variant="active" children={2} />
         </View>
       </View>
     </PaperProvider>
@@ -233,5 +243,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginBottom: 8,
     marginEnd: 30,
+  },
+  calendarChipContainer: {
+    marginBottom: 10,
   },
 });
