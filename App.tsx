@@ -10,6 +10,7 @@ import CustomIconChip from "./components/CustomIconChip";
 import CustomProgressBar from "./components/CustomProgressBar";
 import CustomDivider from "./components/CustomDivider";
 import CustomAvatar from "./components/CustomAvatar";
+import CustomButton2 from "./components/CustomButton2";
 import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import CustomSearchBar from "./components/CustomSearchBar";
@@ -164,11 +165,35 @@ const App = () => {
         <View style={styles.avatarContainer}>
           <CustomAvatar size="large" />
         </View> */}
-        <View style={styles.searchContainer}>
+        {/* <View style={styles.searchContainer}>
           <CustomSearchBar size="small" value="" />
         </View>
         <View style={styles.searchContainer}>
           <CustomSearchBar value="" />
+        </View> */}
+
+        <View style={styles.buttonContainer}>
+          <CustomButton size="small">Start Workout</CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="large" left="schedule" right="arrowRight">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="large" left="playFilled">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="medium" right="arrowRight">
+            Start Workout
+          </CustomButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton size="xlarge" left="playFilled">
+            Start Workout
+          </CustomButton>
         </View>
       </View>
     </PaperProvider>
