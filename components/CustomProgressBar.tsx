@@ -7,9 +7,10 @@ type Size = "small" | "medium" | "large" | "xlarge";
 type Props = {
   size?: Size;
   progress: number;
+  color: string;
 };
 
-const CustomProgressBar = ({ progress, size = "xlarge" }: Props) => {
+const CustomProgressBar = ({ color, progress, size = "xlarge" }: Props) => {
   const { colors } = useTheme();
 
   const sizes = {
@@ -39,7 +40,12 @@ const CustomProgressBar = ({ progress, size = "xlarge" }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.progressLabel, { fontSize: selectedSize.FontSize }]}>
+      <Text
+        style={[
+          styles.progressLabel,
+          { fontSize: selectedSize.FontSize, color: color },
+        ]}
+      >
         {progress}%
       </Text>
       <ProgressBar
@@ -50,7 +56,7 @@ const CustomProgressBar = ({ progress, size = "xlarge" }: Props) => {
           backgroundColor: Colors.neutral800,
           borderRadius: selectedSize.height / 2,
         }}
-        color={colors.primary}
+        color={color}
         accessibilityLabel={`Progress bar with ${progress}% completion`}
       />
     </View>
@@ -70,6 +76,5 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 8,
     textAlign: "right",
-    color: Colors.orange100,
   },
 });

@@ -15,6 +15,7 @@ import { Colors } from "./GlobalStyles";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import CustomSearchBar from "./components/CustomSearchBar";
 import CalendarNumberChip from "./components/CalendarNumberChip";
+import CustomMonthlyPlanCard from "./components/CustomMonthlyPlanCard";
 
 const theme = {
   ...DefaultTheme,
@@ -34,6 +35,7 @@ const App = () => {
         Satoshi: require("./assets/fonts/Satoshi/Satoshi-Regular.otf"),
         SatoshiBold: require("./assets/fonts/Satoshi/Satoshi-Medium.otf"),
         IntegralCF: require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
+        "IntegralCF-Bold": require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
       });
       setFontLoaded(true);
     };
@@ -125,13 +127,21 @@ const App = () => {
         <View style={styles.buttonContainer}>
           <CustomIconChip iconName="close" size="large" children="" />
         </View> */}
+        {/* <View style={styles.progressBarContainer}>
+          <CustomProgressBar
+            color={Colors.orange80}
+            progress={15}
+            size="xlarge"
+          />
+        </View>
+        <View style={styles.progressBarContainer}>
+          <CustomProgressBar
+            color={Colors.orange80}
+            progress={15}
+            size="large"
+          />
+        </View> */}
         {/* <View style={styles.buttonContainer}>
-          <CustomProgressBar progress={15} size="xlarge" />
-        </View>
-        <View style={styles.buttonContainer}>
-          <CustomProgressBar progress={15} size="large" />
-        </View>
-        <View style={styles.buttonContainer}>
           <CustomProgressBar progress={15} size="medium" />
         </View>
         <View style={styles.buttonContainer}>
@@ -196,7 +206,7 @@ const App = () => {
             Start Workout
           </CustomButton>
         </View> */}
-        <View style={styles.calendarChipContainer}>
+        {/* <View style={styles.calendarChipContainer}>
           <CalendarNumberChip children={2} />
         </View>
         <View style={styles.calendarChipContainer}>
@@ -204,6 +214,14 @@ const App = () => {
         </View>
         <View style={styles.calendarChipContainer}>
           <CalendarNumberChip variant="active" children={2} />
+        </View> */}
+        <View style={styles.cardContainer}>
+          <CustomMonthlyPlanCard
+            title="Monthly Plan Name"
+            subTitle="Week X"
+            progress={15}
+            programCoverUrl={require("./assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
+          />
         </View>
       </View>
     </PaperProvider>
@@ -228,6 +246,9 @@ const styles = StyleSheet.create({
     // alignItems: "flex-start",
     // textAlign: "right",
   },
+  progressBarContainer: {
+    marginTop: 40,
+  },
   dividerContainer: {
     // marginBottom: 10,
     width: "100%",
@@ -246,5 +267,8 @@ const styles = StyleSheet.create({
   },
   calendarChipContainer: {
     marginBottom: 10,
+  },
+  cardContainer: {
+    marginTop: 80,
   },
 });
