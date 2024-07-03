@@ -16,6 +16,9 @@ import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import CustomSearchBar from "./components/CustomSearchBar";
 import CalendarNumberChip from "./components/CalendarNumberChip";
 import CustomMonthlyPlanCard from "./components/CustomMonthlyPlanCard";
+import CustomMealItemCard from "./components/CustomMealItemCard";
+import CustomDailyWorkoutItemCard from "./components/CustomDailyWorkoutItemCard";
+import CustomExerciseItemCard from "./components/CustomExerciseItemCard";
 
 const theme = {
   ...DefaultTheme,
@@ -215,13 +218,74 @@ const App = () => {
         <View style={styles.calendarChipContainer}>
           <CalendarNumberChip variant="active" children={2} />
         </View> */}
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}>
           <CustomMonthlyPlanCard
             title="Monthly Plan Name"
             subTitle="Week X"
             progress={15}
             programCoverUrl={require("./assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
           />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomMealItemCard
+            mealTitle="breakfast"
+            mealName="Oatmeal Pancakes"
+            mealCoverUrl={require("./assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            status="active"
+            children=""
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomMealItemCard
+            mealTitle="breakfast"
+            mealName="Oatmeal Pancakes"
+            mealCoverUrl={require("./assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            status="completed"
+            children=""
+          />
+        </View> */}
+        {/* <View style={styles.cardContainer}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={1}
+            workoutDayLabel="Upper Body Conjugate"
+            workoutDayTimeRange={[90, 60]}
+            exerciseCoverUrl={require("./assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="completed"
+            children=""
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={2}
+            workoutDayLabel="Upper Body Conjugate"
+            workoutDayTimeRange={[90, 60]}
+            exerciseCoverUrl={require("./assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="current"
+            children=""
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={3}
+            workoutDayLabel="Upper Body Conjugate"
+            workoutDayTimeRange={[90, 60]}
+            exerciseCoverUrl={require("./assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="active"
+            children=""
+          />
+        </View> */}
+        <View style={styles.cardContainer}>
+          <CustomExerciseItemCard
+            exerciseName="Shoulder Press"
+            exerciseTime={10}
+            exerciseReps={8}
+            exerciseCoverUrl={require("./assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="active"
+            children=""
+          />
+        </View>
+        <View style={styles.dividerContainer}>
+          <CustomDivider leftLabel="Rest" rightLabel="00:45" />
         </View>
       </View>
     </PaperProvider>
@@ -269,6 +333,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cardContainer: {
-    marginTop: 80,
+    marginTop: 2,
   },
 });

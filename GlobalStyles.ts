@@ -13,11 +13,18 @@ export const Colors = {
   neutral700: "#444747",
   neutral800: "#303030",
   neutral900: "#0F0F0F",
+  neutralGradient: "#1C1C1E",
 
   // Primary
   orange60: "#FFBF90",
   orange80: "#FF9F59",
   orange100: "#FF832A",
+
+  // IconSecondary
+  green20: "#3A5C35",
+  green60: "#CAFFC2",
+  green80: "#A7FF72",
+  green100: "#48FF2A",
 };
 
 export const Padding = {

@@ -4,6 +4,7 @@ import { Colors } from "../GlobalStyles";
 import { Card } from "react-native-paper";
 import Icon from "./Icon";
 import CustomProgressBar from "./CustomProgressBar";
+// import LinearGradient from "react-native-linear-gradient";
 import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
@@ -18,42 +19,49 @@ const CustomMonthlyPlanCard = ({
   subTitle,
   programCoverUrl,
   progress,
+  ...props
 }: Props) => {
   return (
-    <LinearGradient
-      colors={[Colors.neutral700, Colors.orange80, Colors.orange100]}
-      start={{ x: 0.0, y: 0.0 }}
-      end={{ x: 1, y: 1 }}
-      locations={[0, 0.67, 1]}
-      style={styles.gradient}
-    >
-      <Card style={styles.card} mode="contained">
-        <Card.Content style={styles.content}>
-          <View style={styles.headerContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.cardTitle}>{title}</Text>
-              <Icon
-                name="moreHorizontal"
-                width={40}
-                height={40}
-                fill={Colors.orange100}
-              />
-            </View>
-            <Text style={styles.cardSubTitle}>{subTitle}</Text>
+    <Card style={styles.card} mode="contained" {...props}>
+      {/* <LinearGradient
+        colors={[Colors.neutral700, Colors.orange80, Colors.orange100]}
+        useAngle={true}
+        angle={157.89}
+        locations={[0, 0.67, 1]}
+        style={styles.gradient}
+      /> */}
+      <LinearGradient
+        colors={[Colors.neutral700, Colors.orange80, Colors.orange100]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        locations={[0, 0.67, 1]}
+        style={styles.gradient}
+      />
+      <Card.Content style={styles.content}>
+        <View style={styles.headerContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.cardTitle}>{title}</Text>
+            <Icon
+              name="moreHorizontal"
+              width={40}
+              height={40}
+              fill={Colors.orange100}
+            />
           </View>
-          <View style={styles.imageContainer}>
-            <Image source={programCoverUrl} style={styles.cardImage} />
-            <View style={styles.progressContainer}>
-              <CustomProgressBar
-                size="large"
-                progress={progress}
-                color={Colors.orange60}
-              />
-            </View>
+          <Text style={styles.cardSubTitle}>{subTitle}</Text>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image source={programCoverUrl} style={styles.cardImage} />
+          <View style={styles.progressContainer}>
+            <CustomProgressBar
+              size="large"
+              progress={progress}
+              color={Colors.orange60}
+            />
           </View>
-        </Card.Content>
-      </Card>
-    </LinearGradient>
+        </View>
+      </Card.Content>
+    </Card>
   );
 };
 
@@ -64,15 +72,23 @@ const styles = StyleSheet.create({
     width: 326,
     height: 318,
     borderRadius: 20,
-    backgroundColor: "tranparent",
+    backgroundColor: Colors.neutral800,
     overflow: "hidden",
+    position: "relative",
   },
   content: {
     padding: 15,
+    zIndex: 1,
+    position: "absolute",
+    width: "100%",
   },
   gradient: {
+    width: 326,
+    height: 318,
     borderRadius: 20,
-    overflow: "hidden",
+    opacity: 0.2,
+    position: "absolute",
+    zIndex: 0,
   },
   headerContainer: {
     marginBottom: 30,

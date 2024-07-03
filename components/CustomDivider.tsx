@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   label: {
     color: Colors.orange100,
-    fontSize: 14,
+    fontSize: 16,
   },
   divider: {
     backgroundColor: Colors.neutral800,

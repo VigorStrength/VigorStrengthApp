@@ -13,6 +13,7 @@ import ChevronLeft from "../assets/icons/chevron-left.svg";
 import ChevronRight from "../assets/icons/chevron-right.svg";
 import Close from "../assets/icons/close.svg";
 import Community from "../assets/icons/community.svg";
+import DotSeparator from "../assets/icons/dot-separator.svg";
 import EditProfile from "../assets/icons/edit-profile.svg";
 import EnableAudio from "../assets/icons/enable-audio.svg";
 import FavoriteEmpty from "../assets/icons/favorite-empty.svg";
@@ -54,6 +55,7 @@ export const icons = {
   chevronRight: ChevronRight,
   close: Close,
   community: Community,
+  dotSeparator: DotSeparator,
   editProfile: EditProfile,
   enableAudio: EnableAudio,
   favoriteEmpty: FavoriteEmpty,
