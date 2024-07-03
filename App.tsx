@@ -21,6 +21,7 @@ import CustomDailyWorkoutItemCard from "./components/CustomDailyWorkoutItemCard"
 import CustomExerciseItemCard from "./components/CustomExerciseItemCard";
 import CustomMessageItemCard from "./components/CustomMessageItemCard";
 import CustomProgramHeaderCard from "./components/CustomProgramHeaderCard";
+import CustomSelectionCard from "./components/CustomSelectionCard";
 
 const theme = {
   ...DefaultTheme,
@@ -317,7 +318,7 @@ const App = () => {
             children=""
           />
         </View> */}
-        <CustomProgramHeaderCard
+        {/* <CustomProgramHeaderCard
           variant="workout"
           workoutWeekNumber={3}
           workoutDayNumber={2}
@@ -329,7 +330,19 @@ const App = () => {
           mealTitle="Dinner"
           mealName="Fish Curry"
           coverUrl={require("./assets/marcos-paulo-prado-oBdC0TlFOqM-unsplash.jpg")}
+        /> */}
+        <CustomSelectionCard
+          variant="weeklySelection"
+          coverUrl={require("./assets/sunday-ii-sunday-z1uWXbhI1R0-unsplash.jpg")}
+          workoutTime={23}
+          workoutName="Squat"
         />
+        {/* <CustomSelectionCard
+          variant="sportSpecificSelection"
+          coverUrl={require("./assets/joe-mcferrin-s6znUip3Mro-unsplash.jpg")}
+          workoutTime={23}
+          workoutName="Deadlift"
+        /> */}
       </View>
     </PaperProvider>
   );
