@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, View, Text } from "react-native"; // Add Text component
+import { StyleSheet, Image, View, Text } from "react-native";
 import { Card, CardProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     marginRight: 2,
     marginVertical: 13,
     paddingVertical: 10,
-    // alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
   },

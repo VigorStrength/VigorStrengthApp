@@ -4,7 +4,6 @@ import { Colors } from "../GlobalStyles";
 import { Card } from "react-native-paper";
 import Icon from "./Icon";
 import CustomProgressBar from "./CustomProgressBar";
-// import LinearGradient from "react-native-linear-gradient";
 import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {

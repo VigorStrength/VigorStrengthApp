@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, Image, View, Text } from "react-native"; // Add Text component
-import { Card, CardProps } from "react-native-paper";
+import { StyleSheet, Image, View, Text } from "react-native";
+import { CardProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
-import { LinearGradient } from "expo-linear-gradient";
 import Icon from "./Icon";
 import CustomAvatar from "./CustomAvatar";
 

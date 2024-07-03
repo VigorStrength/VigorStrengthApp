@@ -290,6 +290,16 @@ const App = () => {
         </View> */}
         <View style={styles.cardContainer}>
           <CustomMessageItemCard
+            contactName="Fbd🍀"
+            message="Happy Birthday if this day is still special to you💕"
+            time="10"
+            avatarUrl={require("./assets/koala-honey-wife.jpeg")}
+            status="unread"
+            children=""
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomMessageItemCard
             contactName="Koala Honey Wife 🐨🍯💍"
             // contactName="Kennedy Nelson"
             message="I'll call you sometime soon so we can talk okay?"
@@ -299,16 +309,6 @@ const App = () => {
             // message={
             //   "Your clinician bill from your visit to THE BORTOLAZZO GROUP, LLC at WELLSTAR KENNESTONE HOSPITAL is now past due.Click here to view: https://bill.paymentsmd.com/l/583435144129/ Reply 'STOP' to unsubscribe."
             // }
-            time="10"
-            avatarUrl={require("./assets/koala-honey-wife.jpeg")}
-            status="unread"
-            children=""
-          />
-        </View>
-        <View style={styles.cardContainer}>
-          <CustomMessageItemCard
-            contactName="Fbd🍀"
-            message="Happy Birthday if you celebrating it today"
             time="10"
             avatarUrl={require("./assets/koala-honey-wife.jpeg")}
             status="read"
