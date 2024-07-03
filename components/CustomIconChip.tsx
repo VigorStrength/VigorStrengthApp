@@ -29,9 +29,10 @@ const CustomIconChip = ({
       <View>
         <Icon
           name={iconName}
-          width={isSmall ? 24 : 44}
-          height={isSmall ? 24 : 44}
+          width={isSmall ? 24 : 64}
+          height={isSmall ? 24 : 64}
           fill={Colors.orange100}
+          style={{ paddingLeft: isSmall ? 0 : -8 }}
         />
         {children as React.ReactNode}
       </View>
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderStyle: "solid",
     borderWidth: 2,
+    paddingLeft: -2,
     borderColor: Colors.orange100,
     backgroundColor: Colors.neutral800,
   },

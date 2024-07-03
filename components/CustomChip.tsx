@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ViewStyle, StyleProp } from "react-native";
 import { icons } from "../constants/icons";
 import { TouchableRipple, TouchableRippleProps } from "react-native-paper";
 import { Colors, FontSize } from "../GlobalStyles";
@@ -16,7 +16,14 @@ const CustomChip = ({ left, right, children, ...props }: Props) => {
   return (
     <TouchableRipple
       {...props}
-      style={children ? styles.chip : styles.iconsChip}
+      style={
+        children
+          ? styles.chip
+          : ([
+              styles.iconsChip,
+              props.style ? props.style : [],
+            ] as StyleProp<ViewStyle>)
+      }
     >
       <View style={styles.content}>
         {left && (
@@ -52,7 +59,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: Colors.neutral800,
   },
   content: {
     flexDirection: "row",

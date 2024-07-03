@@ -20,6 +20,7 @@ import CustomMealItemCard from "./components/CustomMealItemCard";
 import CustomDailyWorkoutItemCard from "./components/CustomDailyWorkoutItemCard";
 import CustomExerciseItemCard from "./components/CustomExerciseItemCard";
 import CustomMessageItemCard from "./components/CustomMessageItemCard";
+import CustomProgramHeaderCard from "./components/CustomProgramHeaderCard";
 
 const theme = {
   ...DefaultTheme,
@@ -38,6 +39,7 @@ const App = () => {
       await Font.loadAsync({
         Satoshi: require("./assets/fonts/Satoshi/Satoshi-Regular.otf"),
         SatoshiBold: require("./assets/fonts/Satoshi/Satoshi-Medium.otf"),
+        SatoshiStrong: require("./assets/fonts/Satoshi/Satoshi-Bold.otf"),
         IntegralCF: require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
         "IntegralCF-Bold": require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
       });
@@ -288,7 +290,7 @@ const App = () => {
         <View style={styles.dividerContainer}>
           <CustomDivider leftLabel="Rest" rightLabel="00:45" />
         </View> */}
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}>
           <CustomMessageItemCard
             contactName="Fbd🍀"
             message="Happy Birthday if this day is still special to you💕"
@@ -314,7 +316,20 @@ const App = () => {
             status="read"
             children=""
           />
-        </View>
+        </View> */}
+        <CustomProgramHeaderCard
+          variant="workout"
+          workoutWeekNumber={3}
+          workoutDayNumber={2}
+          workoutDayName="Upper Body Conjugate"
+          coverUrl={require("./assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
+        />
+        <CustomProgramHeaderCard
+          variant="meal"
+          mealTitle="Dinner"
+          mealName="Fish Curry"
+          coverUrl={require("./assets/marcos-paulo-prado-oBdC0TlFOqM-unsplash.jpg")}
+        />
       </View>
     </PaperProvider>
   );
@@ -335,14 +350,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginBottom: 10,
-    // alignItems: "flex-start",
-    // textAlign: "right",
   },
   progressBarContainer: {
     marginTop: 40,
   },
   dividerContainer: {
-    // marginBottom: 10,
     width: "100%",
   },
   avatarContainer: {
