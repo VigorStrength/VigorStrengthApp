@@ -13,6 +13,7 @@ export const Colors = {
   neutral700: "#444747",
   neutral800: "#303030",
   neutral900: "#0F0F0F",
+  neutralBackgroundChip: "#0000007f",
   neutralGradient: "#1C1C1E",
 
   // Primary

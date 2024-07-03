@@ -47,16 +47,12 @@ const CustomProgramHeaderCard = ({
           height={64}
           fill={Colors.orange100}
         />
-        {variant === "workout" ? (
-          <CustomChip
-            left="favoriteEmpty"
-            right="moreHorizontal"
-            children=""
-            style={{ backgroundColor: Colors.neutral800 }}
-          />
-        ) : (
-          <CustomChip left="favoriteEmpty" right="moreHorizontal" children="" />
-        )}
+        <CustomChip
+          left="favoriteEmpty"
+          right="moreHorizontal"
+          children=""
+          style={styles.chip}
+        />
       </View>
       <View style={styles.contentHeader}>
         {variant === "workout" && (
@@ -102,7 +98,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     opacity: 0.2,
     zIndex: 1,
-    position: "absolute",
   },
   header: {
     flexDirection: "row",
@@ -111,9 +106,8 @@ const styles = StyleSheet.create({
     paddingTop: 42,
     paddingHorizontal: 4,
   },
-  iconGroup: {
-    flexDirection: "row",
-    alignItems: "center",
+  chip: {
+    backgroundColor: Colors.neutralBackgroundChip,
   },
   contentHeader: {
     paddingHorizontal: 18,
