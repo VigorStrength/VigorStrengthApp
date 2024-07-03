@@ -4,9 +4,9 @@ import { Colors } from "../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "./Icon";
 
-type variant = "weeklySelection" | "sportSpecificSelection";
+type Variant = "weeklySelection" | "sportSpecificSelection";
 type Props = {
-  variant: variant;
+  variant: Variant;
   workoutTime: number;
   coverUrl: any;
   workoutName: string;
@@ -18,22 +18,25 @@ const CustomSelectionCard = ({
   workoutTime,
   workoutName,
 }: Props) => {
+  const isWeekly = variant === "weeklySelection";
   return (
     <View>
       <View
-        style={
-          variant === "weeklySelection"
-            ? styles.weeklySelectionContainer
-            : styles.sportSpecificSelectionContainer
-        }
+        style={[
+          styles.container,
+          isWeekly
+            ? styles.weeklySelectionSize
+            : styles.sportSpecificSelectionSize,
+        ]}
       >
         <Image
           source={coverUrl}
-          style={
-            variant === "weeklySelection"
-              ? styles.imageWeeklySelection
-              : styles.imagesportSpecificSelection
-          }
+          style={[
+            styles.image,
+            isWeekly
+              ? styles.weeklySelectionSize
+              : styles.sportSpecificSelectionSize,
+          ]}
         />
         <LinearGradient
           colors={[Colors.neutralGradient, Colors.orange80, Colors.orange100]}
@@ -62,35 +65,30 @@ const CustomSelectionCard = ({
 export default CustomSelectionCard;
 
 const styles = StyleSheet.create({
-  weeklySelectionContainer: {
+  container: {
+    borderRadius: 20,
+    overflow: "hidden",
+    position: "relative",
+  },
+  weeklySelectionSize: {
     width: 196,
     height: 152,
-    borderRadius: 20,
   },
-  sportSpecificSelectionContainer: {
+  sportSpecificSelectionSize: {
     width: 241,
     height: 469,
-    borderRadius: 20,
   },
-  imageWeeklySelection: {
-    width: 196,
-    height: 152,
-    borderRadius: 20,
-  },
-  imagesportSpecificSelection: {
-    width: 241,
-    height: 469,
-    borderRadius: 20,
+  image: {
+    position: "absolute",
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 20,
     opacity: 0.2,
   },
   content: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
+    // marginTop: 10,
     marginLeft: 6,
   },
   label: {
