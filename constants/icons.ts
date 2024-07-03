@@ -35,6 +35,7 @@ import SkipBack from "../assets/icons/skip-back.svg";
 import SkipForward from "../assets/icons/skip-forward.svg";
 import SortBy from "../assets/icons/sort-by.svg";
 import Time from "../assets/icons/time.svg";
+import Unread from "../assets/icons/unread.svg";
 import Workout from "../assets/icons/workout.svg";
 import Search from "../assets/icons/search.svg";
 import Target from "../assets/icons/target.svg";
@@ -77,6 +78,7 @@ export const icons = {
   skipForward: SkipForward,
   sortBy: SortBy,
   time: Time,
+  unread: Unread,
   workout: Workout,
   search: Search,
   target: Target,

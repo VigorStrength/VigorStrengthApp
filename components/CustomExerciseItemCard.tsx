@@ -14,7 +14,7 @@ interface Props extends CardProps {
   status: Status;
 }
 
-const CustomMealItemCard = ({
+const CustomExerciseItemCard = ({
   exerciseName,
   exerciseTime,
   exerciseReps,
@@ -53,7 +53,7 @@ const CustomMealItemCard = ({
   );
 };
 
-export default CustomMealItemCard;
+export default CustomExerciseItemCard;
 
 const styles = StyleSheet.create({
   card: {

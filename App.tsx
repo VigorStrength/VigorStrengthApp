@@ -19,6 +19,7 @@ import CustomMonthlyPlanCard from "./components/CustomMonthlyPlanCard";
 import CustomMealItemCard from "./components/CustomMealItemCard";
 import CustomDailyWorkoutItemCard from "./components/CustomDailyWorkoutItemCard";
 import CustomExerciseItemCard from "./components/CustomExerciseItemCard";
+import CustomMessageItemCard from "./components/CustomMessageItemCard";
 
 const theme = {
   ...DefaultTheme,
@@ -274,7 +275,7 @@ const App = () => {
             children=""
           />
         </View> */}
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}>
           <CustomExerciseItemCard
             exerciseName="Shoulder Press"
             exerciseTime={10}
@@ -286,6 +287,33 @@ const App = () => {
         </View>
         <View style={styles.dividerContainer}>
           <CustomDivider leftLabel="Rest" rightLabel="00:45" />
+        </View> */}
+        <View style={styles.cardContainer}>
+          <CustomMessageItemCard
+            contactName="Koala Honey Wife 🐨🍯💍"
+            // contactName="Kennedy Nelson"
+            message="I'll call you sometime soon so we can talk okay?"
+            // message={
+            //   "you saying hello scared me and woke me up that's a bad combo for me"
+            // }
+            // message={
+            //   "Your clinician bill from your visit to THE BORTOLAZZO GROUP, LLC at WELLSTAR KENNESTONE HOSPITAL is now past due.Click here to view: https://bill.paymentsmd.com/l/583435144129/ Reply 'STOP' to unsubscribe."
+            // }
+            time="10"
+            avatarUrl={require("./assets/koala-honey-wife.jpeg")}
+            status="unread"
+            children=""
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <CustomMessageItemCard
+            contactName="Fbd🍀"
+            message="Happy Birthday if you celebrating it today"
+            time="10"
+            avatarUrl={require("./assets/koala-honey-wife.jpeg")}
+            status="read"
+            children=""
+          />
         </View>
       </View>
     </PaperProvider>

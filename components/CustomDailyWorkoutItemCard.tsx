@@ -14,7 +14,7 @@ interface Props extends CardProps {
   status: Status;
 }
 
-const CustomMealItemCard = ({
+const CustomDailyWorkoutItemCard = ({
   dayNumber,
   workoutDayLabel,
   workoutDayTimeRange,
@@ -58,7 +58,7 @@ const CustomMealItemCard = ({
   );
 };
 
-export default CustomMealItemCard;
+export default CustomDailyWorkoutItemCard;
 
 const styles = StyleSheet.create({
   card: {

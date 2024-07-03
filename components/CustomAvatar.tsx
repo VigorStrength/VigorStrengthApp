@@ -9,7 +9,7 @@ type Props = {
   avatarUrl?: any;
 };
 
-const CustomAvatar = ({ size = "small", avatarUrl }: Props) => {
+const CustomAvatar = ({ size = "small", avatarUrl, ...props }: Props) => {
   const sizeStyle =
     size === "small"
       ? styles.small
