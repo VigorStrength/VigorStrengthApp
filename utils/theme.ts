@@ -6,8 +6,12 @@ const DarkTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: Colors.orange100,
-    onSurfaceVariant: Colors.neutral350,
     background: Colors.neutralGradient,
+    surface: Colors.neutralGradient,
+    onPrimary: Colors.neutralGradient,
+    onSecondary: Colors.neutralGradient,
+    onTertiary: Colors.neutralGradient,
+    onSurfaceVariant: Colors.neutral350,
   },
 };
 
