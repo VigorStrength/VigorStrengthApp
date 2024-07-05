@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ViewStyle, StyleProp } from "react-native";
-import { icons } from "../constants/icons";
+import { icons } from "../utils/constants/icons";
 import { TouchableRipple, TouchableRippleProps } from "react-native-paper";
 import { Colors, FontSize } from "../GlobalStyles";
 import Icon from "./Icon";

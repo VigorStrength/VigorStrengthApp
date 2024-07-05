@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { icons } from "../constants/icons";
+import { icons } from "../utils/constants/icons";
 import { Searchbar, SearchbarProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";

@@ -4,7 +4,7 @@ import Icon from "./Icon";
 import TextInputIcon from "./TextInputIcon";
 import { TextInput } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
-import { icons } from "../constants/icons";
+import { icons } from "../utils/constants/icons";
 
 type Variant = "primary" | "secondary" | "filled";
 type IconName = keyof typeof icons;

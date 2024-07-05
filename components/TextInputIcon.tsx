@@ -1,5 +1,5 @@
 import React from "react";
-import { icons } from "../constants/icons";
+import { icons } from "../utils/constants/icons";
 import { TextInput } from "react-native-paper";
 import Icon from "./Icon";
 
