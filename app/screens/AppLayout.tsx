@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useFont } from "../contexts/FontContext";
 import { useTheme } from "react-native-paper";
+import Welcome from "./Welcome";
 
 const AppLayout = () => {
   const { fontLoaded } = useFont();
@@ -16,9 +17,10 @@ const AppLayout = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={{ color: colors.primary }}>Hello From VigorStrength</Text>
-    </View>
+    // <View style={styles.container}>
+    //   <Text style={{ color: colors.primary }}>Hello From VigorStrength</Text>
+    // </View>
+    <Welcome />
   );
 };
 

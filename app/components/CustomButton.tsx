@@ -66,6 +66,7 @@ const CustomButton = ({
         <Text
           style={[
             styles.text,
+            size === "medium" && styles.textMedium,
             size === "xlarge" && styles.textXlarge,
             size === "large" && left && right && styles.textLargeWithIcons,
           ]}
@@ -82,7 +83,7 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.neutral800,
+    backgroundColor: Colors.neutral600,
     borderRadius: 50,
   },
   small: {
@@ -133,12 +134,17 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.orange100,
-    fontSize: FontSize.bodyRegular16_size,
+  },
+  textMedium: {
+    fontSize: 20,
+    marginLeft: 80,
   },
   textXlarge: {
     marginLeft: 20,
+    fontSize: 16,
   },
   textLargeWithIcons: {
+    fontSize: 16,
     marginRight: 130,
   },
 });

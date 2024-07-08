@@ -23,11 +23,11 @@ const FontProvider = ({ children }: Props) => {
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
-        Satoshi: require("../assets/fonts/Satoshi/Satoshi-Regular.otf"),
-        SatoshiBold: require("../assets/fonts/Satoshi/Satoshi-Medium.otf"),
-        SatoshiStrong: require("../assets/fonts/Satoshi/Satoshi-Bold.otf"),
-        IntegralCF: require("../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
-        "IntegralCF-Bold": require("../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
+        Satoshi: require("../../assets/fonts/Satoshi/Satoshi-Regular.otf"),
+        SatoshiBold: require("../../assets/fonts/Satoshi/Satoshi-Medium.otf"),
+        SatoshiStrong: require("../../assets/fonts/Satoshi/Satoshi-Bold.otf"),
+        IntegralCF: require("../../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
+        "IntegralCF-Bold": require("../../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
       });
       setFontLoaded(true);
     };

@@ -4,6 +4,7 @@
     "slug": "VigorStrengthApp",
     "version": "1.0.0",
     "orientation": "portrait",
+    "entryPoint": "./app/main.tsx",
     "backgroundColor": "#1C1C1E",
     "userInterfaceStyle": "light",
     "splash": {
