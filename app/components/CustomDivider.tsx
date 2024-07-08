@@ -50,6 +50,7 @@ const marginValue = 14;
 
 const styles = StyleSheet.create({
   container: {
+    width: 320,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   divider: {
-    backgroundColor: Colors.neutral800,
-    height: 1.5,
+    backgroundColor: Colors.neutral400,
+    height: 2,
     flex: 1,
   },
   marginRight: {

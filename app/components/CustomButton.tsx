@@ -3,15 +3,16 @@ import { StyleSheet, Text, View } from "react-native";
 import { TouchableRipple, TouchableRippleProps } from "react-native-paper";
 import { icons } from "../utils/constants/icons";
 import Icon from "./Icon";
-import { Colors, FontSize } from "../GlobalStyles";
+import { Colors } from "../GlobalStyles";
 
-type Size = "small" | "medium" | "large" | "xlarge";
+type Size = "small" | "medium" | "large" | "largeSignin";
 type IconName = keyof typeof icons;
 
 interface Props extends TouchableRippleProps {
   size?: Size;
   left?: IconName;
   right?: IconName;
+  style?: any;
   children: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ const CustomButton = ({
   left,
   right,
   children,
+  style,
   ...props
 }: Props) => {
   const getButtonStyle = () => {
@@ -30,29 +32,35 @@ const CustomButton = ({
         return styles.medium;
       case "large":
         return styles.large;
-      case "xlarge":
-        return styles.xlarge;
+      case "largeSignin":
+        return styles.largeSignin;
       default:
         return styles.large;
     }
   };
 
   const getPaddingStyle = () => {
-    if (size === "small") return styles.paddingSmall;
-    if (size === "medium" || (left && right && size === "large"))
-      return styles.paddingMedium;
-    if (size === "large") return styles.paddingLarge;
-    if (size === "xlarge") return styles.paddingXLarge;
+    switch (size) {
+      case "small":
+        return styles.paddingSmall;
+      case "medium":
+        return styles.paddingMedium;
+      case "largeSignin":
+        return styles.paddingLargeSignin;
+      default:
+        return styles.paddingSmall;
+    }
   };
 
   return (
     <TouchableRipple
       {...props}
-      style={[styles.button, getButtonStyle(), getPaddingStyle()]}
+      style={[styles.button, getButtonStyle(), getPaddingStyle(), style]}
     >
       <View
         style={[
           styles.innerContainer,
+          size === "largeSignin" && styles.largeSignInContainer,
           size === "medium" && styles.mediumContainer,
         ]}
       >
@@ -67,13 +75,18 @@ const CustomButton = ({
           style={[
             styles.text,
             size === "medium" && styles.textMedium,
-            size === "xlarge" && styles.textXlarge,
+            size === "largeSignin" && styles.textSignIn,
             size === "large" && left && right && styles.textLargeWithIcons,
           ]}
         >
           {children}
         </Text>
-        {right && <Icon name={right} fill={Colors.orange100} />}
+        {right && (
+          <Icon
+            name={right}
+            fill={size === "largeSignin" ? Colors.neutral100 : Colors.orange100}
+          />
+        )}
       </View>
     </TouchableRipple>
   );
@@ -86,8 +99,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.neutral600,
     borderRadius: 50,
   },
+  largeSignin: {
+    width: 320,
+    height: 46,
+    backgroundColor: Colors.orange100,
+    borderRadius: 6,
+  },
   small: {
-    width: 180,
+    width: 170,
     height: 46,
   },
   medium: {
@@ -95,14 +114,11 @@ const styles = StyleSheet.create({
     height: 46,
   },
   large: {
-    width: 324,
+    width: 320,
     height: 46,
     borderRadius: 6,
-  },
-  xlarge: {
-    width: 361,
-    height: 56,
-    borderRadius: 6,
+    alignItems: "center",
+    justifyContent: "center",
   },
   paddingSmall: {
     paddingHorizontal: 10,
@@ -112,13 +128,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 11,
   },
-  paddingLarge: {
-    paddingHorizontal: 100,
+  paddingLargeSignin: {
+    paddingHorizontal: 16,
     paddingVertical: 11,
-  },
-  paddingXLarge: {
-    paddingHorizontal: 90,
-    paddingVertical: 16,
   },
   innerContainer: {
     flexDirection: "row",
@@ -129,22 +141,24 @@ const styles = StyleSheet.create({
   mediumContainer: {
     justifyContent: "space-between",
   },
+  largeSignInContainer: {
+    justifyContent: "space-between",
+  },
   leftIconLarge: {
     marginRight: 8,
   },
   text: {
+    fontSize: 17,
     color: Colors.orange100,
+  },
+  textSignIn: {
+    color: Colors.neutral100,
   },
   textMedium: {
     fontSize: 20,
     marginLeft: 80,
   },
-  textXlarge: {
-    marginLeft: 20,
-    fontSize: 16,
-  },
   textLargeWithIcons: {
-    fontSize: 16,
     marginRight: 130,
   },
 });

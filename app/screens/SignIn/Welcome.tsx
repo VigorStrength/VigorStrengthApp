@@ -3,9 +3,16 @@ import React from "react";
 import { Colors } from "../../GlobalStyles";
 import CustomButton from "../../components/CustomButton";
 
-type Props = {};
+type Props = {
+  navigation: any;
+  route: any;
+};
 
-const Welcome = (props: Props) => {
+const Welcome = ({ navigation }: Props) => {
+  const handleOnPress = () => {
+    navigation.navigate("SignIn");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.logoLabel}>LOGO</Text>
@@ -15,7 +22,9 @@ const Welcome = (props: Props) => {
         </CustomButton>
         <View style={styles.actionableLabelContainer}>
           <Text style={styles.label}>Already have an account?</Text>
-          <Text style={styles.signInLabel}>Sign In</Text>
+          <Text onPress={handleOnPress} style={styles.signInLabel}>
+            Sign In
+          </Text>
         </View>
       </View>
     </View>

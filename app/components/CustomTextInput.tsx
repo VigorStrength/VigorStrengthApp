@@ -25,6 +25,7 @@ const CustomTextInput = ({
   iconName,
   filledLabel,
   filledValue,
+  ...props
 }: CustomTextInputProps) => {
   return (
     <>
@@ -41,7 +42,7 @@ const CustomTextInput = ({
             },
           }}
           outlineStyle={styles.primaryOutlineStyle}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, props.style]}
           //   right={
           //     iconName ? (
           //       <TextInputIcon iconName={iconName} fill={Colors.orange100} />
@@ -69,7 +70,7 @@ const CustomTextInput = ({
             },
           }}
           outlineStyle={styles.secondaryOutlineStyle}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, props.style]}
           right={
             iconName ? (
               <TextInput.Icon
@@ -94,7 +95,7 @@ export default CustomTextInput;
 const styles = StyleSheet.create({
   inputContainer: {
     width: 320,
-    height: 54,
+    height: 46,
   },
   primaryOutlineStyle: {
     borderStyle: "solid",
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   filledContainer: {
     width: 320,
-    height: 54,
+    height: 46,
     paddingTop: 6,
     paddingLeft: 16,
     paddingRight: 16,
