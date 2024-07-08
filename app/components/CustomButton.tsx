@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     color: Colors.neutral100,
   },
   textMedium: {
-    fontSize: 20,
+    fontSize: 17,
     marginLeft: 80,
   },
   textLargeWithIcons: {

@@ -7,7 +7,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DarkTheme, NavigationContainer } from "@react-navigation/native";
 import SignIn from "./SignIn/SignIn";
 import Home from "./WorkoutPlan/Home";
-import { Colors } from "../GlobalStyles";
 
 const AppLayout = () => {
   const { fontLoaded } = useFont();
@@ -23,10 +22,6 @@ const AppLayout = () => {
   }
 
   return (
-    // <View style={styles.container}>
-    //   <Text style={{ color: colors.primary }}>Hello From VigorStrength</Text>
-    // </View>
-    // <Welcome />
     <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
         <Stack.Screen

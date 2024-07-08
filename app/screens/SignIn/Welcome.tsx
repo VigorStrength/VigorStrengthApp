@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
   },
   label: {
     lineHeight: 25,
-    fontSize: 20,
+    fontSize: 17,
     fontFamily: "Satoshi",
     color: Colors.neutral400,
   },
   signInLabel: {
     lineHeight: 25,
-    fontSize: 20,
+    fontSize: 17,
     marginLeft: 6,
     fontFamily: "Satoshi",
     color: Colors.orange100,

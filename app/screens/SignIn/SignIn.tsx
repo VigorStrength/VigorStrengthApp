@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { Colors } from "../../GlobalStyles";
 import CustomTextInput from "../../components/CustomTextInput";
 import CustomDivider from "../../components/CustomDivider";
 import CustomButton from "../../components/CustomButton";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Icon } from "react-native-paper";
 
 type Props = {
   navigation: any;
@@ -13,9 +15,7 @@ type Props = {
 const SignIn = ({ navigation }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "LOGO",
-      headerBackTitleVisible: false,
-      headerTintColor: Colors.orange100,
+      headerShown: false,
     });
   }, [navigation]);
 
@@ -24,7 +24,14 @@ const SignIn = ({ navigation }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.appBar}>
+        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
+          <Icon source="chevron-left" size={24} color={Colors.orange100} />
+        </TouchableOpacity>
+        <Text style={styles.logoLabel}>LOGO</Text>
+        <Icon source="help-circle-outline" size={24} color={Colors.orange100} />
+      </View>
       <Text style={styles.contentHeaderLabel}>Let's Get Sexy</Text>
       <View style={styles.actionContent}>
         <CustomTextInput label="Email" />
@@ -45,7 +52,7 @@ const SignIn = ({ navigation }: Props) => {
           style={styles.lastButtonContainer}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -54,14 +61,25 @@ export default SignIn;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 28,
-    paddingBottom: 10,
+    paddingBottom: 18,
     paddingHorizontal: 16,
+  },
+  appBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  logoLabel: {
+    fontSize: 20,
+    lineHeight: 25,
+    color: Colors.orange100,
+    fontFamily: "IntegralCF-Bold",
   },
   contentHeaderLabel: {
     fontSize: 24,
     lineHeight: 30,
-    marginTop: 18,
+    marginTop: 45,
+    marginLeft: 16,
     alignContent: "flex-start",
     color: Colors.neutral400,
     fontFamily: "IntegralCF-Bold",
