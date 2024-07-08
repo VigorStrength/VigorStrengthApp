@@ -3,14 +3,14 @@ import React from "react";
 
 type Props = {};
 
-const BottomNavigation = (props: Props) => {
+const Account = (props: Props) => {
   return (
     <View>
-      <Text>BottomNavigation</Text>
+      <Text>Account</Text>
     </View>
   );
 };
 
-export default BottomNavigation;
+export default Account;
 
 const styles = StyleSheet.create({});
