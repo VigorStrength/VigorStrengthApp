@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Colors } from "../GlobalStyles";
-import CustomButton from "../components/CustomButton";
+import { Colors } from "../../GlobalStyles";
+import CustomButton from "../../components/CustomButton";
 
 type Props = {};
 

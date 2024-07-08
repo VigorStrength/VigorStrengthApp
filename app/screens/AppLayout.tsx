@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useFont } from "../contexts/FontContext";
 import { useTheme } from "react-native-paper";
-import Welcome from "./Welcome";
+import Welcome from "./SignIn/Welcome";
 
 const AppLayout = () => {
   const { fontLoaded } = useFont();
