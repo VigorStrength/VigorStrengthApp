@@ -21,6 +21,7 @@ import Google from "../../../assets/icons/google.svg";
 import Home from "../../../assets/icons/home.svg";
 import Insights from "../../../assets/icons/insights.svg";
 import Menu from "../../../assets/icons/menu.svg";
+import Message from "../../../assets/icons/message.svg";
 import MoreHorizontal from "../../../assets/icons/more-horizontal.svg";
 import MoreHorizontalCircle from "../../../assets/icons/more-horizontal-circle.svg";
 import NewMessage from "../../../assets/icons/new-message.svg";
@@ -64,6 +65,7 @@ export const icons = {
   home: Home,
   insights: Insights,
   menu: Menu,
+  message: Message,
   moreHorizontal: MoreHorizontal,
   moreHorizontalCircle: MoreHorizontalCircle,
   newMessage: NewMessage,

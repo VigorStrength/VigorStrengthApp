@@ -1,16 +1,193 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  Animated,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useRef } from "react";
+import { Colors } from "../../GlobalStyles";
+import Icon from "../../components/Icon";
+import CustomMonthlyPlanCard from "../../components/CustomMonthlyPlanCard";
+import CustomSelectionCard from "../../components/CustomSelectionCard";
+import { interpolateColor, useSharedValue } from "react-native-reanimated";
 
-type Props = {};
+type Props = {
+  navigation: any;
+  route: any;
+};
 
-const Home = (props: Props) => {
+const ActionComponent = () => (
+  <View style={styles.actionContainer}>
+    <Text style={styles.actionLabel}>See more</Text>
+    <Icon name="arrowRight" width={40} height={40} fill={Colors.orange100} />
+  </View>
+);
+
+const Home = ({ navigation }: Props) => {
+  // to fix issue with the animated header
+  // const scrollY = useSharedValue(0);
+  // const appBarBackgroundColor = interpolateColor(
+  //   scrollY.value,
+  //   [0, 200],
+  //   ["transparent", "#000000b2"]
+  // );
+
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={[styles.container]}>
+      <View style={styles.appBar}>
+        <Text style={styles.logoLabel}>LOGO</Text>
+        <Icon
+          onPress={() => navigation.navigate("Welcome")}
+          name="menu"
+          width={44}
+          height={44}
+          fill={Colors.orange100}
+        />
+      </View>
+      <ScrollView style={styles.content}>
+        <View style={styles.monthlyPlanCardContainer}>
+          <Text style={styles.topLabel}>Today's Workout</Text>
+          <CustomMonthlyPlanCard
+            title="Monthly Plan Name"
+            subTitle="Week X"
+            progress={15}
+            programCoverUrl={require("../../../assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
+          />
+        </View>
+        <View style={styles.weeklySelectionContainer}>
+          <View style={styles.weeklyLabelsContainer}>
+            <Text style={styles.label}>Weekly Selection</Text>
+            <ActionComponent />
+          </View>
+          <View style={styles.weeklyCardsContainer}>
+            <CustomSelectionCard
+              variant="weeklySelection"
+              coverUrl={require("../../../assets/sunday-ii-sunday-z1uWXbhI1R0-unsplash.jpg")}
+              workoutTime={23}
+              workoutName="Squat"
+            />
+            <CustomSelectionCard
+              variant="weeklySelection"
+              coverUrl={require("../../../assets/joe-mcferrin-s6znUip3Mro-unsplash.jpg")}
+              workoutTime={23}
+              workoutName="Deadlift"
+              style={styles.weeklyCard}
+            />
+          </View>
+        </View>
+        <View style={styles.sportSpecificContainer}>
+          <View style={styles.weeklyLabelsContainer}>
+            <Text style={styles.sportLabel} numberOfLines={2}>
+              Sport Specific Programs
+            </Text>
+            <ActionComponent />
+          </View>
+          <View style={styles.weeklyCardsContainer}>
+            <CustomSelectionCard
+              variant="sportSpecificSelection"
+              coverUrl={require("../../../assets/sunday-ii-sunday-z1uWXbhI1R0-unsplash.jpg")}
+              workoutTime={23}
+              workoutName="Squat"
+            />
+            <CustomSelectionCard
+              variant="sportSpecificSelection"
+              coverUrl={require("../../../assets/joe-mcferrin-s6znUip3Mro-unsplash.jpg")}
+              workoutTime={23}
+              workoutName="Deadlift"
+              style={styles.weeklyCard}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  appBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+  },
+  logoLabel: {
+    fontSize: 24,
+    lineHeight: 25,
+    color: Colors.orange100,
+    fontFamily: "IntegralCF-Bold",
+  },
+  content: {
+    paddingTop: 8,
+    paddingBottom: 16,
+    paddingHorizontal: 8,
+  },
+  monthlyPlanCardContainer: {
+    flex: 1,
+    paddingLeft: 8,
+    paddingTop: 32,
+    marginBottom: 8,
+  },
+  topLabel: {
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SatoshiBold",
+    color: Colors.neutral400,
+    marginBottom: 16,
+  },
+  label: {
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SatoshiBold",
+    color: Colors.neutral400,
+  },
+  actionLabel: {
+    fontSize: 17,
+    lineHeight: 25,
+    fontFamily: "Satoshi",
+    color: Colors.orange100,
+    marginRight: -8,
+  },
+  actionContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: -8,
+  },
+  weeklySelectionContainer: {
+    flex: 1,
+    paddingHorizontal: 8,
+    overflow: "hidden",
+  },
+  weeklyCard: {
+    marginLeft: 16,
+  },
+  weeklyLabelsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  weeklyCardsContainer: {
+    flexDirection: "row",
+  },
+  sportSpecificContainer: {
+    flex: 1,
+    marginTop: 8,
+    paddingHorizontal: 8,
+    overflow: "hidden",
+  },
+  sportLabel: {
+    fontSize: 20,
+    lineHeight: 25,
+    width: 206,
+    fontFamily: "SatoshiBold",
+    color: Colors.neutral400,
+    flexWrap: "wrap",
+  },
+});

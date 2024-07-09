@@ -1,16 +1,35 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React from "react";
+import { Colors } from "../../GlobalStyles";
 
 type Props = {};
 
 const Insights = (props: Props) => {
   return (
-    <View>
-      <Text>Insights</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.appBar}>
+        <Text style={styles.appBarLabel}>Activity</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default Insights;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  appBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 16,
+  },
+  appBarLabel: {
+    fontSize: 24,
+    lineHeight: 25,
+    color: Colors.orange100,
+    fontFamily: "IntegralCF-Bold",
+  },
+});

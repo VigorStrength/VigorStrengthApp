@@ -5,7 +5,8 @@ import CustomTextInput from "../../components/CustomTextInput";
 import CustomDivider from "../../components/CustomDivider";
 import CustomButton from "../../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Icon } from "react-native-paper";
+import { Icon as RNIcon } from "react-native-paper";
+import Icon from "../../components/Icon";
 
 type Props = {
   navigation: any;
@@ -26,11 +27,22 @@ const SignIn = ({ navigation }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.appBar}>
-        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-          <Icon source="chevron-left" size={24} color={Colors.orange100} />
-        </TouchableOpacity>
+        <Icon
+          onPress={() => navigation.navigate("Welcome")}
+          name="chevronLeft"
+          width={44}
+          height={44}
+          fill={Colors.orange100}
+        />
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
+          <RNIcon source="chevron-left" size={24} color={Colors.orange100} />
+        </TouchableOpacity> */}
         <Text style={styles.logoLabel}>LOGO</Text>
-        <Icon source="help-circle-outline" size={24} color={Colors.orange100} />
+        <RNIcon
+          source="help-circle-outline"
+          size={24}
+          color={Colors.orange100}
+        />
       </View>
       <Text style={styles.contentHeaderLabel}>Let's Get Sexy</Text>
       <View style={styles.actionContent}>

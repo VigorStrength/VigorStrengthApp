@@ -10,6 +10,7 @@ type Props = {
   workoutTime: number;
   coverUrl: any;
   workoutName: string;
+  style?: any;
 };
 
 const CustomSelectionCard = ({
@@ -17,12 +18,15 @@ const CustomSelectionCard = ({
   coverUrl,
   workoutTime,
   workoutName,
+  style,
+  ...props
 }: Props) => {
   const isWeekly = variant === "weeklySelection";
   return (
-    <View>
+    <View style={style} {...props}>
       <View
         style={[
+          ,
           styles.container,
           isWeekly
             ? styles.weeklySelectionSize
