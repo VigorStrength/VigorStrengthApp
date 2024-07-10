@@ -39,8 +39,9 @@ export const Border = {
 };
 
 export const FontSize = {
-  bodyBold12_size: 12,
-  bodyBold14_size: 14,
-  bodyRegular16_size: 16,
-  bodyBold16_size: 16,
+  xsmall: 12,
+  small: 14,
+  large: 17,
+  xlarge: 20,
+  xxlarge: 24,
 };
