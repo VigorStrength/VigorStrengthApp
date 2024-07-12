@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { Colors } from "../../GlobalStyles";
 import CustomTextInput from "../../components/CustomTextInput";
 import CustomDivider from "../../components/CustomDivider";
@@ -7,6 +7,7 @@ import CustomButton from "../../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon as RNIcon } from "react-native-paper";
 import Icon from "../../components/Icon";
+import { useLogin } from "../../hooks/Authentication/useLogin";
 
 type Props = {
   navigation: any;
@@ -14,14 +15,12 @@ type Props = {
 };
 
 const SignIn = ({ navigation }: Props) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { userSignIn, data, error, isPending } = useLogin({ navigation });
 
   const handleSignIn = () => {
-    navigation.navigate("Home");
+    userSignIn({ email, password });
   };
 
   return (
@@ -34,9 +33,6 @@ const SignIn = ({ navigation }: Props) => {
           height={44}
           fill={Colors.orange100}
         />
-        {/* <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-          <RNIcon source="chevron-left" size={24} color={Colors.orange100} />
-        </TouchableOpacity> */}
         <Text style={styles.logoLabel}>LOGO</Text>
         <RNIcon
           source="help-circle-outline"
@@ -46,13 +42,23 @@ const SignIn = ({ navigation }: Props) => {
       </View>
       <Text style={styles.contentHeaderLabel}>Let's Get Sexy</Text>
       <View style={styles.actionContent}>
-        <CustomTextInput label="Email" />
-        <CustomTextInput label="Password" style={styles.passwordInput} />
+        <CustomTextInput
+          label="Email"
+          value={email}
+          onChangeText={(input) => setEmail(input)}
+        />
+        <CustomTextInput
+          label="Password"
+          secureTextEntry={true}
+          style={styles.passwordInput}
+          value={password}
+          onChangeText={(input) => setPassword(input)}
+        />
         <CustomDivider rightLabel="Forgot Password" />
         <CustomButton
           size="largeSignin"
           right="arrowRight"
-          children="Sign In"
+          children={isPending ? "Signing in..." : "Sign In"}
           onPress={handleSignIn}
         />
         <CustomDivider middleLabel="or" />

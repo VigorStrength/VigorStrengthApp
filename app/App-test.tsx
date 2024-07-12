@@ -22,6 +22,7 @@ import CustomExerciseItemCard from "./components/CustomExerciseItemCard";
 import CustomMessageItemCard from "./components/CustomMessageItemCard";
 import CustomProgramHeaderCard from "./components/CustomProgramHeaderCard";
 import CustomSelectionCard from "./components/CustomSelectionCard";
+import Loader from "./components/Loader";
 
 const theme = {
   ...DefaultTheme,
@@ -38,11 +39,11 @@ const AppTest = () => {
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
-        Satoshi: require("./assets/fonts/Satoshi/Satoshi-Regular.otf"),
-        SatoshiBold: require("./assets/fonts/Satoshi/Satoshi-Medium.otf"),
-        SatoshiStrong: require("./assets/fonts/Satoshi/Satoshi-Bold.otf"),
-        IntegralCF: require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
-        "IntegralCF-Bold": require("./assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
+        Satoshi: require("../assets/fonts/Satoshi/Satoshi-Regular.otf"),
+        SatoshiBold: require("../assets/fonts/Satoshi/Satoshi-Medium.otf"),
+        SatoshiStrong: require("../assets/fonts/Satoshi/Satoshi-Bold.otf"),
+        IntegralCF: require("../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-regular.otf"),
+        "IntegralCF-Bold": require("../assets/fonts/Integral-CF/Fontspring-DEMO-integralcf-medium.otf"),
       });
       setFontLoaded(true);
     };
@@ -331,18 +332,20 @@ const AppTest = () => {
           mealName="Fish Curry"
           coverUrl={require("./assets/marcos-paulo-prado-oBdC0TlFOqM-unsplash.jpg")}
         /> */}
-        <CustomSelectionCard
+        {/* <CustomSelectionCard
           variant="weeklySelection"
           coverUrl={require("./assets/sunday-ii-sunday-z1uWXbhI1R0-unsplash.jpg")}
           workoutTime={23}
           workoutName="Squat"
-        />
+        /> */}
         {/* <CustomSelectionCard
           variant="sportSpecificSelection"
           coverUrl={require("./assets/joe-mcferrin-s6znUip3Mro-unsplash.jpg")}
           workoutTime={23}
           workoutName="Deadlift"
         /> */}
+        <Loader size={"small"} />
+        <Loader size={"large"} />
       </View>
     </PaperProvider>
   );

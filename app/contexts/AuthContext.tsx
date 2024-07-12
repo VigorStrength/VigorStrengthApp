@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface AuthContextType {
