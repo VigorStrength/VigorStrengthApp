@@ -7,7 +7,6 @@ type Props = {
   size?: number | "small" | "large";
   animating?: boolean;
   hidesWhenStopped?: boolean;
-  color?: string;
   style?: any;
 };
 
