@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../GlobalStyles";
-import { TextInput, TextInputProps } from "react-native-paper";
-import Icon from "./Icon";
+import { Icon as RNIcon, TextInput, TextInputProps } from "react-native-paper";
+// import Icon from "./Icon";
 import { icons } from "../utils/constants/icons";
+import Icon from "./Icon";
 
 type IconName = keyof typeof icons;
 interface CustomTextInputProps extends TextInputProps {
@@ -33,11 +34,20 @@ const CustomTextInput2 = ({
         },
       }}
       right={
-        iconName ? (
+        (label === "password" && (
+          <TextInput.Icon
+            icon={() => (
+              <>
+                <RNIcon size={24} source={"eye-outline"} />
+              </>
+            )}
+          />
+        )) ||
+        (iconName && (
           <TextInput.Icon
             icon={() => <Icon name={iconName} fill={Colors.orange100} />}
           />
-        ) : null
+        ))
       }
       {...props}
     />

@@ -342,7 +342,8 @@ const AppTest = () => {
         <Loader size={"large"} /> */}
         <CustomFilledView filledValue="armelhell@icloud.com" />
         <View style={styles.textInputContainer}>
-          <CustomTextInput2 />
+          <CustomTextInput2 label="email" iconName="target" />
+          <CustomTextInput2 label="password" />
         </View>
       </View>
     </PaperProvider>
