@@ -6,7 +6,6 @@ import Welcome from "./SignIn/Welcome";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DarkTheme, NavigationContainer } from "@react-navigation/native";
 import SignIn from "./SignIn/SignIn";
-import Home from "./WorkoutPlan/Home";
 import BottomNavigationTabs from "../navigation/BottomNavigationTabs";
 
 const Stack = createNativeStackNavigator();
@@ -25,18 +24,10 @@ const AppLayout = () => {
 
   return (
     <NavigationContainer theme={DarkTheme}>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          options={{ headerShown: false }}
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen
-          name="Home"
-          component={BottomNavigationTabs}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="Home" component={BottomNavigationTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

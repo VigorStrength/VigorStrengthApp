@@ -6452,10 +6452,10 @@ react-native-paper@^5.12.3:
     color "^3.1.2"
     use-latest-callback "^0.1.5"
 
-react-native-react-query-devtools@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-react-query-devtools/-/react-native-react-query-devtools-1.1.1.tgz#583ca7817ddd23a05401643ba34ea26e6a214ab1"
-  integrity sha512-l7tixjHGIwwqCpYz9JxdO9LlhQKXfaV8KIeAShIsVa9GX3FSsOinouZeOkYtSuw8WjOwWtnk3bmPNvaTkAYw9A==
+react-native-react-query-devtools@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-react-query-devtools/-/react-native-react-query-devtools-1.2.0.tgz#be229d49ea87ac6510a085bb636aa7510265c3f3"
+  integrity sha512-M/MP3uozjdKZ2zD05OdrUuseWRLiZXCL47jop1CSVy71VpJ+W1zvGeDtqglzFp/k7eZ31PpBTkAYR/P18g/8mQ==
   dependencies:
     expo-clipboard "~6.0.3"
     fast-deep-equal "^3.1.3"
