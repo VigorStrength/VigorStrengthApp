@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TextInputProps, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Icon from "./Icon";
 import TextInputIcon from "./TextInputIcon";
-import { TextInput } from "react-native-paper";
+import { TextInput, TextInputProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import { icons } from "../utils/constants/icons";
 
@@ -36,6 +36,7 @@ const CustomTextInput = ({
           placeholder={placeholder}
           autoCapitalize="none"
           textColor={`${Colors.orange100}`}
+          selectionColor={`${Colors.orange100}`}
           theme={{
             colors: {
               onSurfaceVariant: Colors.orange100,
@@ -55,6 +56,7 @@ const CustomTextInput = ({
               />
             ) : null
           }
+          {...props}
         />
       )}
       {variant === "secondary" && (
@@ -70,7 +72,7 @@ const CustomTextInput = ({
             },
           }}
           outlineStyle={styles.secondaryOutlineStyle}
-          style={[styles.inputContainer, props.style]}
+          style={styles.inputContainer}
           right={
             iconName ? (
               <TextInput.Icon
@@ -78,6 +80,7 @@ const CustomTextInput = ({
               />
             ) : null
           }
+          {...props}
         />
       )}
       {variant === "filled" && (

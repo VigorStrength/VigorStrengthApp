@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   },
   passwordInput: {
     marginTop: 16,
+    width: 320,
   },
   lastButtonContainer: {
     marginTop: 16,
