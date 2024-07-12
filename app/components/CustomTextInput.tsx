@@ -43,11 +43,6 @@ const CustomTextInput = ({
           }}
           outlineStyle={styles.primaryOutlineStyle}
           style={[styles.inputContainer, props.style]}
-          //   right={
-          //     iconName ? (
-          //       <TextInputIcon iconName={iconName} fill={Colors.orange100} />
-          //     ) : null
-          //   }
           right={
             iconName ? (
               <TextInput.Icon

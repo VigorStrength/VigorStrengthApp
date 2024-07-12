@@ -23,15 +23,9 @@ import CustomMessageItemCard from "./components/CustomMessageItemCard";
 import CustomProgramHeaderCard from "./components/CustomProgramHeaderCard";
 import CustomSelectionCard from "./components/CustomSelectionCard";
 import Loader from "./components/Loader";
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: Colors.orange100,
-    onSurfaceVariant: Colors.neutral350,
-  },
-};
+import DarkTheme from "./utils/theme";
+import CustomFilledView from "./components/CustomFilledView";
+import CustomTextInput2 from "./components/CustomTextInput2";
 
 const AppTest = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -56,7 +50,7 @@ const AppTest = () => {
   }
 
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={DarkTheme}>
       <View style={styles.container}>
         {/* <Text style={{ fontFamily: "Satoshi", fontSize: 24 }}>
           Hello Satoshi
@@ -344,8 +338,12 @@ const AppTest = () => {
           workoutTime={23}
           workoutName="Deadlift"
         /> */}
-        <Loader size={"small"} />
-        <Loader size={"large"} />
+        {/* <Loader size={"small"} />
+        <Loader size={"large"} /> */}
+        <CustomFilledView filledValue="armelhell@icloud.com" />
+        <View style={styles.textInputContainer}>
+          <CustomTextInput2 />
+        </View>
       </View>
     </PaperProvider>
   );
@@ -356,12 +354,12 @@ export default AppTest;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
   },
   textInputContainer: {
+    marginTop: 8,
     marginBottom: 8,
   },
   buttonContainer: {
