@@ -36,15 +36,17 @@ const CustomTextInput2 = ({
       right={
         (label === "password" && (
           <TextInput.Icon
+            style={styles.iconStyle}
             icon={() => (
               <>
-                <RNIcon size={24} source={"eye-outline"} />
+                <RNIcon size={20} source={"eye-off-outline"} />
               </>
             )}
           />
         )) ||
         (iconName && (
           <TextInput.Icon
+            style={styles.iconStyle}
             icon={() => <Icon name={iconName} fill={Colors.orange100} />}
           />
         ))
@@ -67,5 +69,8 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: Colors.orange100,
     backgroundColor: Colors.neutral600,
+  },
+  iconStyle: {
+    marginTop: 12,
   },
 });
