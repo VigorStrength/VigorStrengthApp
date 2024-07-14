@@ -8,7 +8,7 @@ type loginProps = {
 
 export async function login({ email, password }: loginProps) {
   try {
-    const response = await axios.post(`${baseURL}/user/login`, {
+    const response = await axios.post(`${baseURL}/auth/user/login`, {
       email,
       password,
     });
