@@ -2,7 +2,6 @@ import { View, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
-import { Key } from "react";
 
 type Props = {
   state: any;
@@ -11,7 +10,7 @@ type Props = {
 
 const CustomTabBar = ({ state, navigation }: Props) => {
   return (
-    <BlurView intensity={100} style={styles.tabBar} tint="default">
+    <BlurView intensity={100} style={styles.tabBar} tint="dark">
       <View style={styles.tabContainer}>
         {state.routes.map((route: any, index: any) => {
           const isFocused = state.index === index;

@@ -6,6 +6,7 @@ import Icon from "../../components/Icon";
 import CustomMonthlyPlanCard from "../../components/CustomMonthlyPlanCard";
 import CustomSelectionCard from "../../components/CustomSelectionCard";
 import { interpolateColor, useSharedValue } from "react-native-reanimated";
+import CustomTopBar from "../../components/CustomTopBar";
 
 type Props = {
   navigation: any;
@@ -30,16 +31,7 @@ const Home = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <View style={styles.appBar}>
-        <Text style={styles.logoLabel}>LOGO</Text>
-        <Icon
-          onPress={() => navigation.navigate("Welcome")}
-          name="menu"
-          width={44}
-          height={44}
-          fill={Colors.orange100}
-        />
-      </View>
+      <CustomTopBar navigation={navigation} barLabel="Logo" />
       <ScrollView style={styles.content}>
         <View style={styles.monthlyPlanCardContainer}>
           <Text style={styles.topLabel}>Today's Workout</Text>
@@ -104,6 +96,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // position: "relative",
   },
   appBar: {
     flexDirection: "row",
@@ -118,6 +111,7 @@ const styles = StyleSheet.create({
     fontFamily: "IntegralCF-Bold",
   },
   content: {
+    marginTop: 24,
     paddingTop: 8,
     paddingBottom: 16,
     paddingHorizontal: 8,
