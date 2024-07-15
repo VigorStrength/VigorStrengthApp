@@ -2,15 +2,14 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../GlobalStyles";
+import CustomTopBar from "../../components/CustomTopBar";
 
 type Props = {};
 
 const Account = (props: Props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.appBar}>
-        <Text style={styles.appBarLabel}>Logo</Text>
-      </View>
+      <CustomTopBar label="Logo" />
     </SafeAreaView>
   );
 };

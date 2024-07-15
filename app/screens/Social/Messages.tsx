@@ -3,21 +3,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
+import CustomTopBar from "../../components/CustomTopBar";
 
 type Props = {};
 
 const Messages = (props: Props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.appBar}>
-        <Text style={styles.appBarLabel}>Messages</Text>
-        <Icon
-          name="newMessage"
-          width={40}
-          height={40}
-          fill={Colors.orange100}
-        />
-      </View>
+      <CustomTopBar label="Messages" iconName="newMessage" />
     </SafeAreaView>
   );
 };

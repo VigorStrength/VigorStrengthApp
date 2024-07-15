@@ -31,7 +31,7 @@ const Home = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <CustomTopBar navigation={navigation} barLabel="Logo" />
+      <CustomTopBar navigation={navigation} label="Logo" iconName="menu" />
       <ScrollView style={styles.content}>
         <View style={styles.monthlyPlanCardContainer}>
           <Text style={styles.topLabel}>Today's Workout</Text>
@@ -96,19 +96,6 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // position: "relative",
-  },
-  appBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 16,
-  },
-  logoLabel: {
-    fontSize: 24,
-    lineHeight: 25,
-    color: Colors.orange100,
-    fontFamily: "IntegralCF-Bold",
   },
   content: {
     marginTop: 24,

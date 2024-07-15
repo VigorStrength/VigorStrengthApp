@@ -7,8 +7,8 @@ import { Colors } from "../GlobalStyles";
 
 type IconName = keyof typeof icons;
 type Props = {
-  navigation: any;
-  barLabel: string;
+  label: string;
+  navigation?: any;
   iconName?: IconName;
   state?: any;
 };
@@ -16,18 +16,18 @@ type Props = {
 const CustomTopBar = ({
   state,
   navigation,
-  iconName = "menu",
-  barLabel = "Logo",
+  iconName,
+  label = "Logo",
 }: Props) => {
   return (
     <BlurView intensity={40} style={styles.topBar} tint="dark">
-      <Text style={styles.logoLabel}>{barLabel}</Text>
+      <Text style={styles.logoLabel}>{label}</Text>
       {iconName && (
         <Icon
           onPress={() => navigation.navigate("Welcome")}
           name={iconName}
-          width={44}
-          height={44}
+          width={40}
+          height={40}
           fill={Colors.orange100}
         />
       )}
@@ -38,7 +38,7 @@ const CustomTopBar = ({
 /*
 <View style={styles.topBar}>
       <BlurView intensity={40} style={StyleSheet.absoluteFill} />
-      <Text style={styles.logoLabel}>{barLabel}</Text>
+      <Text style={styles.logoLabel}>{label}</Text>
       {iconName && (
         <Icon
           onPress={() => navigation.navigate("Welcome")}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: 96,
+    height: 110,
     alignItems: "flex-end",
     flexDirection: "row",
     justifyContent: "space-between",
