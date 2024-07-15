@@ -1,12 +1,6 @@
-import {
-  Animated,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
 import React, { useRef } from "react";
+import { Animated, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
 import CustomMonthlyPlanCard from "../../components/CustomMonthlyPlanCard";

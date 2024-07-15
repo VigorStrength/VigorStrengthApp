@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../GlobalStyles";
 import CustomTextInput from "../../components/CustomTextInput";
 import CustomDivider from "../../components/CustomDivider";
