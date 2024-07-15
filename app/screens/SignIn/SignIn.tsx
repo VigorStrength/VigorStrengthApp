@@ -34,7 +34,7 @@ const SignIn = ({ navigation }: Props) => {
           height={44}
           fill={Colors.orange100}
         />
-        <Text style={styles.logoLabel}>LOGO</Text>
+        <Icon name="logo" width={32} height={32} />
         <RNIcon
           source="help-circle-outline"
           size={24}

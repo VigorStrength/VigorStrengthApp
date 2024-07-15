@@ -9,7 +9,7 @@ type Props = {};
 const Account = (props: Props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <CustomTopBar label="Logo" />
+      <CustomTopBar />
     </SafeAreaView>
   );
 };
