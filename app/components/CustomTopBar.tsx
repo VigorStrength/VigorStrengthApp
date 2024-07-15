@@ -1,27 +1,27 @@
 import { StyleSheet, Text } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
 import { BlurView } from "expo-blur";
 import { icons } from "../utils/constants/icons";
 import Icon from "./Icon";
 import { Colors } from "../GlobalStyles";
+import LogoText from "./LogoText";
 
 type IconName = keyof typeof icons;
 type Props = {
-  label: string;
+  label?: string | ReactNode;
   navigation?: any;
   iconName?: IconName;
   state?: any;
 };
 
-const CustomTopBar = ({
-  state,
-  navigation,
-  iconName,
-  label = "Logo",
-}: Props) => {
+const CustomTopBar = ({ state, navigation, iconName, label }: Props) => {
   return (
     <BlurView intensity={40} style={styles.topBar} tint="dark">
-      <Text style={styles.logoLabel}>{label}</Text>
+      {label && typeof label === "string" ? (
+        <Text style={styles.logoLabel}>{label}</Text>
+      ) : (
+        <LogoText size={40} variant="medium" />
+      )}
       {iconName && (
         <Icon
           onPress={() => navigation.navigate("Welcome")}

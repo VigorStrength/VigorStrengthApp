@@ -31,7 +31,7 @@ const Home = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <CustomTopBar navigation={navigation} label="Logo" iconName="menu" />
+      <CustomTopBar navigation={navigation} iconName="menu" />
       <ScrollView style={styles.content}>
         <View style={styles.monthlyPlanCardContainer}>
           <Text style={styles.topLabel}>Today's Workout</Text>

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../../GlobalStyles";
 import CustomButton from "../../components/CustomButton";
+import LogoText from "../../components/LogoText";
 
 type Props = {
   navigation: any;
@@ -15,7 +16,9 @@ const Welcome = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logoLabel}>LOGO</Text>
+      <View style={styles.logoContainer}>
+        <LogoText size={54} variant="large" />
+      </View>
       <View style={styles.actionable}>
         <CustomButton size="medium" right="arrowRight">
           Let's Get Sexy
@@ -41,6 +44,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,
+  },
+  logoContainer: {
+    marginBottom: 226,
   },
   logoLabel: {
     fontSize: 40,

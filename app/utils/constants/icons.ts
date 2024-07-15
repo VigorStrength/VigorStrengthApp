@@ -20,6 +20,7 @@ import FavoriteEmpty from "../../../assets/icons/favorite-empty.svg";
 import Google from "../../../assets/icons/google.svg";
 import Home from "../../../assets/icons/home.svg";
 import Insights from "../../../assets/icons/insights.svg";
+import Logo from "../../../assets/icons/logo.svg";
 import Menu from "../../../assets/icons/menu.svg";
 import Message from "../../../assets/icons/message.svg";
 import MoreHorizontal from "../../../assets/icons/more-horizontal.svg";
@@ -64,6 +65,7 @@ export const icons = {
   google: Google,
   home: Home,
   insights: Insights,
+  logo: Logo,
   menu: Menu,
   message: Message,
   moreHorizontal: MoreHorizontal,
