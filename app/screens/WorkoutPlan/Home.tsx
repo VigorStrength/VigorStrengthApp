@@ -36,9 +36,9 @@ const Home = ({ navigation }: Props) => {
         <View style={styles.monthlyPlanCardContainer}>
           <Text style={styles.topLabel}>Today's Workout</Text>
           <CustomMonthlyPlanCard
-            title="Monthly Plan Name"
-            subTitle="Week X"
-            progress={15}
+            title="Upper Body Strength"
+            subTitle="Week 2"
+            progress={25}
             programCoverUrl={require("../../../assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
           />
         </View>
