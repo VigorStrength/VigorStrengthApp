@@ -3,12 +3,19 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomTopBar from "../../components/CustomTopBar";
 
-type Props = {};
+type Props = {
+  navigation: any;
+};
 
-const WorkoutPlan = (props: Props) => {
+const WorkoutPlan = ({ navigation }: Props) => {
   return (
     <SafeAreaView>
-      <CustomTopBar iconName="moreHorizontal" />
+      <CustomTopBar
+        variant="Plan"
+        iconName="moreHorizontal"
+        label="Upper Body Strength"
+        navigation={navigation}
+      />
       <Text>WorkoutPlan</Text>
     </SafeAreaView>
   );
