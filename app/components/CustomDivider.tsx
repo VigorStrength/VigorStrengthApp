@@ -18,7 +18,7 @@ const CustomDivider = ({
   return (
     <>
       {!leftLabel && !rightLabel && !middleLabel && (
-        <View style={styles.containerNoLabel}>
+        <View style={[styles.containerNoLabel, props.style]}>
           <Divider style={styles.dividerNoLabel} />
         </View>
       )}

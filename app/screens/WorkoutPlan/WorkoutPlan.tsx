@@ -39,10 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  // dividerGap: {
-  //   width: "100%",
-  //   marginBottom: 24,
-  // },
   content: {
     height: 180,
   },

@@ -8,6 +8,7 @@ import { DarkTheme, NavigationContainer } from "@react-navigation/native";
 import SignIn from "./SignIn/SignIn";
 import BottomNavigationTabs from "../navigation/BottomNavigationTabs";
 import WorkoutPlan from "./WorkoutPlan/WorkoutPlan";
+import MealPlan from "./Nutrition/MealPlan";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ const AppLayout = () => {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Home" component={BottomNavigationTabs} />
         <Stack.Screen name="WorkoutPlan" component={WorkoutPlan} />
+        <Stack.Screen name="Meal Plan" component={MealPlan} />
       </Stack.Navigator>
     </NavigationContainer>
   );

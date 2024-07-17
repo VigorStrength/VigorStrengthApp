@@ -8,6 +8,7 @@ import ArrowUp from "../../../assets/icons/arrow-up.svg";
 import Cast from "../../../assets/icons/cast.svg";
 import CheckmarkCircle from "../../../assets/icons/checkmark-circle.svg";
 import Checkmark from "../../../assets/icons/checkmark.svg";
+import ChevronDown from "../../../assets/icons/chevron-down.svg";
 import ChevronLeftCircle from "../../../assets/icons/chevron-left-circle.svg";
 import ChevronLeft from "../../../assets/icons/chevron-left.svg";
 import ChevronRight from "../../../assets/icons/chevron-right.svg";
@@ -54,6 +55,7 @@ export const icons = {
   cast: Cast,
   checkmarkCircle: CheckmarkCircle,
   checkmark: Checkmark,
+  chevronDown: ChevronDown,
   chevronLeftCircle: ChevronLeftCircle,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
