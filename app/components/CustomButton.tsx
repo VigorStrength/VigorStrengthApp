@@ -5,7 +5,7 @@ import { icons } from "../utils/constants/icons";
 import Icon from "./Icon";
 import { Colors } from "../GlobalStyles";
 
-type Size = "small" | "medium" | "large" | "largeSignin";
+type Size = "small" | "medium" | "large" | "largeSignin" | "xlarge";
 type IconName = keyof typeof icons;
 
 interface Props extends TouchableRippleProps {
@@ -34,6 +34,8 @@ const CustomButton = ({
         return styles.large;
       case "largeSignin":
         return styles.largeSignin;
+      case "xlarge":
+        return styles.xlarge;
       default:
         return styles.large;
     }
@@ -47,6 +49,8 @@ const CustomButton = ({
         return styles.paddingMedium;
       case "largeSignin":
         return styles.paddingLargeSignin;
+      case "xlarge":
+        return styles.paddingXlarge;
       default:
         return styles.paddingSmall;
     }
@@ -77,6 +81,7 @@ const CustomButton = ({
             size === "medium" && styles.textMedium,
             size === "largeSignin" && styles.textSignIn,
             size === "large" && left && right && styles.textLargeWithIcons,
+            size === "xlarge" && left && styles.textXlarge,
           ]}
         >
           {children}
@@ -99,12 +104,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.neutral600,
     borderRadius: 50,
   },
-  largeSignin: {
-    width: 320,
-    height: 46,
-    backgroundColor: Colors.orange100,
-    borderRadius: 6,
-  },
   small: {
     width: 170,
     height: 46,
@@ -120,6 +119,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  largeSignin: {
+    width: 320,
+    height: 46,
+    backgroundColor: Colors.orange100,
+    borderRadius: 6,
+  },
+  xlarge: {
+    width: 361,
+    height: 56,
+    backgroundColor: Colors.neutral800,
+  },
   paddingSmall: {
     paddingHorizontal: 10,
     paddingVertical: 11,
@@ -131,6 +141,10 @@ const styles = StyleSheet.create({
   paddingLargeSignin: {
     paddingHorizontal: 16,
     paddingVertical: 11,
+  },
+  paddingXlarge: {
+    paddingVertical: 16,
+    paddingHorizontal: 90,
   },
   innerContainer: {
     flexDirection: "row",
@@ -160,5 +174,8 @@ const styles = StyleSheet.create({
   },
   textLargeWithIcons: {
     marginRight: 130,
+  },
+  textXlarge: {
+    marginLeft: 25,
   },
 });

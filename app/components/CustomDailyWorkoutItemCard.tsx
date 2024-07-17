@@ -24,7 +24,11 @@ const CustomDailyWorkoutItemCard = ({
 }: Props) => {
   return (
     <View
-      style={[styles.card, status === "current" ? styles.current : null]}
+      style={[
+        styles.card,
+        status === "current" ? styles.current : null,
+        props.style,
+      ]}
       {...props}
     >
       <View style={styles.content}>

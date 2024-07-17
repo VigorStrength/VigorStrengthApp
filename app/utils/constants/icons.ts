@@ -31,6 +31,7 @@ import PauseEmpty from "../../../assets/icons/pause-empty.svg";
 import PauseFilled from "../../../assets/icons/pause-filled.svg";
 import PlayFilled from "../../../assets/icons/play-filled.svg";
 import Profile from "../../../assets/icons/profile.svg";
+import Share from "../../../assets/icons/share.svg";
 import Schedule from "../../../assets/icons/schedule.svg";
 import ShoppingBag from "../../../assets/icons/shopping-bag.svg";
 import SkipBack from "../../../assets/icons/skip-back.svg";
@@ -76,6 +77,7 @@ export const icons = {
   pauseFilled: PauseFilled,
   playFilled: PlayFilled,
   profile: Profile,
+  share: Share,
   schedule: Schedule,
   shoppingBag: ShoppingBag,
   skipBack: SkipBack,
