@@ -40,6 +40,8 @@ const Home = ({ navigation }: Props) => {
             subTitle="Week 2"
             progress={25}
             programCoverUrl={require("../../../assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
+            onPress={() => navigation.navigate("WorkoutPlan")}
+            children=""
           />
         </View>
         <View style={styles.weeklySelectionContainer}>

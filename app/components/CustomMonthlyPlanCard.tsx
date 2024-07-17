@@ -1,27 +1,27 @@
 import { StyleSheet, Image, View, Text } from "react-native";
 import React from "react";
 import { Colors } from "../GlobalStyles";
-import { Card } from "react-native-paper";
+import { Card, CardProps } from "react-native-paper";
 import Icon from "./Icon";
 import CustomProgressBar from "./CustomProgressBar";
 import { LinearGradient } from "expo-linear-gradient";
 
-type Props = {
+interface CustomCardProps extends CardProps {
   title: string;
   subTitle: string;
   programCoverUrl: any;
   progress: number;
-};
+}
 
 const CustomMonthlyPlanCard = ({
   title,
   subTitle,
   programCoverUrl,
   progress,
-  ...props
-}: Props) => {
+  onPress,
+}: CustomCardProps) => {
   return (
-    <Card style={styles.card} mode="contained" {...props}>
+    <Card style={styles.card} onPress={onPress} mode="contained">
       {/* <LinearGradient
         colors={[Colors.neutral700, Colors.orange80, Colors.orange100]}
         useAngle={true}
