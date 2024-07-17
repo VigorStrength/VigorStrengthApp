@@ -12,34 +12,37 @@ const WorkoutWeek = (props: Props) => {
         <Text style={styles.workoutDayCompletedLabel}>1 of 3</Text>
       </View>
       {/* Must be a flatlist later with data coming from workoutweek state */}
-      <ScrollView>
-        <CustomDailyWorkoutItemCard
-          dayNumber={1}
-          workoutDayLabel="Upper Body Conjugate"
-          workoutDayTimeRange={[90, 65]}
-          exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-          status="completed"
-          style={styles.cardStyle}
-          children=""
-        />
-        <CustomDailyWorkoutItemCard
-          dayNumber={2}
-          workoutDayLabel="Lower Body Conjugate"
-          workoutDayTimeRange={[90, 65]}
-          exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-          status="current"
-          style={styles.cardStyle}
-          children=""
-        />
-        <CustomDailyWorkoutItemCard
-          dayNumber={3}
-          workoutDayLabel="Upper Body Conjugate"
-          workoutDayTimeRange={[90, 65]}
-          exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-          status="active"
-          style={styles.cardStyle}
-          children=""
-        />
+      <ScrollView style={styles.cardsContainer}>
+        <View style={styles.cardStyle}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={1}
+            workoutDayLabel="Upper Body Conjugate"
+            workoutDayTimeRange={[90, 65]}
+            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="completed"
+            children=""
+          />
+        </View>
+        <View style={styles.cardStyle}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={2}
+            workoutDayLabel="Lower Body Conjugate"
+            workoutDayTimeRange={[90, 65]}
+            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="current"
+            children=""
+          />
+        </View>
+        <View style={styles.cardStyle}>
+          <CustomDailyWorkoutItemCard
+            dayNumber={3}
+            workoutDayLabel="Upper Body Conjugate"
+            workoutDayTimeRange={[90, 65]}
+            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+            status="active"
+            children=""
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -69,6 +72,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "SatoshiBold",
     color: Colors.orange100,
+  },
+  cardsContainer: {
+    marginTop: 32,
+    paddingHorizontal: 9,
+    // height:
+    // height: "100%",
   },
   cardStyle: {
     marginBottom: 8,

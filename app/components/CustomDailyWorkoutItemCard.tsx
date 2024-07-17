@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   cardImageContainer: {
     width: 123,
     height: 106,
-    borderRadius: 20,
+    borderRadius: 10,
     marginRight: 16,
     position: "relative",
   },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     width: 123,
     height: 106,
     zIndex: 1,
-    borderRadius: 20,
+    borderRadius: 10,
     opacity: 0.2,
     position: "absolute",
   },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
     width: 123,
     height: 106,
-    borderRadius: 20,
+    borderRadius: 10,
     position: "absolute",
   },
   detailsContainer: {

@@ -15,18 +15,19 @@ type Props = {
 const WorkoutPlan = ({ navigation }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <CustomTopBar
+      <CustomTopBar
         variant="Plan"
         iconName="moreHorizontal"
         label="Upper Body Strength"
         navigation={navigation}
-      /> */}
-
-      {/* <WorkoutWeekNavigationTabs /> */}
-      <CustomDivider />
-      <CustomProgressBar progress={25} color={Colors.orange100} />
-      <View style={styles.buttonContainer}>
-        <CustomButton size="xlarge" left="share" children="Share Progress" />
+      />
+      <WorkoutWeekNavigationTabs />
+      <View style={styles.content}>
+        <CustomDivider />
+        <CustomProgressBar progress={25} color={Colors.orange100} />
+        <View style={styles.buttonContainer}>
+          <CustomButton size="xlarge" left="share" children="Share Progress" />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -38,13 +39,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  tabsContainer: {
-    flex: 1,
-    backgroundColor: "purple",
-  },
-  dividerGap: {
-    width: "100%",
-    marginBottom: 24,
+  // dividerGap: {
+  //   width: "100%",
+  //   marginBottom: 24,
+  // },
+  content: {
+    height: 180,
   },
   buttonContainer: {
     paddingVertical: 20,

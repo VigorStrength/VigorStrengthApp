@@ -17,6 +17,11 @@ const CustomDivider = ({
 }: Props) => {
   return (
     <>
+      {!leftLabel && !rightLabel && !middleLabel && (
+        <View style={styles.containerNoLabel}>
+          <Divider style={styles.dividerNoLabel} />
+        </View>
+      )}
       {leftLabel && !rightLabel && !middleLabel && (
         <View style={[styles.container, props.style]}>
           <Text style={[styles.label, styles.marginRight]}>{leftLabel}</Text>
@@ -54,6 +59,10 @@ export default CustomDivider;
 const marginValue = 14;
 
 const styles = StyleSheet.create({
+  containerNoLabel: {
+    flex: 1,
+    flexDirection: "row",
+  },
   container: {
     width: 320,
     flexDirection: "row",
@@ -68,6 +77,11 @@ const styles = StyleSheet.create({
   divider: {
     backgroundColor: Colors.neutral400,
     height: 2,
+    flex: 1,
+  },
+  dividerNoLabel: {
+    backgroundColor: Colors.neutral800,
+    height: 1,
     flex: 1,
   },
   marginRight: {

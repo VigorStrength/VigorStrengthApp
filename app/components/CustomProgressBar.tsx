@@ -32,7 +32,7 @@ const CustomProgressBar = ({ color, progress, size = "xlarge" }: Props) => {
     xlarge: {
       width: 361,
       height: 10,
-      FontSize: 18,
+      FontSize: 16,
     },
   };
 
@@ -40,14 +40,25 @@ const CustomProgressBar = ({ color, progress, size = "xlarge" }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text
+      <View
         style={[
-          styles.progressLabel,
-          { fontSize: selectedSize.FontSize, color: color },
+          styles.labelContent,
+          size !== "xlarge" && styles.labelContentAlignRight,
         ]}
       >
-        {progress}%
-      </Text>
+        {size === "xlarge" && (
+          <Text style={styles.programLabel}>Program Progress</Text>
+        )}
+        <Text
+          style={[
+            styles.progressLabel,
+            { fontSize: selectedSize.FontSize, color: color },
+            size !== "xlarge" && styles.progressLabelAlignRight,
+          ]}
+        >
+          {progress}%
+        </Text>
+      </View>
       <ProgressBar
         progress={progress / 100}
         style={{
@@ -72,9 +83,27 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginVertical: 10,
   },
-  progressLabel: {
+  labelContentAlignRight: {
+    justifyContent: "flex-end",
+  },
+  labelContent: {
     width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 8,
-    textAlign: "right",
+  },
+  programLabel: {
+    fontSize: 14,
+    marginLeft: 15,
+    fontFamily: "IntegralCF",
+    color: Colors.neutral500,
+    textTransform: "uppercase",
+  },
+  progressLabelAlignRight: {
+    marginRight: 0,
+  },
+  progressLabel: {
+    marginRight: 15,
   },
 });

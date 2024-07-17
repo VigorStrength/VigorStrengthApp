@@ -16,6 +16,9 @@ const WorkoutWeekNavigationTabs = () => {
         },
         tabBarActiveTintColor: Colors.orange100,
         tabBarInactiveTintColor: Colors.neutral700,
+        tabBarStyle: {
+          marginTop: 46,
+        },
       }}
     >
       <Tab.Screen name="Week 1" component={WorkoutWeek} />
@@ -32,5 +35,7 @@ const styles = StyleSheet.create({
   labelStyle: {
     fontSize: 20,
     fontFamily: "Satoshi",
+    textTransform: "capitalize",
+    // alignSelf: "flex-end",
   },
 });
