@@ -16,7 +16,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
           <StatusBar style="light" />
           <AppLayout />
-          {/* <DevToolsBubble /> */}
+          <DevToolsBubble />
         </QueryClientProvider>
       </FontProvider>
     </PaperProvider>

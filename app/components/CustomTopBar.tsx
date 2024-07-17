@@ -26,7 +26,7 @@ const CustomTopBar = ({
   label,
 }: Props) => {
   return (
-    <BlurView intensity={40} style={styles.topBar} tint="dark">
+    <BlurView intensity={100} style={styles.topBar} tint="dark">
       {variant === "mainPage" && (
         <>
           {label && typeof label === "string" ? (

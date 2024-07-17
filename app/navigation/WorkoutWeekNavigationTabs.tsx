@@ -18,6 +18,7 @@ const WorkoutWeekNavigationTabs = () => {
         tabBarInactiveTintColor: Colors.neutral700,
         tabBarStyle: {
           marginTop: 46,
+          backgroundColor: Colors.neutralNeutral,
         },
       }}
     >
