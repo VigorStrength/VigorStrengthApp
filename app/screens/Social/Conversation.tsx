@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomTopBar from "../../components/CustomTopBar";
 import { Colors } from "../../GlobalStyles";
@@ -31,6 +31,11 @@ const Conversation = ({ navigation }: Props) => {
           />
         }
       />
+      <ScrollView style={styles.content}>
+        <View style={styles.timeLabelContainer}>
+          <Text style={styles.timeLabel}>Today 1:29 PM</Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -41,13 +46,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  contact: {},
-  contactName: {
-    fontSize: 10,
-    fontFamily: "SatoshiBold",
-    color: Colors.orange100,
+  content: {
+    marginTop: 56,
+    paddingHorizontal: 16,
   },
-  contactHeader: {
-    height: 80,
+  timeLabelContainer: {
+    paddingTop: 18,
+    paddingBottom: 12,
+    alignItems: "center",
+  },
+  timeLabel: {
+    fontSize: 10,
+    lineHeight: 15,
+    color: Colors.neutral300,
   },
 });
