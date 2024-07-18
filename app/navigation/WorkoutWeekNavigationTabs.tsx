@@ -37,6 +37,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Satoshi",
     textTransform: "capitalize",
-    // alignSelf: "flex-end",
   },
 });
