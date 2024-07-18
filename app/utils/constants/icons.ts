@@ -31,7 +31,9 @@ import Nutrition from "../../../assets/icons/nutrition.svg";
 import PauseEmpty from "../../../assets/icons/pause-empty.svg";
 import PauseFilled from "../../../assets/icons/pause-filled.svg";
 import PlayFilled from "../../../assets/icons/play-filled.svg";
+import Privacy from "../../../assets/icons/privacy.svg";
 import Profile from "../../../assets/icons/profile.svg";
+import Settings from "../../../assets/icons/settings.svg";
 import Share from "../../../assets/icons/share.svg";
 import Schedule from "../../../assets/icons/schedule.svg";
 import ShoppingBag from "../../../assets/icons/shopping-bag.svg";
@@ -78,7 +80,9 @@ export const icons = {
   pauseEmpty: PauseEmpty,
   pauseFilled: PauseFilled,
   playFilled: PlayFilled,
+  privacy: Privacy,
   profile: Profile,
+  settings: Settings,
   share: Share,
   schedule: Schedule,
   shoppingBag: ShoppingBag,

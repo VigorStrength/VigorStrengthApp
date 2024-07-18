@@ -331,12 +331,12 @@ const AppTest = () => {
           mealName="Fish Curry"
           coverUrl={require("./assets/marcos-paulo-prado-oBdC0TlFOqM-unsplash.jpg")}
         /> */}
-        <CustomSelectionCard
+        {/* <CustomSelectionCard
           variant="weeklySelection"
           coverUrl={require("./assets/sunday-ii-sunday-z1uWXbhI1R0-unsplash.jpg")}
           workoutTime={23}
           workoutName="Squat"
-        />
+        /> */}
         {/* <CustomSelectionCard
           variant="sportSpecificSelection"
           coverUrl={require("./assets/joe-mcferrin-s6znUip3Mro-unsplash.jpg")}
