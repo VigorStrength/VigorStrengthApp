@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     // height: 64,
     borderRadius: 0,
     paddingVertical: 20,
-    backgroundColor: Colors.neutral900,
+    // backgroundColor: Colors.neutral900,
   },
   content: {
     flexDirection: "row",
