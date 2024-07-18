@@ -25,15 +25,28 @@ const CustomTopBar = ({
   iconName,
   label,
 }: Props) => {
+  const renderLabel = () => {
+    if (typeof label === "string") {
+      return <Text style={styles.logoLabel}>{label}</Text>;
+    } else if (typeof label === "function") {
+      const Component = label as React.ComponentType<any>;
+      return <Component />;
+    } else if (React.isValidElement(label)) {
+      return label;
+    } else {
+      return <LogoText size={40} variant="medium" />;
+    }
+  };
+
   return (
-    <BlurView intensity={100} style={styles.topBar} tint="dark">
+    <BlurView
+      intensity={100}
+      style={[styles.topBar, variant === "message" && styles.topBarMessage]}
+      tint="dark"
+    >
       {variant === "mainPage" && (
         <>
-          {label && typeof label === "string" ? (
-            <Text style={styles.logoLabel}>{label}</Text>
-          ) : (
-            <LogoText size={40} variant="medium" />
-          )}
+          {renderLabel()}
           {iconName && (
             <Icon
               onPress={() => navigation.navigate("Welcome")}
@@ -54,7 +67,25 @@ const CustomTopBar = ({
             fill={Colors.orange100}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.planLabel}>{label}</Text>
+          {renderLabel()}
+          <Icon
+            name="moreHorizontal"
+            width={40}
+            height={40}
+            fill={Colors.orange100}
+          />
+        </View>
+      )}
+      {variant === "message" && (
+        <View style={styles.content}>
+          <Icon
+            name="chevronLeft"
+            width={40}
+            height={40}
+            fill={Colors.orange100}
+            onPress={() => navigation.goBack()}
+          />
+          {renderLabel()}
           <Icon
             name="moreHorizontal"
             width={40}
@@ -98,6 +129,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 10,
     zIndex: 1,
+  },
+  topBarMessage: {
+    height: 120,
   },
   content: {
     flex: 1,

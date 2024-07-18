@@ -22,6 +22,12 @@ const Messages = ({ navigation }: Props) => {
         </View>
         <View style={styles.messagesContainer}>
           <CustomMessageItemCard
+            onPress={() =>
+              navigation.navigate("Conversation", {
+                contactName: "Koala Honey Wife 🐨🍯💍",
+                avatarUrl: require("../../../assets/koala-honey-wife.jpeg"),
+              })
+            }
             contactName="Koala Honey Wife 🐨🍯💍"
             message="I'll call you sometime soon so we can talk okay?"
             time="10"
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   messagesContainer: {
-    paddingTop: 2,
+    // paddingTop: 2,
   },
   divider: {
     paddingLeft: 84,

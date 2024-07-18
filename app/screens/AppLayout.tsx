@@ -9,6 +9,7 @@ import SignIn from "./SignIn/SignIn";
 import BottomNavigationTabs from "../navigation/BottomNavigationTabs";
 import WorkoutPlan from "./WorkoutPlan/WorkoutPlan";
 import MealPlan from "./Nutrition/MealPlan";
+import Conversation from "./Social/Conversation";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ const AppLayout = () => {
         <Stack.Screen name="Home" component={BottomNavigationTabs} />
         <Stack.Screen name="WorkoutPlan" component={WorkoutPlan} />
         <Stack.Screen name="Meal Plan" component={MealPlan} />
+        <Stack.Screen name="Conversation" component={Conversation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

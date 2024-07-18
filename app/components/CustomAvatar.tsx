@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, Text } from "react-native";
 import Icon from "./Icon";
 import { Colors } from "../GlobalStyles";
 
@@ -20,9 +20,9 @@ const CustomAvatar = ({ size = "small", avatarUrl, ...props }: Props) => {
       : styles.xlarge;
 
   return (
-    <View style={[styles.avatarContainer, sizeStyle]}>
+    <View style={sizeStyle}>
       {avatarUrl ? (
-        <Image source={avatarUrl} style={sizeStyle} />
+        <Image source={avatarUrl} style={[styles.avatarContainer, sizeStyle]} />
       ) : (
         <Icon
           name="profile"
@@ -40,7 +40,6 @@ export default CustomAvatar;
 const styles = StyleSheet.create({
   avatarContainer: {
     borderRadius: 100,
-    overflow: "hidden",
   },
   small: {
     width: 32,

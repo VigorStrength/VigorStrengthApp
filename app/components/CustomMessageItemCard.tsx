@@ -1,12 +1,20 @@
 import React from "react";
-import { StyleSheet, Image, View, Text } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  ViewProps,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 import { CardProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
 import CustomAvatar from "./CustomAvatar";
 
 type Status = "read" | "unread";
-interface Props extends CardProps {
+interface Props extends TouchableOpacityProps {
   contactName: string;
   message: string;
   avatarUrl?: any;
@@ -23,41 +31,43 @@ const CustomMessageItemCard = ({
   ...props
 }: Props) => {
   return (
-    <View style={styles.card} {...props}>
-      <View
-        style={[styles.content, , status === "read" && { paddingLeft: 24 }]}
-      >
-        <View style={[styles.contact]}>
-          {status === "unread" ? (
-            <Icon name="unread" fill={Colors.orange100} />
-          ) : undefined}
-          <CustomAvatar size="medium" avatarUrl={avatarUrl} />
-        </View>
-        <View style={styles.detailsContainer}>
-          <View style={styles.contactCardHeader}>
-            <Text
-              style={styles.contactName}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              {contactName}
-            </Text>
-            <View style={styles.action}>
-              <Text style={styles.timestamp}>{`${time}:00 AM`}</Text>
-              <Icon
-                name={"chevronRight"}
-                width={32}
-                height={32}
-                fill={Colors.orange100}
-              />
-            </View>
+    <TouchableOpacity {...props}>
+      <View style={styles.card}>
+        <View
+          style={[styles.content, , status === "read" && { paddingLeft: 24 }]}
+        >
+          <View style={[styles.contact]}>
+            {status === "unread" ? (
+              <Icon name="unread" fill={Colors.orange100} />
+            ) : undefined}
+            <CustomAvatar size="medium" avatarUrl={avatarUrl} />
           </View>
-          <Text style={styles.message} numberOfLines={2} ellipsizeMode="tail">
-            {message}
-          </Text>
+          <View style={styles.detailsContainer}>
+            <View style={styles.contactCardHeader}>
+              <Text
+                style={styles.contactName}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {contactName}
+              </Text>
+              <View style={styles.action}>
+                <Text style={styles.timestamp}>{`${time}:00 AM`}</Text>
+                <Icon
+                  name={"chevronRight"}
+                  width={32}
+                  height={32}
+                  fill={Colors.orange100}
+                />
+              </View>
+            </View>
+            <Text style={styles.message} numberOfLines={2} ellipsizeMode="tail">
+              {message}
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
