@@ -54,7 +54,7 @@ const Nutrition = ({ navigation }: Props) => {
           <CustomMealItemCard
             mealTitle="Morning Snack"
             mealName="Orange Juice"
-            mealCoverUrl={require("../../../assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            mealCoverUrl={require("../../../assets/meals/orangeJuice.jpg")}
             status="active"
             children=""
           />
@@ -64,7 +64,7 @@ const Nutrition = ({ navigation }: Props) => {
           <CustomMealItemCard
             mealTitle="Lunch"
             mealName="Bean Quesadilla"
-            mealCoverUrl={require("../../../assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            mealCoverUrl={require("../../../assets/meals/quesadilla.jpg")}
             status="active"
             children=""
           />
@@ -74,7 +74,7 @@ const Nutrition = ({ navigation }: Props) => {
           <CustomMealItemCard
             mealTitle="Afternoon Snack"
             mealName="Yoghurt & Muesli"
-            mealCoverUrl={require("../../../assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            mealCoverUrl={require("../../../assets/meals/muesli.jpg")}
             status="active"
             children=""
           />
@@ -84,7 +84,7 @@ const Nutrition = ({ navigation }: Props) => {
           <CustomMealItemCard
             mealTitle="Dinner"
             mealName="Fish Curry"
-            mealCoverUrl={require("../../../assets/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg")}
+            mealCoverUrl={require("../../../assets/meals/fishCurry.jpg")}
             status="active"
             children=""
           />

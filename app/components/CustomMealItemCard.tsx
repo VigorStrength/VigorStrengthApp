@@ -26,7 +26,7 @@ const CustomMealItemCard = ({
         <View style={styles.cardImageContainer}>
           <Image source={mealCoverUrl} style={styles.image} />
           <LinearGradient
-            colors={[Colors.orange100, Colors.orange80, Colors.neutralGradient]}
+            colors={[Colors.orange80, Colors.orange60, Colors.neutralGradient]}
             start={{ x: 1, y: 0 }}
             end={{ x: 0, y: 1 }}
             locations={[0, 0.34, 1]}
