@@ -7,7 +7,7 @@ import CustomButton from "../../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon as RNIcon } from "react-native-paper";
 import Icon from "../../components/Icon";
-import { useLogin } from "../../hooks/Authentication/useLogin";
+import { useLogin } from "../../features/Authentication/useLogin";
 import Loader from "../../components/Loader";
 
 type Props = {
