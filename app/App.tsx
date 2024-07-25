@@ -1,5 +1,6 @@
 import React from "react";
 import DarkTheme from "./utils/theme";
+import "./api/axiosInterceptors";
 import { StatusBar } from "expo-status-bar";
 import { Provider as PaperProvider } from "react-native-paper";
 import { FontProvider } from "../app/contexts/FontContext";

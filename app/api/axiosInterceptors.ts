@@ -1,5 +1,5 @@
 import { refreshAccessToken } from "./apiAuth";
-import { axiosInstance } from "./axiosInstance";
+import axiosInstance from "./axiosInstance";
 import {
   getAccessToken,
   getRefreshToken,

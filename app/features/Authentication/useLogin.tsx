@@ -33,7 +33,7 @@ export function useLogin({ navigation }: Props) {
   } = useMutation<LoginResponse, Error, LoginParams>({
     mutationFn: ({ email, password }) => login({ email, password }),
     onSuccess: (data) => {
-      // queryClient.setQueryData(["auth"], data);
+      queryClient.setQueryData(["auth"], data);
       saveTokens(data.accessToken, data.refreshToken);
       navigation.navigate("Home");
     },

@@ -5,8 +5,8 @@ import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
 import CustomMonthlyPlanCard from "../../components/CustomMonthlyPlanCard";
 import CustomSelectionCard from "../../components/CustomSelectionCard";
-import { interpolateColor, useSharedValue } from "react-native-reanimated";
 import CustomTopBar from "../../components/CustomTopBar";
+import { useActiveWorkoutPlan } from "../../features/workoutPlan/useActiveWorkoutPlan";
 
 type Props = {
   navigation: any;
@@ -28,6 +28,9 @@ const Home = ({ navigation }: Props) => {
   //   [0, 200],
   //   ["transparent", "#000000b2"]
   // );
+
+  const { workoutPlan, error, isPending } = useActiveWorkoutPlan();
+  console.log(workoutPlan, error, isPending);
 
   return (
     <SafeAreaView style={[styles.container]}>
