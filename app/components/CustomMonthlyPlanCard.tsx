@@ -39,7 +39,9 @@ const CustomMonthlyPlanCard = ({
       <Card.Content style={styles.content}>
         <View style={styles.headerContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.cardTitle}>{title}</Text>
+            <Text style={styles.cardTitle} numberOfLines={2}>
+              {title}
+            </Text>
             <Icon
               name="moreHorizontal"
               width={40}
