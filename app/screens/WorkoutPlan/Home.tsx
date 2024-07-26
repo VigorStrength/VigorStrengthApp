@@ -23,7 +23,6 @@ const ActionComponent = () => (
 
 const Home = ({ navigation }: Props) => {
   const { workoutPlan, error, isPending } = useActiveWorkoutPlan();
-  console.log(workoutPlan, error, isPending);
 
   return (
     <SafeAreaView style={[styles.container]}>
