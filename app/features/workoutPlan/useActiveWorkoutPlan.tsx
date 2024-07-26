@@ -3,7 +3,7 @@ import { getActiveWorkoutPlan } from "../../api/apiWorkoutPlan";
 
 export function useActiveWorkoutPlan() {
   const {
-    data: workoutPlan,
+    data: activeWorkoutPlan,
     error,
     isPending,
   } = useQuery({
@@ -12,5 +12,5 @@ export function useActiveWorkoutPlan() {
     throwOnError: true,
   });
 
-  return { workoutPlan, error, isPending };
+  return { activeWorkoutPlan, error, isPending };
 }

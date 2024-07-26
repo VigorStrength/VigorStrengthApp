@@ -22,7 +22,7 @@ const ActionComponent = () => (
 );
 
 const Home = ({ navigation }: Props) => {
-  const { workoutPlan, error, isPending } = useActiveWorkoutPlan();
+  const { activeWorkoutPlan, error, isPending } = useActiveWorkoutPlan();
 
   return (
     <SafeAreaView style={[styles.container]}>
@@ -35,9 +35,9 @@ const Home = ({ navigation }: Props) => {
             <View style={styles.monthlyPlanCardContainer}>
               <Text style={styles.topLabel}>Today's Workout</Text>
               <CustomMonthlyPlanCard
-                title={workoutPlan?.workoutPlanName}
+                title={activeWorkoutPlan?.workoutPlanName}
                 subTitle="Week 2"
-                progress={workoutPlan?.progress}
+                progress={activeWorkoutPlan?.progress}
                 programCoverUrl={require("../../../assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
                 onPress={() => navigation.navigate("WorkoutPlan")}
                 children=""
