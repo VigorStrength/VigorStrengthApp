@@ -15,7 +15,7 @@ export async function login({ email, password }: loginProps) {
     const { accessToken, refreshToken } = response.data;
     return { accessToken, refreshToken };
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error(error?.message);
   }
 }
 
@@ -29,7 +29,7 @@ export async function refreshAccessToken(refreshToken: string) {
     const { accessToken } = response.data;
     return accessToken;
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error(error?.message);
   }
 }
 
@@ -43,6 +43,6 @@ export async function renewRefreshToken(refreshToken: string) {
     const { refreshToken: newRefreshToken } = response.data;
     return newRefreshToken;
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error(error?.message);
   }
 }

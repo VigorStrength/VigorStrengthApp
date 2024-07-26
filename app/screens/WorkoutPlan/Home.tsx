@@ -38,7 +38,7 @@ const Home = ({ navigation }: Props) => {
               <CustomMonthlyPlanCard
                 title={workoutPlan?.workoutPlanName}
                 subTitle="Week 2"
-                progress={25}
+                progress={workoutPlan?.progress}
                 programCoverUrl={require("../../../assets/sushil-ghimire-5UbIqV58CW8-unsplash.jpg")}
                 onPress={() => navigation.navigate("WorkoutPlan")}
                 children=""
