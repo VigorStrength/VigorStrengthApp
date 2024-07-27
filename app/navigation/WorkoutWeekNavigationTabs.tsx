@@ -3,10 +3,26 @@ import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import WorkoutWeek from "../screens/WorkoutPlan/WorkoutWeek";
 import { Colors } from "../GlobalStyles";
+import { useStandardWorkoutPlan } from "../features/workoutPlan/useStandardWorkoutPlan";
 
 const Tab = createMaterialTopTabNavigator();
 
 const WorkoutWeekNavigationTabs = () => {
+  const { standardWorkoutPlan, error, isPending } = useStandardWorkoutPlan();
+
+  if (isPending) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  const weekTabs = standardWorkoutPlan?.weeks.map((week: any, i: number) => {
+    const weekName = `Week ${i + 1}`;
+    return <Tab.Screen key={i} name={weekName} component={WorkoutWeek} />;
+  });
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -22,10 +38,7 @@ const WorkoutWeekNavigationTabs = () => {
         },
       }}
     >
-      <Tab.Screen name="Week 1" component={WorkoutWeek} />
-      <Tab.Screen name="Week 2" component={WorkoutWeek} />
-      <Tab.Screen name="Week 3" component={WorkoutWeek} />
-      <Tab.Screen name="Week 4" component={WorkoutWeek} />
+      {weekTabs}
     </Tab.Navigator>
   );
 };

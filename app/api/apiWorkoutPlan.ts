@@ -3,7 +3,7 @@ import axiosInstance, { baseURL } from "./axiosInstance";
 export async function getStandardWorkoutPlan() {
   try {
     const response = await axiosInstance.get(
-      `${baseURL}/workout-plans/standard`
+      `${baseURL}/user/workout-plans/standard`
     );
 
     return response.data;
