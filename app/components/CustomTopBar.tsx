@@ -27,7 +27,11 @@ const CustomTopBar = ({
 }: Props) => {
   const renderLabel = () => {
     if (typeof label === "string") {
-      return <Text style={styles.logoLabel}>{label}</Text>;
+      return (
+        <Text style={styles.planLabel} numberOfLines={2}>
+          {label}
+        </Text>
+      );
     } else if (typeof label === "function") {
       const Component = label as React.ComponentType<any>;
       return <Component />;
@@ -98,22 +102,6 @@ const CustomTopBar = ({
   );
 };
 
-/*
-<View style={styles.topBar}>
-      <BlurView intensity={40} style={StyleSheet.absoluteFill} />
-      <Text style={styles.logoLabel}>{label}</Text>
-      {iconName && (
-        <Icon
-          onPress={() => navigation.navigate("Welcome")}
-          name={iconName}
-          width={44}
-          height={44}
-          fill={Colors.orange100}
-        />
-      )}
-    </View>
- */
-
 export default CustomTopBar;
 
 const styles = StyleSheet.create({
@@ -146,7 +134,7 @@ const styles = StyleSheet.create({
     fontFamily: "IntegralCF-Bold",
   },
   planLabel: {
-    fontSize: 24,
+    fontSize: 18,
     lineHeight: 25,
     color: Colors.orange100,
     fontFamily: "SatoshiBold",

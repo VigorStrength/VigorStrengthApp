@@ -7,24 +7,30 @@ import CustomDivider from "../../components/CustomDivider";
 import CustomProgressBar from "../../components/CustomProgressBar";
 import { Colors } from "../../GlobalStyles";
 import CustomButton from "../../components/CustomButton";
+import { useActiveWorkoutPlan } from "../../features/workoutPlan/useActiveWorkoutPlan";
 
 type Props = {
   navigation: any;
 };
 
 const WorkoutPlan = ({ navigation }: Props) => {
+  const { activeWorkoutPlan, error, isPending } = useActiveWorkoutPlan();
+
   return (
     <SafeAreaView style={styles.container}>
       <CustomTopBar
         variant="Plan"
         iconName="moreHorizontal"
-        label="Upper Body Strength"
+        label={activeWorkoutPlan?.workoutPlanName}
         navigation={navigation}
       />
       <WorkoutWeekNavigationTabs />
       <View style={styles.content}>
         <CustomDivider />
-        <CustomProgressBar progress={25} color={Colors.orange100} />
+        <CustomProgressBar
+          progress={activeWorkoutPlan?.progress}
+          color={Colors.orange100}
+        />
         <View style={styles.buttonContainer}>
           <CustomButton size="xlarge" left="share" children="Share Progress" />
         </View>

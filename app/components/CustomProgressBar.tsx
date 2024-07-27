@@ -11,8 +11,6 @@ type Props = {
 };
 
 const CustomProgressBar = ({ color, progress, size = "xlarge" }: Props) => {
-  const { colors } = useTheme();
-
   const sizes = {
     small: {
       width: 80,
