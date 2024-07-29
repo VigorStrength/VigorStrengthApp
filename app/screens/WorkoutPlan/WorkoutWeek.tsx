@@ -1,49 +1,48 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import { Colors } from "../../GlobalStyles";
 import CustomDailyWorkoutItemCard from "../../components/CustomDailyWorkoutItemCard";
-type Props = {};
 
-const WorkoutWeek = (props: Props) => {
+type Props = {
+  week: any;
+};
+
+const WorkoutWeek = ({ week }: Props) => {
+  // Supposed to get this through handling
+  // workout days statuses
+  // const completedDays = week.days.filter(
+  //   (day: any) => day.status === "completed"
+  // );
+
   return (
     <View style={styles.container}>
       <View style={styles.completedContainer}>
         <Text style={styles.completedLabel}>completed</Text>
-        <Text style={styles.workoutDayCompletedLabel}>1 of 3</Text>
+        <Text style={styles.workoutDayCompletedLabel}>
+          0 of {week.days.length}
+        </Text>
       </View>
       {/* Must be a flatlist later with data coming from workoutweek state */}
-      <ScrollView style={styles.cardsContainer}>
-        <View style={styles.cardStyle}>
-          <CustomDailyWorkoutItemCard
-            dayNumber={1}
-            workoutDayLabel="Upper Body Conjugate"
-            workoutDayTimeRange={[90, 65]}
-            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-            status="completed"
-            children=""
-          />
-        </View>
-        <View style={styles.cardStyle}>
-          <CustomDailyWorkoutItemCard
-            dayNumber={2}
-            workoutDayLabel="Lower Body Conjugate"
-            workoutDayTimeRange={[90, 65]}
-            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-            status="current"
-            children=""
-          />
-        </View>
-        <View style={styles.cardStyle}>
-          <CustomDailyWorkoutItemCard
-            dayNumber={3}
-            workoutDayLabel="Upper Body Conjugate"
-            workoutDayTimeRange={[90, 65]}
-            exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
-            status="active"
-            children=""
-          />
-        </View>
-      </ScrollView>
+      <FlatList
+        data={week?.days}
+        keyExtractor={(day) => day.id}
+        renderItem={({ item, index }) => (
+          <View style={styles.cardStyle}>
+            <CustomDailyWorkoutItemCard
+              dayNumber={index + 1}
+              workoutDayLabel={"Upper Body Conjugate"}
+              workoutDayTimeRange={[
+                Math.ceil(item.workoutTimeRange[0] / 60),
+                Math.ceil(item.workoutTimeRange[1] / 60),
+              ]}
+              exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+              status="active"
+              children=""
+            />
+          </View>
+        )}
+        style={styles.cardsContainer}
+      />
     </View>
   );
 };
