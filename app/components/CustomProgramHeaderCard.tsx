@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  View,
-  Text,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { ImageBackground, StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
@@ -34,11 +27,6 @@ const CustomProgramHeaderCard = ({
   coverUrl,
   navigation,
 }: Props) => {
-  const handleOnPress = () => {
-    console.log("Program Header Pressed");
-    navigation.navigate("Workout Plan");
-  };
-
   return (
     <ImageBackground
       source={coverUrl}
@@ -52,10 +40,12 @@ const CustomProgramHeaderCard = ({
           end={{ x: 1, y: 1 }}
           locations={[0, 0.65, 1]}
           style={styles.gradient}
+          pointerEvents="none"
         />
       )}
       <View style={styles.header}>
         <Icon
+          onPress={() => navigation.goBack()}
           name={variant === "workout" ? "chevronLeftCircle" : "chevronLeft"}
           width={64}
           height={64}
