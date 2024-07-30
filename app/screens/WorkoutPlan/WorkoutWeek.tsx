@@ -22,7 +22,6 @@ const WorkoutWeek = ({ week }: Props) => {
           0 of {week.days.length}
         </Text>
       </View>
-      {/* Must be a flatlist later with data coming from workoutweek state */}
       <FlatList
         data={week?.days}
         keyExtractor={(day) => day.id}
@@ -30,12 +29,12 @@ const WorkoutWeek = ({ week }: Props) => {
           <View style={styles.cardStyle}>
             <CustomDailyWorkoutItemCard
               dayNumber={index + 1}
-              workoutDayLabel={"Upper Body Conjugate"}
+              workoutDayLabel={item.name}
               workoutDayTimeRange={[
                 Math.ceil(item.workoutTimeRange[0] / 60),
                 Math.ceil(item.workoutTimeRange[1] / 60),
               ]}
-              exerciseCoverUrl={require("../../../assets/alora-griffiths-V3GnMeRhnjk-unsplash.jpg")}
+              exerciseCoverUrl={{ uri: item.imageURL }}
               status="active"
               children=""
             />
