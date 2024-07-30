@@ -5,14 +5,18 @@ import CustomDailyWorkoutItemCard from "../../components/CustomDailyWorkoutItemC
 
 type Props = {
   week: any;
+  navigation: any;
 };
 
-const WorkoutWeek = ({ week }: Props) => {
+const WorkoutWeek = ({ week, navigation }: Props) => {
   // Supposed to get this through handling
   // workout days statuses
   // const completedDays = week.days.filter(
   //   (day: any) => day.status === "completed"
   // );
+  const handleOnpress = () => {
+    navigation.navigate("Workout Day");
+  };
 
   return (
     <View style={styles.container}>
@@ -36,6 +40,7 @@ const WorkoutWeek = ({ week }: Props) => {
               ]}
               exerciseCoverUrl={{ uri: item.imageURL }}
               status="active"
+              onPress={handleOnpress}
               children=""
             />
           </View>
@@ -74,8 +79,6 @@ const styles = StyleSheet.create({
   cardsContainer: {
     marginTop: 32,
     paddingHorizontal: 9,
-    // height:
-    // height: "100%",
   },
   cardStyle: {
     marginBottom: 8,

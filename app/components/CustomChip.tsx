@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   label: {
     color: Colors.orange100,
     fontFamily: "SatoshiBold",
-    fontSize: FontSize.bodyBold16_size,
+    fontSize: 16,
   },
 });

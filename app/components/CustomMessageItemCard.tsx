@@ -1,14 +1,11 @@
 import React from "react";
 import {
   StyleSheet,
-  Image,
   View,
   Text,
-  ViewProps,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
-import { CardProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
 import CustomAvatar from "./CustomAvatar";

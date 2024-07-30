@@ -24,7 +24,7 @@ const WorkoutPlan = ({ navigation }: Props) => {
         label={activeWorkoutPlan?.workoutPlanName}
         navigation={navigation}
       />
-      <WorkoutWeekNavigationTabs />
+      <WorkoutWeekNavigationTabs navigation={navigation} />
       <View style={styles.content}>
         <CustomDivider />
         <CustomProgressBar

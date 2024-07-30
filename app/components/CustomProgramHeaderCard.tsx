@@ -1,5 +1,12 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View, Text } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  View,
+  Text,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
@@ -14,6 +21,7 @@ type Props = {
   mealTitle?: string;
   mealName?: string;
   coverUrl: any;
+  navigation?: any;
 };
 
 const CustomProgramHeaderCard = ({
@@ -24,7 +32,13 @@ const CustomProgramHeaderCard = ({
   mealTitle,
   mealName,
   coverUrl,
+  navigation,
 }: Props) => {
+  const handleOnPress = () => {
+    console.log("Program Header Pressed");
+    navigation.navigate("Workout Plan");
+  };
+
   return (
     <ImageBackground
       source={coverUrl}

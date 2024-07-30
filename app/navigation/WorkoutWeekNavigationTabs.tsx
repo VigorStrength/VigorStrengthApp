@@ -5,9 +5,13 @@ import WorkoutWeek from "../screens/WorkoutPlan/WorkoutWeek";
 import { Colors } from "../GlobalStyles";
 import { useStandardWorkoutPlan } from "../features/workoutPlan/useStandardWorkoutPlan";
 
+type Props = {
+  navigation: any;
+};
+
 const Tab = createMaterialTopTabNavigator();
 
-const WorkoutWeekNavigationTabs = () => {
+const WorkoutWeekNavigationTabs = ({ navigation }: Props) => {
   const { standardWorkoutPlan, error, isPending } = useStandardWorkoutPlan();
 
   if (isPending) {
@@ -22,7 +26,7 @@ const WorkoutWeekNavigationTabs = () => {
     const weekName = `Week ${i + 1}`;
     return (
       <Tab.Screen key={i} name={weekName}>
-        {() => <WorkoutWeek week={week} />}
+        {() => <WorkoutWeek week={week} navigation={navigation} />}
       </Tab.Screen>
     );
   });
