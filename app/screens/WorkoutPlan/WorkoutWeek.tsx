@@ -14,8 +14,18 @@ const WorkoutWeek = ({ week, navigation }: Props) => {
   // const completedDays = week.days.filter(
   //   (day: any) => day.status === "completed"
   // );
-  const handleOnpress = () => {
-    navigation.navigate("Workout Day");
+  const handleOnpress = (day: any, workoutDayNumber: number) => {
+    const workoutWeekNumber = week.weekNumber;
+    const workoutDay = {
+      ...day,
+      workoutDayNumber,
+      workoutWeekNumber,
+      workoutTimeRange: [
+        Math.ceil(day.workoutTimeRange[0] / 60),
+        Math.ceil(day.workoutTimeRange[1] / 60),
+      ],
+    };
+    navigation.navigate("Workout Day", { day: workoutDay });
   };
 
   return (
@@ -40,7 +50,7 @@ const WorkoutWeek = ({ week, navigation }: Props) => {
               ]}
               exerciseCoverUrl={{ uri: item.imageURL }}
               status="active"
-              onPress={handleOnpress}
+              onPress={() => handleOnpress(item, index + 1)}
               children=""
             />
           </View>

@@ -40,6 +40,19 @@ export async function getActiveWorkoutPlan() {
       completed,
     };
   } catch (error: any) {
-    throw new Error(error?.message || "Unexpected error");
+    throw new Error(error?.message);
+  }
+}
+
+export async function getDailyExercisesByIds(dailyExercisesIDs: string[]) {
+  try {
+    const response = await axiosInstance.post(
+      `${baseURL}/user/workout-plans/daily-exercises`,
+      { dailyExercisesIDs }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message);
   }
 }

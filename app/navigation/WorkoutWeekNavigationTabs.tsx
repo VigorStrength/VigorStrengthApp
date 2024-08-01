@@ -23,10 +23,15 @@ const WorkoutWeekNavigationTabs = ({ navigation }: Props) => {
   }
 
   const weekTabs = standardWorkoutPlan?.weeks.map((week: any, i: number) => {
-    const weekName = `Week ${i + 1}`;
+    const workoutWeek = {
+      ...week,
+      weekNumber: i + 1,
+      label: `Week ${i + 1}`,
+    };
+
     return (
-      <Tab.Screen key={i} name={weekName}>
-        {() => <WorkoutWeek week={week} navigation={navigation} />}
+      <Tab.Screen key={i} name={workoutWeek.label}>
+        {() => <WorkoutWeek week={workoutWeek} navigation={navigation} />}
       </Tab.Screen>
     );
   });
