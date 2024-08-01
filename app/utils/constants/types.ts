@@ -1,5 +1,25 @@
 export type workoutTimeRange = [min: number, max: number];
 
+export type ExercisLog = {
+  setNumber?: number;
+  proposedReps: number;
+  actualReps?: number;
+  proposedWeight?: number;
+  actualWeight?: number;
+};
+
+export type Exercise = {
+  id: string;
+  name: string;
+  description: string;
+  videoURL: string;
+  targetMuscles: string[];
+  equipmentNeeded: string[];
+  instructions: string[];
+  time: number;
+  proposedLog: ExercisLog;
+};
+
 export type StandardWorkoutCircuit = {
   id: string;
   exerciseIds: string[];

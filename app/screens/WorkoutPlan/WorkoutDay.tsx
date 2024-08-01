@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { WorkoutDayParams } from "../../utils/constants/types";
+import { Exercise, WorkoutDayParams } from "../../utils/constants/types";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
 import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
@@ -20,8 +20,11 @@ const WorkoutDay = ({ navigation }: Props) => {
   const dailyExercisesIDs = dailyExercisesIdsFromWorkoutDay(day);
   const { dailyExercises, error, isPending } =
     useDailyExercises(dailyExercisesIDs);
+  const targetMuscles = dailyExercises?.flatMap(
+    (exercise: Exercise) => exercise.targetMuscles
+  );
 
-  // To replace with Skeleton late
+  // To replace with Skeleton later
   if (isPending) {
     return <Text>Loading...</Text>;
   }
@@ -30,8 +33,6 @@ const WorkoutDay = ({ navigation }: Props) => {
   if (error) {
     return <Text>Error: {error.message}</Text>;
   }
-
-  console.log(dailyExercises);
 
   return (
     <View style={styles.container}>
@@ -50,12 +51,27 @@ const WorkoutDay = ({ navigation }: Props) => {
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
-        <View style={styles.activityContainer}>
+        <View style={styles.activityTargetContainer}>
           <Icon name="target" width={44} height={44} fill={Colors.neutral350} />
-          {/* <Text style={styles.activityLabel}>
-            {Math.ceil(day.workoutTimeRange[1] / 60)} min /{" "}
-            {Math.ceil(day.workoutTimeRange[0] / 60)} min
-          </Text> */}
+          <View style={styles.targetContainer}>
+            {targetMuscles.map((muscle: string, index: number) => {
+              const isLastItem = index === targetMuscles.length - 1;
+              return (
+                <View key={index} style={styles.muscleItem}>
+                  <Text style={styles.activityLabel}>{muscle}</Text>
+                  {!isLastItem && (
+                    <Icon
+                      name="dotSeparator"
+                      width={44}
+                      height={44}
+                      fill={Colors.neutral350}
+                      style={styles.dotSeparator}
+                    />
+                  )}
+                </View>
+              );
+            })}
+          </View>
         </View>
         <Text style={styles.sectionLabel}>Exercises</Text>
       </View>
@@ -77,6 +93,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  activityTargetContainer: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  targetContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  muscleItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: -2, // Adjusted margin for spacing
+  },
   activityLabel: {
     fontSize: 16,
     marginLeft: 16,
@@ -89,5 +118,9 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
+  },
+  dotSeparator: {
+    marginLeft: -8,
+    marginRight: -20,
   },
 });
