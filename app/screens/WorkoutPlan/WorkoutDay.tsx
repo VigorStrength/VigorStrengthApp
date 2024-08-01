@@ -20,9 +20,32 @@ const WorkoutDay = ({ navigation }: Props) => {
   const dailyExercisesIDs = dailyExercisesIdsFromWorkoutDay(day);
   const { dailyExercises, error, isPending } =
     useDailyExercises(dailyExercisesIDs);
-  const targetMuscles = dailyExercises?.flatMap(
-    (exercise: Exercise) => exercise.targetMuscles
+
+  const capitalize = (str: string) =>
+    str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+  const targetMuscles = Array.from(
+    new Set<string>(
+      dailyExercises?.flatMap((exercise: Exercise) =>
+        exercise.targetMuscles.map((muscle) => capitalize(muscle.toLowerCase()))
+      )
+    )
   );
+
+  // Group muscles into rows of 3
+  const groupedMuscles = targetMuscles?.reduce(
+    (acc: string[][], muscle: string, index: number) => {
+      if (index % 3 === 0) acc.push([muscle]);
+      else acc[acc.length - 1].push(muscle);
+      return acc;
+    },
+    []
+  );
+
+  console.log({ groupedMuscles });
 
   // To replace with Skeleton later
   if (isPending) {
@@ -51,26 +74,31 @@ const WorkoutDay = ({ navigation }: Props) => {
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
-        <View style={styles.activityTargetContainer}>
+        <View style={styles.targetContainer}>
           <Icon name="target" width={44} height={44} fill={Colors.neutral350} />
-          <View style={styles.targetContainer}>
-            {targetMuscles.map((muscle: string, index: number) => {
-              const isLastItem = index === targetMuscles.length - 1;
-              return (
-                <View key={index} style={styles.muscleItem}>
-                  <Text style={styles.activityLabel}>{muscle}</Text>
-                  {!isLastItem && (
-                    <Icon
-                      name="dotSeparator"
-                      width={44}
-                      height={44}
-                      fill={Colors.neutral350}
-                      style={styles.dotSeparator}
-                    />
+          <View style={styles.muscleContainer}>
+            {groupedMuscles.map((muscleRow: string[], rowIndex: number) => (
+              <View key={rowIndex} style={styles.muscleRow}>
+                {muscleRow.map((muscle, index) => (
+                  <View key={index} style={styles.muscleItem}>
+                    <Text style={styles.activityLabel}>{muscle}</Text>
+                    {index < muscleRow.length - 1 && (
+                      <Icon
+                        name="dotSeparator"
+                        width={44}
+                        height={44}
+                        fill={Colors.neutral350}
+                        style={styles.dotSeparator}
+                      />
+                    )}
+                  </View>
+                ))}
+                {muscleRow.length < 3 &&
+                  rowIndex === groupedMuscles.length - 1 && (
+                    <View style={styles.placeholder} />
                   )}
-                </View>
-              );
-            })}
+              </View>
+            ))}
           </View>
         </View>
         <Text style={styles.sectionLabel}>Exercises</Text>
@@ -93,13 +121,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  activityTargetContainer: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-  },
   targetContainer: {
     flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 16,
+  },
+  muscleContainer: {
+    marginRight: 10,
+  },
+  muscleRow: {
+    flexDirection: "row",
     flexWrap: "wrap",
+    marginBottom: -24,
   },
   muscleItem: {
     flexDirection: "row",
@@ -122,5 +155,9 @@ const styles = StyleSheet.create({
   dotSeparator: {
     marginLeft: -8,
     marginRight: -20,
+  },
+  placeholder: {
+    flex: 1,
+    minHeight: 44, // Same height as the dotSeparator icon to maintain spacing
   },
 });
