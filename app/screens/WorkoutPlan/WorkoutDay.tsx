@@ -74,6 +74,7 @@ const WorkoutDay = ({ navigation }: Props) => {
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
+        {/* To be separated as a component*/}
         <View style={styles.targetContainer}>
           <Icon name="target" width={44} height={44} fill={Colors.neutral350} />
           <View style={styles.muscleContainer}>
@@ -91,12 +92,12 @@ const WorkoutDay = ({ navigation }: Props) => {
                         style={styles.dotSeparator}
                       />
                     )}
+                    {muscleRow.length === 1 &&
+                      rowIndex === groupedMuscles.length - 1 && (
+                        <View style={styles.placeholder} />
+                      )}
                   </View>
                 ))}
-                {muscleRow.length < 3 &&
-                  rowIndex === groupedMuscles.length - 1 && (
-                    <View style={styles.placeholder} />
-                  )}
               </View>
             ))}
           </View>
@@ -132,13 +133,11 @@ const styles = StyleSheet.create({
   muscleRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    // marginRight: 4,
     marginBottom: -24,
   },
   muscleItem: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: -2, // Adjusted margin for spacing
   },
   timeLabel: {
     fontSize: 16,
