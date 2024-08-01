@@ -70,7 +70,7 @@ const WorkoutDay = ({ navigation }: Props) => {
       <View style={styles.body}>
         <View style={styles.activityContainer}>
           <Icon name="time" width={44} height={44} fill={Colors.neutral350} />
-          <Text style={styles.activityLabel}>
+          <Text style={styles.timeLabel}>
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
@@ -81,7 +81,7 @@ const WorkoutDay = ({ navigation }: Props) => {
               <View key={rowIndex} style={styles.muscleRow}>
                 {muscleRow.map((muscle, index) => (
                   <View key={index} style={styles.muscleItem}>
-                    <Text style={styles.activityLabel}>{muscle}</Text>
+                    <Text style={styles.targetMuscleLabel}>{muscle}</Text>
                     {index < muscleRow.length - 1 && (
                       <Icon
                         name="dotSeparator"
@@ -127,11 +127,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   muscleContainer: {
-    marginRight: 10,
+    marginLeft: 16,
   },
   muscleRow: {
     flexDirection: "row",
     flexWrap: "wrap",
+    // marginRight: 4,
     marginBottom: -24,
   },
   muscleItem: {
@@ -139,9 +140,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: -2, // Adjusted margin for spacing
   },
-  activityLabel: {
+  timeLabel: {
     fontSize: 16,
     marginLeft: 16,
+    color: Colors.neutral350,
+    fontFamily: "SatoshiBold",
+  },
+  targetMuscleLabel: {
+    fontSize: 16,
     color: Colors.neutral350,
     fontFamily: "SatoshiBold",
   },
@@ -153,8 +159,8 @@ const styles = StyleSheet.create({
     color: Colors.neutral350,
   },
   dotSeparator: {
-    marginLeft: -8,
-    marginRight: -20,
+    marginLeft: -12,
+    marginRight: -12,
   },
   placeholder: {
     flex: 1,
