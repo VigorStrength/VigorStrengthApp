@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
@@ -7,6 +7,9 @@ import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
 import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
 import { dailyExercisesIdsFromWorkoutDay } from "../../utils/helpers";
+import CustomExerciseItemCard from "../../components/CustomExerciseItemCard";
+import { BlurView } from "expo-blur";
+import CustomButton from "../../components/CustomButton";
 
 type Props = {
   navigation: any;
@@ -45,8 +48,6 @@ const WorkoutDay = ({ navigation }: Props) => {
     []
   );
 
-  console.log({ groupedMuscles });
-
   // To replace with Skeleton later
   if (isPending) {
     return <Text>Loading...</Text>;
@@ -69,14 +70,14 @@ const WorkoutDay = ({ navigation }: Props) => {
       />
       <View style={styles.body}>
         <View style={styles.activityContainer}>
-          <Icon name="time" width={44} height={44} fill={Colors.neutral350} />
+          <Icon name="time" width={32} height={32} fill={Colors.neutral350} />
           <Text style={styles.timeLabel}>
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
         {/* To be separated as a component*/}
         <View style={styles.targetContainer}>
-          <Icon name="target" width={44} height={44} fill={Colors.neutral350} />
+          <Icon name="target" width={32} height={32} fill={Colors.neutral350} />
           <View style={styles.muscleContainer}>
             {groupedMuscles.map((muscleRow: string[], rowIndex: number) => (
               <View key={rowIndex} style={styles.muscleRow}>
@@ -86,10 +87,9 @@ const WorkoutDay = ({ navigation }: Props) => {
                     {index < muscleRow.length - 1 && (
                       <Icon
                         name="dotSeparator"
-                        width={44}
-                        height={44}
+                        width={32}
+                        height={32}
                         fill={Colors.neutral350}
-                        style={styles.dotSeparator}
                       />
                     )}
                     {muscleRow.length === 1 &&
@@ -104,6 +104,31 @@ const WorkoutDay = ({ navigation }: Props) => {
         </View>
         <Text style={styles.sectionLabel}>Exercises</Text>
       </View>
+      <FlatList
+        data={dailyExercises}
+        keyExtractor={(exercise) => exercise.id}
+        renderItem={({ item, index }) => (
+          <View style={styles.cardStyle}>
+            <CustomExerciseItemCard
+              exerciseName={item.name}
+              exerciseTime={item.time}
+              exerciseReps={item.proposedLog?.proposedReps}
+              status="active"
+              children=""
+            />
+          </View>
+        )}
+        style={styles.cardsContainer}
+      />
+      {/* <BlurView intensity={100} style={styles.buttonContainer} tint="dark"> */}
+      <View style={styles.buttonContainer}>
+        <CustomButton
+          size="xlarge"
+          left="playFilled"
+          children="Start Workout"
+        />
+      </View>
+      {/* </BlurView> */}
     </View>
   );
 };
@@ -113,12 +138,15 @@ export default WorkoutDay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position: "relative",
   },
   body: {
     paddingTop: 8,
     paddingHorizontal: 16,
   },
   activityContainer: {
+    marginTop: 4,
+    marginBottom: 8,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -133,7 +161,7 @@ const styles = StyleSheet.create({
   muscleRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginBottom: -24,
+    marginBottom: -8,
   },
   muscleItem: {
     flexDirection: "row",
@@ -157,12 +185,22 @@ const styles = StyleSheet.create({
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
   },
-  dotSeparator: {
-    marginLeft: -12,
-    marginRight: -12,
-  },
   placeholder: {
     flex: 1,
-    minHeight: 44, // Same height as the dotSeparator icon to maintain spacing
+    minHeight: 32, // Same height as the dotSeparator icon to maintain spacing
+  },
+  cardsContainer: {
+    marginTop: 16,
+    paddingHorizontal: 8,
+  },
+  cardStyle: {
+    marginBottom: 8,
+  },
+  buttonContainer: {
+    // position: "absolute",
+    bottom: 0,
+    opacity: 0.9,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
   },
 });

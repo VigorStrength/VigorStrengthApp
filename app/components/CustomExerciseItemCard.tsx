@@ -10,7 +10,7 @@ interface Props extends CardProps {
   exerciseName: string;
   exerciseTime: number;
   exerciseReps: number;
-  exerciseCoverUrl: any;
+  exerciseCoverUrl?: any;
   status: Status;
 }
 
@@ -22,6 +22,13 @@ const CustomExerciseItemCard = ({
   status,
   ...props
 }: Props) => {
+  const minutes = Math.floor(exerciseTime / 60);
+  const seconds = exerciseTime % 60;
+
+  const exerciseTimeLabel = `${minutes}:${
+    seconds < 10 ? `0${seconds}` : seconds
+  }`;
+
   return (
     <View style={styles.card} {...props}>
       <Card.Content style={styles.content}>
@@ -38,7 +45,7 @@ const CustomExerciseItemCard = ({
         <View style={styles.detailsContainer}>
           <Text style={styles.exerciseName}>{exerciseName}</Text>
           <View style={styles.exerciseDetails}>
-            <Text style={styles.detailLabel1}>{`${exerciseTime}:00`}</Text>
+            <Text style={styles.detailLabel1}>{exerciseTimeLabel}</Text>
             <Icon
               name="dotSeparator"
               width={32}
