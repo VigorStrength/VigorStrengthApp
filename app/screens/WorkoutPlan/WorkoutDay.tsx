@@ -113,6 +113,7 @@ const WorkoutDay = ({ navigation }: Props) => {
               exerciseName={item.name}
               exerciseTime={item.time}
               exerciseReps={item.proposedLog?.proposedReps}
+              exerciseCoverUrl={{ uri: item.coverURL }}
               status="active"
               children=""
             />
