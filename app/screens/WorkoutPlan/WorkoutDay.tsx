@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   buttonContainer: {
-    // position: "absolute",
+    position: "absolute",
     bottom: 0,
     opacity: 0.9,
     paddingVertical: 20,
