@@ -5,9 +5,10 @@ import { icons } from "../utils/constants/icons";
 import Icon from "./Icon";
 import { Colors } from "../GlobalStyles";
 import LogoText from "./LogoText";
+import CustomButton from "./CustomButton";
 
 type IconName = keyof typeof icons;
-type Variant = "mainPage" | "Plan" | "workoutDay" | "exercise" | "message";
+type Variant = "mainPage" | "Plan" | "workoutDay" | "workout" | "message";
 type Props = {
   variant?: Variant;
   label?: string | ReactNode;
@@ -96,6 +97,18 @@ const CustomTopBar = ({
             height={40}
             fill={Colors.orange100}
           />
+        </View>
+      )}
+      {variant === "workout" && (
+        <View style={styles.content}>
+          <Icon
+            name="closeCircle"
+            width={40}
+            height={40}
+            fill={Colors.orange100}
+            onPress={() => navigation.goBack()}
+          />
+          <CustomButton size="small" children="Mark as completed" />
         </View>
       )}
     </BlurView>

@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   small: {
     width: 170,
     height: 46,
+    backgroundColor: Colors.neutral800,
   },
   medium: {
     width: 320,

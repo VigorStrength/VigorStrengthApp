@@ -11,6 +11,7 @@ import WorkoutPlan from "./WorkoutPlan/WorkoutPlan";
 import WorkoutDay from "./WorkoutPlan/WorkoutDay";
 import MealPlan from "./Nutrition/MealPlan";
 import Conversation from "./Social/Conversation";
+import Workout from "./WorkoutPlan/Workout";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ const AppLayout = () => {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Home" component={BottomNavigationTabs} />
+        <Stack.Screen name="Workout" component={Workout} />
         <Stack.Screen name="Workout Day" component={WorkoutDay} />
         <Stack.Screen name="Workout Plan" component={WorkoutPlan} />
         <Stack.Screen name="Meal Plan" component={MealPlan} />

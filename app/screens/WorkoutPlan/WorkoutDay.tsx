@@ -114,6 +114,7 @@ const WorkoutDay = ({ navigation }: Props) => {
               exerciseTime={item.time}
               exerciseReps={item.proposedLog?.proposedReps}
               exerciseCoverUrl={{ uri: item.coverURL }}
+              onPress={() => navigation.navigate("Workout", { workout: item })}
               status="active"
               children=""
             />
