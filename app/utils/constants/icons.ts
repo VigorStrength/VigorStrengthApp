@@ -15,6 +15,7 @@ import ChevronRight from "../../../assets/icons/chevron-right.svg";
 import Close from "../../../assets/icons/close.svg";
 import CloseCircle from "../../../assets/icons/close-circle.svg";
 import Community from "../../../assets/icons/community.svg";
+import DisableAudio from "../../../assets/icons/disable-audio.svg";
 import DotSeparator from "../../../assets/icons/dot-separator.svg";
 import EditProfile from "../../../assets/icons/edit-profile.svg";
 import EnableAudio from "../../../assets/icons/enable-audio.svg";
@@ -65,6 +66,7 @@ export const icons = {
   close: Close,
   closeCircle: CloseCircle,
   community: Community,
+  disableAudio: DisableAudio,
   dotSeparator: DotSeparator,
   editProfile: EditProfile,
   enableAudio: EnableAudio,

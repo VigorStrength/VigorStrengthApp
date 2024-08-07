@@ -14,13 +14,11 @@ type Props = {
   label?: string | ReactNode;
   navigation?: any;
   iconName?: IconName;
-  state?: any;
   left?: IconName;
   right?: IconName;
 };
 
 const CustomTopBar = ({
-  state,
   variant = "mainPage",
   navigation,
   iconName,
@@ -102,13 +100,13 @@ const CustomTopBar = ({
       {variant === "workout" && (
         <View style={styles.content}>
           <Icon
-            name="closeCircle"
+            name="close"
             width={40}
             height={40}
             fill={Colors.orange100}
             onPress={() => navigation.goBack()}
           />
-          <CustomButton size="small" children="Mark as completed" />
+          <CustomButton size="small" children="Mark as Complete" />
         </View>
       )}
     </BlurView>

@@ -43,16 +43,12 @@ const CustomButton = ({
 
   const getPaddingStyle = () => {
     switch (size) {
-      case "small":
-        return styles.paddingSmall;
       case "medium":
         return styles.paddingMedium;
       case "largeSignin":
         return styles.paddingLargeSignin;
       case "xlarge":
         return styles.paddingXlarge;
-      default:
-        return styles.paddingSmall;
     }
   };
 
@@ -78,6 +74,7 @@ const CustomButton = ({
         <Text
           style={[
             styles.text,
+            size === "small" && styles.textSmall,
             size === "medium" && styles.textMedium,
             size === "largeSignin" && styles.textSignIn,
             size === "large" && left && right && styles.textLargeWithIcons,
@@ -106,7 +103,9 @@ const styles = StyleSheet.create({
   },
   small: {
     width: 170,
-    height: 46,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: Colors.neutral800,
   },
   medium: {
@@ -130,10 +129,6 @@ const styles = StyleSheet.create({
     width: 361,
     height: 56,
     backgroundColor: Colors.neutral800,
-  },
-  paddingSmall: {
-    paddingHorizontal: 10,
-    paddingVertical: 11,
   },
   paddingMedium: {
     paddingHorizontal: 16,
@@ -165,6 +160,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     color: Colors.orange100,
+  },
+  textSmall: {
+    fontSize: 14,
   },
   textSignIn: {
     color: Colors.neutral100,
