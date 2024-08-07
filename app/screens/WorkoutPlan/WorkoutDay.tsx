@@ -44,6 +44,7 @@ const WorkoutDay = ({ navigation }: Props) => {
         coverUrl={{ uri: day?.imageURL }}
         navigation={navigation}
       />
+      {/* Might want to change it into a context if props drilling gets too deep*/}
       <ExerciseActivity
         min={day.workoutTimeRange[0]}
         max={day.workoutTimeRange[1]}
