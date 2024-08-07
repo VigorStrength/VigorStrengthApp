@@ -4,12 +4,9 @@ import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { WorkoutDayParams } from "../../utils/constants/types";
 import { Colors } from "../../GlobalStyles";
-import Icon from "../../components/Icon";
-
 import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
 import { dailyExercisesIdsFromWorkoutDay } from "../../utils/helpers";
-import DurationLabel from "../../components/DurationLabel";
-import TargetMusclesList from "../../components/TargetMusclesList";
+import ExerciseActivity from "../../components/ExerciseActivity";
 import CustomExerciseItemCard from "../../components/CustomExerciseItemCard";
 import CustomButton from "../../components/CustomButton";
 import { BlurView } from "expo-blur";
@@ -47,14 +44,12 @@ const WorkoutDay = ({ navigation }: Props) => {
         coverUrl={{ uri: day?.imageURL }}
         navigation={navigation}
       />
-      <View style={styles.body}>
-        <DurationLabel
-          max={day.workoutTimeRange[1]}
-          min={day.workoutTimeRange[0]}
-        />
-        <TargetMusclesList dailyExercises={dailyExercises} />
-        <Text style={styles.sectionLabel}>Exercises</Text>
-      </View>
+      <ExerciseActivity
+        min={day.workoutTimeRange[0]}
+        max={day.workoutTimeRange[1]}
+        dailyExercises={dailyExercises}
+      />
+      <Text style={styles.sectionLabel}>Exercises</Text>
       <FlatList
         data={dailyExercises}
         keyExtractor={(exercise) => exercise.id}
@@ -101,6 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 25,
     marginTop: 16,
+    paddingLeft: 16, // Might change it to 24
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
   },
