@@ -2,14 +2,16 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Exercise, WorkoutDayParams } from "../../utils/constants/types";
+import { WorkoutDayParams } from "../../utils/constants/types";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
+
 import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
 import { dailyExercisesIdsFromWorkoutDay } from "../../utils/helpers";
+import TargetMusclesList from "../../components/TargetMusclesList";
 import CustomExerciseItemCard from "../../components/CustomExerciseItemCard";
-import { BlurView } from "expo-blur";
 import CustomButton from "../../components/CustomButton";
+import { BlurView } from "expo-blur";
 
 type Props = {
   navigation: any;
@@ -23,30 +25,6 @@ const WorkoutDay = ({ navigation }: Props) => {
   const dailyExercisesIDs = dailyExercisesIdsFromWorkoutDay(day);
   const { dailyExercises, error, isPending } =
     useDailyExercises(dailyExercisesIDs);
-
-  const capitalize = (str: string) =>
-    str
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-  const targetMuscles = Array.from(
-    new Set<string>(
-      dailyExercises?.flatMap((exercise: Exercise) =>
-        exercise.targetMuscles.map((muscle) => capitalize(muscle.toLowerCase()))
-      )
-    )
-  );
-
-  // Group muscles into rows of 3
-  const groupedMuscles = targetMuscles?.reduce(
-    (acc: string[][], muscle: string, index: number) => {
-      if (index % 3 === 0) acc.push([muscle]);
-      else acc[acc.length - 1].push(muscle);
-      return acc;
-    },
-    []
-  );
 
   // To replace with Skeleton later
   if (isPending) {
@@ -75,33 +53,7 @@ const WorkoutDay = ({ navigation }: Props) => {
             {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
           </Text>
         </View>
-        {/* To be separated as a component*/}
-        <View style={styles.targetContainer}>
-          <Icon name="target" width={32} height={32} fill={Colors.neutral350} />
-          <View style={styles.muscleContainer}>
-            {groupedMuscles.map((muscleRow: string[], rowIndex: number) => (
-              <View key={rowIndex} style={styles.muscleRow}>
-                {muscleRow.map((muscle, index) => (
-                  <View key={index} style={styles.muscleItem}>
-                    <Text style={styles.targetMuscleLabel}>{muscle}</Text>
-                    {index < muscleRow.length - 1 && (
-                      <Icon
-                        name="dotSeparator"
-                        width={32}
-                        height={32}
-                        fill={Colors.neutral350}
-                      />
-                    )}
-                    {muscleRow.length === 1 &&
-                      rowIndex === groupedMuscles.length - 1 && (
-                        <View style={styles.placeholder} />
-                      )}
-                  </View>
-                ))}
-              </View>
-            ))}
-          </View>
-        </View>
+        <TargetMusclesList dailyExercises={dailyExercises} />
         <Text style={styles.sectionLabel}>Exercises</Text>
       </View>
       <FlatList
@@ -152,31 +104,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  targetContainer: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    marginBottom: 16,
-  },
-  muscleContainer: {
-    marginLeft: 16,
-  },
-  muscleRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginBottom: -8,
-  },
-  muscleItem: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
   timeLabel: {
     fontSize: 16,
     marginLeft: 16,
-    color: Colors.neutral350,
-    fontFamily: "SatoshiBold",
-  },
-  targetMuscleLabel: {
-    fontSize: 16,
     color: Colors.neutral350,
     fontFamily: "SatoshiBold",
   },
@@ -186,10 +116,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
-  },
-  placeholder: {
-    flex: 1,
-    minHeight: 32, // Same height as the dotSeparator icon to maintain spacing
   },
   cardsContainer: {
     marginTop: 16,

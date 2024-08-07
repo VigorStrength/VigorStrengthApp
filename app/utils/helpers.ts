@@ -9,3 +9,11 @@ export const dailyExercisesIdsFromWorkoutDay = (
     ...day?.coolDowns?.flatMap((circuit) => circuit.exerciseIds),
   ];
 };
+
+export const capitalize = (str: string) =>
+  str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+export const setToArray = (set: Set<string>) => Array.from(set);
