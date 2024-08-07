@@ -8,6 +8,7 @@ import Icon from "../../components/Icon";
 
 import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
 import { dailyExercisesIdsFromWorkoutDay } from "../../utils/helpers";
+import DurationLabel from "../../components/DurationLabel";
 import TargetMusclesList from "../../components/TargetMusclesList";
 import CustomExerciseItemCard from "../../components/CustomExerciseItemCard";
 import CustomButton from "../../components/CustomButton";
@@ -47,12 +48,10 @@ const WorkoutDay = ({ navigation }: Props) => {
         navigation={navigation}
       />
       <View style={styles.body}>
-        <View style={styles.activityContainer}>
-          <Icon name="time" width={32} height={32} fill={Colors.neutral350} />
-          <Text style={styles.timeLabel}>
-            {day.workoutTimeRange[1]} min / {day.workoutTimeRange[0]} min
-          </Text>
-        </View>
+        <DurationLabel
+          max={day.workoutTimeRange[1]}
+          min={day.workoutTimeRange[0]}
+        />
         <TargetMusclesList dailyExercises={dailyExercises} />
         <Text style={styles.sectionLabel}>Exercises</Text>
       </View>
@@ -97,18 +96,6 @@ const styles = StyleSheet.create({
   body: {
     paddingTop: 8,
     paddingHorizontal: 16,
-  },
-  activityContainer: {
-    marginTop: 4,
-    marginBottom: 8,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  timeLabel: {
-    fontSize: 16,
-    marginLeft: 16,
-    color: Colors.neutral350,
-    fontFamily: "SatoshiBold",
   },
   sectionLabel: {
     fontSize: 20,
