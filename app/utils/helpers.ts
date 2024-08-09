@@ -21,7 +21,7 @@ export const setToArray = (set: Set<string>) => Array.from(set);
 export const formatSecondsToMinutes = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return `${minutes}:${
+  return `${minutes < 10 ? `0${minutes}` : minutes}:${
     remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
   }`;
 };

@@ -44,6 +44,23 @@ const WorkoutPlayer = ({ workout }: Props) => {
         videoRef.current?.setPositionAsync(value * duration);
       }
     }
+
+    // //reset status duration when video is done playing
+    // if (
+    //   videoRef.current &&
+    //   status &&
+    //   (status as AVPlaybackStatusSuccess)?.didJustFinish
+    // ) {
+    //   setStatus((prev) => {
+    //     if (prev) {
+    //       return {
+    //         ...prev,
+    //         durationMillis: 0,
+    //       };
+    //     }
+    //     return prev;
+    //   });
+    // }
   };
 
   const progress = useSharedValue(
@@ -54,9 +71,12 @@ const WorkoutPlayer = ({ workout }: Props) => {
     (status as AVPlaybackStatusSuccess)?.durationMillis || 1
   );
 
-  console.log(
-    useSharedValue((status as AVPlaybackStatusSuccess)?.positionMillis)
-  );
+  console.log({ status: (status as AVPlaybackStatusSuccess)?.positionMillis });
+  console.log({
+    sharedStatus: useSharedValue(
+      (status as AVPlaybackStatusSuccess)?.positionMillis
+    ),
+  });
 
   return (
     <View style={styles.container}>
@@ -157,7 +177,7 @@ const styles = StyleSheet.create({
   controlPanel: {
     position: "absolute",
     bottom: 0,
-    height: 175,
+    height: 196,
     paddingTop: 8,
     paddingBottom: 16,
     paddingHorizontal: 16,
@@ -171,7 +191,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   sliderContainer: {
-    marginTop: 18,
+    marginTop: 24,
   },
   slider: {
     width: "100%",
@@ -180,10 +200,11 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 4,
+    marginTop: 8,
   },
   timeLabel: {
     fontSize: 12,
+    fontFamily: "Satoshi",
     color: Colors.neutral350,
   },
   controls: {
@@ -192,6 +213,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     width: "100%",
     height: 62,
-    marginTop: 18,
+    marginTop: 12,
   },
 });
