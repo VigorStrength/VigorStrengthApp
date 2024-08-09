@@ -6,8 +6,14 @@ import {
   AVPlaybackStatusSuccess,
 } from "expo-av";
 import React, { useRef, useState } from "react";
+import { useSharedValue } from "react-native-reanimated";
+import { Slider } from "react-native-awesome-slider";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
+import {
+  formatMillisecondsToMinutes,
+  formatSecondsToMinutes,
+} from "../../utils/helpers";
 
 type Props = {
   workout: any;
@@ -27,7 +33,30 @@ const WorkoutPlayer = ({ workout }: Props) => {
     }
   };
 
-  console.log(workout);
+  const handleSeek = (value: number) => {
+    if (
+      videoRef.current &&
+      status &&
+      (status as AVPlaybackStatusSuccess)?.isLoaded
+    ) {
+      const duration = (status as AVPlaybackStatusSuccess)?.durationMillis;
+      if (duration !== undefined) {
+        videoRef.current?.setPositionAsync(value * duration);
+      }
+    }
+  };
+
+  const progress = useSharedValue(
+    (status as AVPlaybackStatusSuccess)?.positionMillis || 0
+  );
+  let min = useSharedValue(0);
+  let max = useSharedValue(
+    (status as AVPlaybackStatusSuccess)?.durationMillis || 1
+  );
+
+  console.log(
+    useSharedValue((status as AVPlaybackStatusSuccess)?.positionMillis)
+  );
 
   return (
     <View style={styles.container}>
@@ -42,6 +71,28 @@ const WorkoutPlayer = ({ workout }: Props) => {
       <View style={styles.controlPanel}>
         <View style={styles.controlHeader}>
           <Text style={styles.exerciseTitle}>{workout?.name}</Text>
+          <View style={styles.sliderContainer}>
+            <Slider
+              progress={progress}
+              minimumValue={min}
+              maximumValue={max}
+              onValueChange={handleSeek}
+              theme={{
+                minimumTrackTintColor: Colors.orange100,
+                maximumTrackTintColor: Colors.neutral350,
+              }}
+            />
+            <View style={styles.timeContainer}>
+              <Text style={styles.timeLabel}>
+                {formatMillisecondsToMinutes(
+                  (status as AVPlaybackStatusSuccess)?.positionMillis || 0
+                )}
+              </Text>
+              <Text style={styles.timeLabel}>
+                {formatSecondsToMinutes(workout?.time || 0)}
+              </Text>
+            </View>
+          </View>
         </View>
         <View style={styles.controls}>
           <Icon
@@ -118,6 +169,22 @@ const styles = StyleSheet.create({
   },
   controlHeader: {
     paddingHorizontal: 16,
+  },
+  sliderContainer: {
+    marginTop: 18,
+  },
+  slider: {
+    width: "100%",
+    height: 10,
+  },
+  timeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 4,
+  },
+  timeLabel: {
+    fontSize: 12,
+    color: Colors.neutral350,
   },
   controls: {
     flexDirection: "row",

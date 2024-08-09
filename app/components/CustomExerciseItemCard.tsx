@@ -11,6 +11,7 @@ import { Card, CardProps } from "react-native-paper";
 import { Colors } from "../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "./Icon";
+import { formatSecondsToMinutes } from "../utils/helpers";
 
 type Status = "active" | "completed";
 interface Props extends TouchableOpacityProps {
@@ -29,12 +30,7 @@ const CustomExerciseItemCard = ({
   status,
   ...props
 }: Props) => {
-  const minutes = Math.floor(exerciseTime / 60);
-  const seconds = exerciseTime % 60;
-
-  const exerciseTimeLabel = `${minutes}:${
-    seconds < 10 ? `0${seconds}` : seconds
-  }`;
+  const exerciseTimeLabel = formatSecondsToMinutes(exerciseTime);
 
   return (
     <TouchableOpacity {...props}>

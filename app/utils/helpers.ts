@@ -17,3 +17,16 @@ export const capitalize = (str: string) =>
     .join(" ");
 
 export const setToArray = (set: Set<string>) => Array.from(set);
+
+export const formatSecondsToMinutes = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${
+    remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
+  }`;
+};
+
+export const formatMillisecondsToMinutes = (milliseconds: number) => {
+  const seconds = Math.floor(milliseconds / 1000);
+  return formatSecondsToMinutes(seconds);
+};
