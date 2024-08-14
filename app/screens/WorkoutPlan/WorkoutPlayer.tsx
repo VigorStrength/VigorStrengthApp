@@ -5,8 +5,12 @@ import {
   AVPlaybackStatus,
   AVPlaybackStatusSuccess,
 } from "expo-av";
-import React, { useRef, useState } from "react";
-import { useSharedValue } from "react-native-reanimated";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { Slider } from "react-native-awesome-slider";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
@@ -44,23 +48,6 @@ const WorkoutPlayer = ({ workout }: Props) => {
         videoRef.current?.setPositionAsync(value * duration);
       }
     }
-
-    // //reset status duration when video is done playing
-    // if (
-    //   videoRef.current &&
-    //   status &&
-    //   (status as AVPlaybackStatusSuccess)?.didJustFinish
-    // ) {
-    //   setStatus((prev) => {
-    //     if (prev) {
-    //       return {
-    //         ...prev,
-    //         durationMillis: 0,
-    //       };
-    //     }
-    //     return prev;
-    //   });
-    // }
   };
 
   const progress = useSharedValue(
@@ -71,12 +58,16 @@ const WorkoutPlayer = ({ workout }: Props) => {
     (status as AVPlaybackStatusSuccess)?.durationMillis || 1
   );
 
-  console.log({ status: (status as AVPlaybackStatusSuccess)?.positionMillis });
-  console.log({
-    sharedStatus: useSharedValue(
-      (status as AVPlaybackStatusSuccess)?.positionMillis
-    ),
-  });
+  useEffect(() => {
+    if (status && (status as AVPlaybackStatusSuccess).isLoaded) {
+      progress.value = withTiming(
+        (status as AVPlaybackStatusSuccess)?.positionMillis
+      );
+      max.value = withTiming(
+        (status as AVPlaybackStatusSuccess)?.durationMillis || 1
+      );
+    }
+  }, [status]);
 
   return (
     <View style={styles.container}>
