@@ -53,10 +53,7 @@ const WorkoutPlayer = ({ workout }: Props) => {
       status &&
       (status as AVPlaybackStatusSuccess)?.isLoaded
     ) {
-      const duration = (status as AVPlaybackStatusSuccess)?.durationMillis;
-      if (duration !== undefined) {
-        videoRef.current?.setPositionAsync(value * duration);
-      }
+      videoRef.current?.setPositionAsync(value);
     }
   };
 
@@ -101,6 +98,8 @@ const WorkoutPlayer = ({ workout }: Props) => {
     }
   };
 
+  console.log({ status });
+
   useEffect(() => {
     if (status && (status as AVPlaybackStatusSuccess).isLoaded) {
       progress.value = withTiming(
@@ -139,7 +138,7 @@ const WorkoutPlayer = ({ workout }: Props) => {
               progress={progress}
               minimumValue={min}
               maximumValue={max}
-              onValueChange={handleSeek}
+              onSlidingComplete={handleSeek}
               theme={{
                 minimumTrackTintColor: Colors.orange100,
                 maximumTrackTintColor: Colors.neutral350,
@@ -220,7 +219,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: Colors.neutralBackgroundChip,
     justifyContent: "center",
     alignItems: "center",
   },
