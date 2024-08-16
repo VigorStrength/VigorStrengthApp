@@ -138,11 +138,12 @@ const WorkoutPlayer = ({ workout }: Props) => {
               progress={progress}
               minimumValue={min}
               maximumValue={max}
-              onSlidingComplete={handleSeek}
+              onValueChange={handleSeek}
               theme={{
                 minimumTrackTintColor: Colors.orange100,
                 maximumTrackTintColor: Colors.neutral350,
               }}
+              renderBubble={() => null}
             />
             <View style={styles.timeContainer}>
               <Text style={styles.timeLabel}>
