@@ -6,14 +6,11 @@ import {
   AVPlaybackStatusSuccess,
 } from "expo-av";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from "react-native-reanimated";
+import { useSharedValue, withTiming } from "react-native-reanimated";
 import { Slider } from "react-native-awesome-slider";
 import { Colors } from "../../GlobalStyles";
 import Icon from "../../components/Icon";
+import { Icon as RNIcon } from "react-native-paper";
 import {
   formatMillisecondsToMinutes,
   formatSecondsToMinutes,
@@ -112,13 +109,7 @@ const WorkoutPlayer = ({ workout }: Props) => {
             height={44}
             fill={Colors.neutral350}
           />
-          <Icon
-            name="skipBack"
-            width={44}
-            height={44}
-            fill={Colors.neutral350}
-            onPress={handlePlayPause}
-          />
+          <RNIcon source="rewind-15" size={24} color={Colors.neutral350} />
           <Icon
             name={
               (status as AVPlaybackStatusSuccess)?.isPlaying
@@ -130,11 +121,10 @@ const WorkoutPlayer = ({ workout }: Props) => {
             fill={Colors.orange100}
             onPress={handlePlayPause}
           />
-          <Icon
-            name="skipForward"
-            width={44}
-            height={44}
-            fill={Colors.neutral350}
+          <RNIcon
+            source="fast-forward-15"
+            size={24}
+            color={Colors.neutral350}
           />
           <Icon
             name={
@@ -142,8 +132,8 @@ const WorkoutPlayer = ({ workout }: Props) => {
                 ? "enableAudio"
                 : "disableAudio"
             }
-            width={44}
-            height={44}
+            width={32}
+            height={32}
             fill={Colors.neutral350}
           />
         </View>
@@ -201,6 +191,7 @@ const styles = StyleSheet.create({
   controls: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     width: "100%",
     height: 62,
