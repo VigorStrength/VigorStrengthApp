@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   Video,
   ResizeMode,
@@ -23,6 +23,9 @@ type Props = {
 const WorkoutPlayer = ({ workout }: Props) => {
   const videoRef = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus | null>(null);
+  const showOverlay =
+    (status as AVPlaybackStatusSuccess)?.playableDurationMillis ===
+    (status as AVPlaybackStatusSuccess)?.positionMillis;
 
   const handlePlayPause = () => {
     if (status && status.isLoaded) {
@@ -47,6 +50,15 @@ const WorkoutPlayer = ({ workout }: Props) => {
     }
   };
 
+  const handleRestart = () => {
+    // if (videoRef.current && status && (status as AVPlaybackStatusSuccess)?.isLoaded) {
+    //   videoRef.current?.replayAsync();
+    // }
+    if (videoRef.current) {
+      videoRef.current.replayAsync();
+    }
+  };
+
   const progress = useSharedValue(
     (status as AVPlaybackStatusSuccess)?.positionMillis || 0
   );
@@ -66,6 +78,8 @@ const WorkoutPlayer = ({ workout }: Props) => {
     }
   }, [status]);
 
+  console.log({ status });
+
   return (
     <View style={styles.container}>
       <Video
@@ -76,6 +90,15 @@ const WorkoutPlayer = ({ workout }: Props) => {
         resizeMode={ResizeMode.CONTAIN}
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
       />
+      {showOverlay && (
+        <View style={styles.overlay}>
+          <TouchableOpacity onPress={handleRestart}>
+            <RNIcon source="replay" size={48} color={Colors.orange100} />
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {/* Outsource this as it's own component*/}
       <View style={styles.controlPanel}>
         <View style={styles.controlHeader}>
           <Text style={styles.exerciseTitle}>{workout?.name}</Text>
@@ -154,6 +177,16 @@ const styles = StyleSheet.create({
   video: {
     width: "100%",
     height: 446,
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   controlPanel: {
     position: "absolute",
