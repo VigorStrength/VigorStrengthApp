@@ -23,6 +23,13 @@ type Props = {
 const WorkoutPlayer = ({ workout }: Props) => {
   const videoRef = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus | null>(null);
+  const progress = useSharedValue(
+    (status as AVPlaybackStatusSuccess)?.positionMillis || 0
+  );
+  const min = useSharedValue(0);
+  const max = useSharedValue(
+    (status as AVPlaybackStatusSuccess)?.durationMillis || 1
+  );
   const showOverlay =
     (status as AVPlaybackStatusSuccess)?.playableDurationMillis ===
     (status as AVPlaybackStatusSuccess)?.positionMillis;
@@ -51,21 +58,45 @@ const WorkoutPlayer = ({ workout }: Props) => {
   };
 
   const handleRestart = () => {
-    // if (videoRef.current && status && (status as AVPlaybackStatusSuccess)?.isLoaded) {
-    //   videoRef.current?.replayAsync();
-    // }
     if (videoRef.current) {
       videoRef.current.replayAsync();
     }
   };
 
-  const progress = useSharedValue(
-    (status as AVPlaybackStatusSuccess)?.positionMillis || 0
-  );
-  let min = useSharedValue(0);
-  let max = useSharedValue(
-    (status as AVPlaybackStatusSuccess)?.durationMillis || 1
-  );
+  const handleFastForward = () => {
+    if (
+      videoRef.current &&
+      status &&
+      (status as AVPlaybackStatusSuccess)?.isLoaded
+    ) {
+      const duration = (status as AVPlaybackStatusSuccess)?.durationMillis;
+      const position = (status as AVPlaybackStatusSuccess)?.positionMillis;
+      const videoLength = (status as AVPlaybackStatusSuccess)
+        ?.playableDurationMillis;
+      if (
+        duration !== undefined &&
+        position !== undefined &&
+        position !== videoLength
+      ) {
+        videoRef.current?.setPositionAsync(position + 15000);
+      }
+    }
+  };
+
+  const handleRewind = () => {
+    if (
+      videoRef.current &&
+      status &&
+      (status as AVPlaybackStatusSuccess)?.isLoaded
+    ) {
+      const position = (status as AVPlaybackStatusSuccess)?.positionMillis;
+      if (position !== undefined && position > 15000) {
+        videoRef.current?.setPositionAsync(position - 15000);
+      } else {
+        videoRef.current?.setPositionAsync(0);
+      }
+    }
+  };
 
   useEffect(() => {
     if (status && (status as AVPlaybackStatusSuccess).isLoaded) {
@@ -77,8 +108,6 @@ const WorkoutPlayer = ({ workout }: Props) => {
       );
     }
   }, [status]);
-
-  console.log({ status });
 
   return (
     <View style={styles.container}>
@@ -132,7 +161,9 @@ const WorkoutPlayer = ({ workout }: Props) => {
             height={44}
             fill={Colors.neutral350}
           />
-          <RNIcon source="rewind-15" size={24} color={Colors.neutral350} />
+          <TouchableOpacity onPress={handleRewind}>
+            <RNIcon source="rewind-15" size={24} color={Colors.neutral350} />
+          </TouchableOpacity>
           <Icon
             name={
               (status as AVPlaybackStatusSuccess)?.isPlaying
@@ -144,11 +175,13 @@ const WorkoutPlayer = ({ workout }: Props) => {
             fill={Colors.orange100}
             onPress={handlePlayPause}
           />
-          <RNIcon
-            source="fast-forward-15"
-            size={24}
-            color={Colors.neutral350}
-          />
+          <TouchableOpacity onPress={handleFastForward}>
+            <RNIcon
+              source="fast-forward-15"
+              size={24}
+              color={Colors.neutral350}
+            />
+          </TouchableOpacity>
           <Icon
             name={
               (status as AVPlaybackStatusSuccess)?.isMuted
