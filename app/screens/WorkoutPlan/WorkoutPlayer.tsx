@@ -31,8 +31,11 @@ const WorkoutPlayer = ({ workout }: Props) => {
     (status as AVPlaybackStatusSuccess)?.durationMillis || 1
   );
   const showOverlay =
+    status &&
+    (status as AVPlaybackStatusSuccess)?.isLoaded &&
+    (status as AVPlaybackStatusSuccess)?.positionMillis > 0 &&
     (status as AVPlaybackStatusSuccess)?.playableDurationMillis ===
-    (status as AVPlaybackStatusSuccess)?.positionMillis;
+      (status as AVPlaybackStatusSuccess)?.positionMillis;
 
   const handlePlayPause = () => {
     if (status && status.isLoaded) {
