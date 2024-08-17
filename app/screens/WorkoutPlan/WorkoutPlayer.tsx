@@ -47,6 +47,14 @@ const WorkoutPlayer = ({ workout }: Props) => {
     }
   };
 
+  const handleMute = () => {
+    if (status && (status as AVPlaybackStatusSuccess)?.isLoaded) {
+      videoRef.current?.setIsMutedAsync(
+        !(status as AVPlaybackStatusSuccess)?.isMuted
+      );
+    }
+  };
+
   const handleSeek = (value: number) => {
     if (
       videoRef.current &&
@@ -97,8 +105,6 @@ const WorkoutPlayer = ({ workout }: Props) => {
       }
     }
   };
-
-  console.log({ status });
 
   useEffect(() => {
     if (status && (status as AVPlaybackStatusSuccess).isLoaded) {
@@ -191,6 +197,7 @@ const WorkoutPlayer = ({ workout }: Props) => {
                 ? "enableAudio"
                 : "disableAudio"
             }
+            onPress={handleMute}
             width={32}
             height={32}
             fill={Colors.neutral350}
