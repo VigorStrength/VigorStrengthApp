@@ -8,11 +8,12 @@ export type ExercisLog = {
   actualWeight?: number;
 };
 
-export type Exercise = {
+export type Workout = {
   id: string;
   name: string;
   description: string;
   videoURL: string;
+  coverURL: string;
   targetMuscles: string[];
   equipmentNeeded: string[];
   instructions: string[];
@@ -41,4 +42,13 @@ export type StandardWorkoutDay = {
 
 export type WorkoutDayParams = {
   day: StandardWorkoutDay;
+};
+
+export type ActiveWorkout = {
+  userId: string;
+  exerciseId: string;
+  circuitId: string;
+  workoutPlanId: string;
+  completed: boolean;
+  completedLogs: ExercisLog[];
 };

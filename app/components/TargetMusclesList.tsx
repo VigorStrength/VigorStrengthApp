@@ -2,17 +2,17 @@ import { StyleSheet, View, Text } from "react-native";
 import React from "react";
 import Icon from "./Icon";
 import { Colors } from "../GlobalStyles";
-import { Exercise } from "../utils/constants/types";
+import { Workout } from "../utils/constants/types";
 import { capitalize, setToArray } from "../utils/helpers";
 
 type Props = {
-  dailyExercises: any;
+  dailyWorkouts: any;
 };
 
-const TargetMusclesList = ({ dailyExercises }: Props) => {
+const TargetMusclesList = ({ dailyWorkouts }: Props) => {
   const targetMuscles = setToArray(
     new Set<string>(
-      dailyExercises?.flatMap((exercise: Exercise) =>
+      dailyWorkouts?.flatMap((exercise: Workout) =>
         exercise.targetMuscles.map((muscle) => capitalize(muscle.toLowerCase()))
       )
     )

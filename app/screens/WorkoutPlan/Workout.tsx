@@ -17,6 +17,8 @@ const Workout = ({ navigation }: Props) => {
   const route = useRoute();
   const { workout } = route.params as RouteParams;
 
+  console.log(workout);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <CustomTopBar variant="workout" navigation={navigation} />
