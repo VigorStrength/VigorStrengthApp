@@ -3,7 +3,7 @@ import axiosInstance, { baseURL } from "./axiosInstance";
 export async function getActiveWorkoutStatus(exerciseId: string) {
   try {
     const response = await axiosInstance.get(
-      `${baseURL}/user/exercises/${exerciseId}/status`
+      `${baseURL}/user/exercises/${exerciseId}`
     );
     return response.data;
   } catch (error: any) {

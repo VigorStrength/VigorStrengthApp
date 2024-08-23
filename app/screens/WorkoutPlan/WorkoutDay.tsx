@@ -34,6 +34,32 @@ const WorkoutDay = ({ navigation }: Props) => {
     return <Text>Error: {error.message}</Text>;
   }
 
+  console.log({ dailyExercisesIDs });
+  console.log({ dailyExercises });
+  // console.log(day.workouts);
+
+  const renderExerciseItem = ({ item }: any) => {
+    return (
+      <View style={styles.cardStyle}>
+        <CustomExerciseItemCard
+          exerciseName={item.name}
+          exerciseTime={item.time}
+          exerciseReps={item.proposedLog?.proposedReps}
+          exerciseCoverUrl={{ uri: item.coverURL }}
+          onPress={() => navigation.navigate("Workout", { workout: item })}
+          status="active"
+          children=""
+        />
+      </View>
+    );
+  };
+
+  const renderWorkout = () => {
+    return day?.workouts.map((workoutItem, i) => {
+      const isSuperset = workoutItem.itemType === "superset";
+    });
+  };
+
   return (
     <View style={styles.container}>
       <CustomProgramHeaderCard
@@ -54,7 +80,7 @@ const WorkoutDay = ({ navigation }: Props) => {
       <FlatList
         data={dailyExercises}
         keyExtractor={(exercise) => exercise.id}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <View style={styles.cardStyle}>
             <CustomExerciseItemCard
               exerciseName={item.name}

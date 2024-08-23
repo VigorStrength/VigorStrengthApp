@@ -28,6 +28,12 @@ export type StandardWorkoutCircuit = {
   proposedLaps: number;
 };
 
+export type StandardWorkoutItem = {
+  id: string;
+  itemId: string;
+  itemType: string;
+};
+
 export type StandardWorkoutDay = {
   id: string;
   name: string;
@@ -35,7 +41,7 @@ export type StandardWorkoutDay = {
   workoutDayNumber: number;
   imageURL: string;
   warmUps: StandardWorkoutCircuit[];
-  workouts: StandardWorkoutCircuit[];
+  workouts: StandardWorkoutItem[];
   coolDowns: StandardWorkoutCircuit[];
   workoutTimeRange: workoutTimeRange;
 };

@@ -4,6 +4,7 @@ import CustomTopBar from "../../components/CustomTopBar";
 import { useRoute } from "@react-navigation/native";
 import WorkoutPlayer from "./WorkoutPlayer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useActiveWorkoutStatus } from "../../features/workoutPlan/useActiveWorkoutStatus";
 
 type Props = {
   navigation: any;
@@ -16,8 +17,21 @@ type RouteParams = {
 const Workout = ({ navigation }: Props) => {
   const route = useRoute();
   const { workout } = route.params as RouteParams;
+  // const { activeWorkoutStatus, error, isPending } = useActiveWorkoutStatus(
+  //   workout?.id
+  // );
 
-  console.log(workout);
+  // console.log(typeof workout?.id);
+
+  // if (isPending) {
+  //   return (
+  //     <View>
+  //       <Text>Loading...</Text>
+  //     </View>
+  //   );
+  // }
+
+  // console.log({ activeWorkoutStatus });
 
   return (
     <GestureHandlerRootView style={styles.container}>
