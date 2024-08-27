@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   divider: {
-    backgroundColor: Colors.neutral400,
-    height: 2,
+    backgroundColor: Colors.neutral800,
+    height: 1,
     flex: 1,
   },
   dividerNoLabel: {

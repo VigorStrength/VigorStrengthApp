@@ -1,15 +1,14 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { WorkoutDayParams } from "../../utils/constants/types";
 import { Colors } from "../../GlobalStyles";
-import { useDailyExercises } from "../../features/workoutPlan/useDailyExercises";
-import { dailyExercisesIdsFromWorkoutDay } from "../../utils/helpers";
-import ExerciseActivity from "../../components/ExerciseActivity";
-import CustomExerciseItemCard from "../../components/CustomExerciseItemCard";
 import CustomButton from "../../components/CustomButton";
 import { BlurView } from "expo-blur";
+import WarmUps from "./WorkoutDay/WarmUps";
+import ExerciseActivity from "../../components/ExerciseActivity";
+import CoolDowns from "./WorkoutDay/CoolDowns";
 
 type Props = {
   navigation: any;
@@ -20,45 +19,11 @@ type WorkoutDayRouteProp = RouteProp<{ params: WorkoutDayParams }, "params">;
 const WorkoutDay = ({ navigation }: Props) => {
   const route = useRoute<WorkoutDayRouteProp>();
   const { day } = route.params;
-  const dailyExercisesIDs = dailyExercisesIdsFromWorkoutDay(day);
-  const { dailyExercises, error, isPending } =
-    useDailyExercises(dailyExercisesIDs);
+  const warmUps = day?.warmUps;
+  const coolDowns = day?.coolDowns;
 
-  // To replace with Skeleton later
-  if (isPending) {
-    return <Text>Loading...</Text>;
-  }
-
-  // To replace with Error component later
-  if (error) {
-    return <Text>Error: {error.message}</Text>;
-  }
-
-  console.log({ dailyExercisesIDs });
-  console.log({ dailyExercises });
-  // console.log(day.workouts);
-
-  const renderExerciseItem = ({ item }: any) => {
-    return (
-      <View style={styles.cardStyle}>
-        <CustomExerciseItemCard
-          exerciseName={item.name}
-          exerciseTime={item.time}
-          exerciseReps={item.proposedLog?.proposedReps}
-          exerciseCoverUrl={{ uri: item.coverURL }}
-          onPress={() => navigation.navigate("Workout", { workout: item })}
-          status="active"
-          children=""
-        />
-      </View>
-    );
-  };
-
-  const renderWorkout = () => {
-    return day?.workouts.map((workoutItem, i) => {
-      const isSuperset = workoutItem.itemType === "superset";
-    });
-  };
+  console.log({ warmUps });
+  console.log({ coolDowns });
 
   return (
     <View style={styles.container}>
@@ -74,27 +39,11 @@ const WorkoutDay = ({ navigation }: Props) => {
       <ExerciseActivity
         min={day.workoutTimeRange[0]}
         max={day.workoutTimeRange[1]}
-        dailyExercises={dailyExercises}
+        // dailyExercises={dailyExercises}
       />
       <Text style={styles.sectionLabel}>Exercises</Text>
-      <FlatList
-        data={dailyExercises}
-        keyExtractor={(exercise) => exercise.id}
-        renderItem={({ item }) => (
-          <View style={styles.cardStyle}>
-            <CustomExerciseItemCard
-              exerciseName={item.name}
-              exerciseTime={item.time}
-              exerciseReps={item.proposedLog?.proposedReps}
-              exerciseCoverUrl={{ uri: item.coverURL }}
-              onPress={() => navigation.navigate("Workout", { workout: item })}
-              status="active"
-              children=""
-            />
-          </View>
-        )}
-        style={styles.cardsContainer}
-      />
+      <WarmUps warmUps={warmUps} navigation={navigation} />
+      <CoolDowns coolDowns={coolDowns} navigation={navigation} />
       {/* <BlurView intensity={100} style={styles.buttonContainer} tint="dark"> */}
       <View style={styles.buttonContainer}>
         <CustomButton

@@ -7,7 +7,7 @@ export function useDailyExercises(dailyExercisesIDs: string[]) {
     error,
     isPending,
   } = useQuery({
-    queryKey: ["dailyExercises"],
+    queryKey: ["dailyExercises", dailyExercisesIDs],
     queryFn: () => getDailyExercisesByIds(dailyExercisesIDs),
     enabled: !!dailyExercisesIDs.length,
     throwOnError: true,

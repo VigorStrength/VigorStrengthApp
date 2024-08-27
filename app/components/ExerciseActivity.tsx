@@ -6,14 +6,14 @@ import TargetMusclesList from "./TargetMusclesList";
 type Props = {
   min: number;
   max: number;
-  dailyExercises: any;
+  dailyExercises?: any;
 };
 
 const ExerciseActivity = ({ min, max, dailyExercises }: Props) => {
   return (
     <View style={styles.container}>
       <DurationLabel max={max} min={min} />
-      <TargetMusclesList dailyExercises={dailyExercises} />
+      {/* {dailyExercises && <TargetMusclesList dailyExercises={dailyExercises} />} */}
     </View>
   );
 };
