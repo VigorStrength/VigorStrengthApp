@@ -46,7 +46,7 @@ export async function getActiveWorkoutPlan() {
 
 export async function getDailySupersetById(dailySupersetId: string) {
   try {
-    const response = await axiosInstance.post(
+    const response = await axiosInstance.get(
       `${baseURL}/user/workout-plans/daily-supersets/${dailySupersetId}`
     );
 
@@ -57,6 +57,19 @@ export async function getDailySupersetById(dailySupersetId: string) {
     }
 
     throw new Error(`Failed to fetch daily superset: ${error?.message}`);
+  }
+}
+
+export async function getDailySupersetsByIds(dailySupersetsIDs: string[]) {
+  try {
+    const response = await axiosInstance.post(
+      `${baseURL}/user/workout-plans/daily-supersets`,
+      { dailySupersetsIDs }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message);
   }
 }
 

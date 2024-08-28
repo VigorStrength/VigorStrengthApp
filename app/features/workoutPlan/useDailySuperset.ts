@@ -3,15 +3,15 @@ import { getDailySupersetById } from "../../api/apiWorkoutPlan";
 
 export function useDailySuperset(dailySupersetId: string) {
   const {
-    data: dailySupersets,
+    data: dailySuperset,
     error,
     isPending,
   } = useQuery({
-    queryKey: ["dailySupersets", dailySupersetId],
+    queryKey: ["dailySuperset", dailySupersetId],
     queryFn: () => getDailySupersetById(dailySupersetId),
     enabled: !!dailySupersetId,
     throwOnError: true,
   });
 
-  return { dailySupersets, error, isPending };
+  return { dailySuperset, error, isPending };
 }

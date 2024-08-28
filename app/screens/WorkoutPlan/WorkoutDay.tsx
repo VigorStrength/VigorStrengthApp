@@ -40,7 +40,7 @@ const WorkoutDay = ({ navigation }: Props) => {
       <ExerciseActivity
         min={day.workoutTimeRange[0]}
         max={day.workoutTimeRange[1]}
-        // dailyExercises={dailyExercises}
+        workoutDay={day}
       />
       <Text style={styles.sectionLabel}>What you'll do</Text>
       <ScrollView>

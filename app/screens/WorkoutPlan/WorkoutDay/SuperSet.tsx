@@ -18,7 +18,7 @@ type Props = {
 
 const SuperSet = ({ navigation, workoutItemId }: Props) => {
   const {
-    dailySupersets: superset,
+    dailySuperset: superset,
     error: supersetError,
     isPending: isSupersetPending,
   } = useDailySuperset(workoutItemId);
