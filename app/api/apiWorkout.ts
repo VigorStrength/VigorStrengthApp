@@ -11,18 +11,6 @@ export async function getActiveWorkoutStatus(exerciseId: string) {
   }
 }
 
-export async function getSuperSet(supersetId: string) {
-  try {
-    const response = await axiosInstance.get(
-      `${baseURL}/user/supersets/${supersetId}`
-    );
-
-    return response.data;
-  } catch (error: any) {
-    throw new Error(error?.message);
-  }
-}
-
 export async function markWorkoutAsCompleted(
   exerciseId: string,
   circuitId: string

@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
-import { StandardWorkoutCircuit } from "../../../utils/constants/types";
+import {
+  StandardWorkoutCircuit,
+  Workout,
+} from "../../../utils/constants/types";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 import CustomDivider from "../../../components/CustomDivider";
@@ -36,28 +39,24 @@ const CoolDowns = ({ coolDowns, navigation }: Props) => {
     );
   }
 
-  const renderCoolDowns = ({ item }: any) => (
-    <View style={styles.cardStyle}>
-      <CustomExerciseItemCard
-        exerciseName={item.name}
-        exerciseTime={item.time}
-        exerciseReps={item.proposedLog?.proposedReps}
-        exerciseCoverUrl={{ uri: item.coverURL }}
-        onPress={() => navigation.navigate("Workout", { workout: item })}
-        status="active"
-        children=""
-      />
-    </View>
-  );
-
   return (
     <View style={styles.container}>
       <CustomDivider leftLabel="Cool Down" style={styles.dividerStyle} />
-      <FlatList
-        data={coolDownExercises}
-        keyExtractor={(exercise) => exercise.id}
-        renderItem={renderCoolDowns}
-      />
+      {coolDownExercises.map((exercise: Workout) => (
+        <View key={exercise.id} style={styles.cardStyle}>
+          <CustomExerciseItemCard
+            exerciseName={exercise.name}
+            exerciseTime={exercise.time}
+            exerciseReps={exercise.proposedLog?.proposedReps}
+            exerciseCoverUrl={{ uri: exercise.coverURL }}
+            onPress={() =>
+              navigation.navigate("Workout", { workout: exercise })
+            }
+            status="active"
+            children=""
+          />
+        </View>
+      ))}
     </View>
   );
 };

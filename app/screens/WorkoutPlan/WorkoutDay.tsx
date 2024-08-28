@@ -9,6 +9,9 @@ import { BlurView } from "expo-blur";
 import WarmUps from "./WorkoutDay/WarmUps";
 import ExerciseActivity from "../../components/ExerciseActivity";
 import CoolDowns from "./WorkoutDay/CoolDowns";
+import { ScrollView } from "moti";
+import StandAloneWorkout from "./WorkoutDay/StandAloneWorkout";
+import SuperSet from "./WorkoutDay/SuperSet";
 
 type Props = {
   navigation: any;
@@ -20,10 +23,8 @@ const WorkoutDay = ({ navigation }: Props) => {
   const route = useRoute<WorkoutDayRouteProp>();
   const { day } = route.params;
   const warmUps = day?.warmUps;
+  const workouts = day?.workouts;
   const coolDowns = day?.coolDowns;
-
-  console.log({ warmUps });
-  console.log({ coolDowns });
 
   return (
     <View style={styles.container}>
@@ -41,9 +42,26 @@ const WorkoutDay = ({ navigation }: Props) => {
         max={day.workoutTimeRange[1]}
         // dailyExercises={dailyExercises}
       />
-      <Text style={styles.sectionLabel}>Exercises</Text>
-      <WarmUps warmUps={warmUps} navigation={navigation} />
-      <CoolDowns coolDowns={coolDowns} navigation={navigation} />
+      <Text style={styles.sectionLabel}>What you'll do</Text>
+      <ScrollView>
+        <WarmUps warmUps={warmUps} navigation={navigation} />
+        {workouts.map((workoutItem) =>
+          workoutItem?.itemType === "exercise" ? (
+            <StandAloneWorkout
+              key={workoutItem?.itemId}
+              workoutItemId={workoutItem?.itemId}
+              navigation={navigation}
+            />
+          ) : (
+            <SuperSet
+              key={workoutItem?.itemId}
+              workoutItemId={workoutItem?.itemId}
+              navigation={navigation}
+            />
+          )
+        )}
+        <CoolDowns coolDowns={coolDowns} navigation={navigation} />
+      </ScrollView>
       {/* <BlurView intensity={100} style={styles.buttonContainer} tint="dark"> */}
       <View style={styles.buttonContainer}>
         <CustomButton
@@ -72,16 +90,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 25,
     marginTop: 16,
+    marginBottom: 32,
     paddingLeft: 16, // Might change it to 24
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
-  },
-  cardsContainer: {
-    marginTop: 16,
-    paddingHorizontal: 8,
-  },
-  cardStyle: {
-    marginBottom: 8,
   },
   buttonContainer: {
     position: "absolute",

@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { StandardWorkoutCircuit } from "../../../utils/constants/types";
+import {
+  StandardWorkoutCircuit,
+  Workout,
+} from "../../../utils/constants/types";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
 import CustomDivider from "../../../components/CustomDivider";
 import { formatSecondsToMinutes } from "../../../utils/helpers";
-// import { FlatList } from "react-native-gesture-handler";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 
 type Props = {
@@ -35,23 +37,21 @@ const WarmUps = ({ warmUps, navigation }: Props) => {
   return (
     <View style={styles.container}>
       <CustomDivider leftLabel="Warm Up" style={styles.dividerStyle} />
-      <FlatList
-        data={warmUpExercises}
-        keyExtractor={(exercise) => exercise.id}
-        renderItem={({ item }) => (
-          <View style={styles.cardStyle}>
-            <CustomExerciseItemCard
-              exerciseName={item.name}
-              exerciseTime={item.time}
-              exerciseReps={item.proposedLog?.proposedReps}
-              exerciseCoverUrl={{ uri: item.coverURL }}
-              onPress={() => navigation.navigate("Workout", { workout: item })}
-              status="active"
-              children=""
-            />
-          </View>
-        )}
-      />
+      {warmUpExercises.map((exercise: Workout) => (
+        <View key={exercise.id}>
+          <CustomExerciseItemCard
+            exerciseName={exercise.name}
+            exerciseTime={exercise.time}
+            exerciseReps={exercise.proposedLog?.proposedReps}
+            exerciseCoverUrl={{ uri: exercise.coverURL }}
+            onPress={() =>
+              navigation.navigate("Workout", { workout: exercise })
+            }
+            status="active"
+            children=""
+          />
+        </View>
+      ))}
       <CustomDivider
         leftLabel="Rest"
         rightLabel={restTime.toString()}

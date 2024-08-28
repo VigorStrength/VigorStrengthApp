@@ -58,7 +58,7 @@ const CustomExerciseItemCard = ({
                 name="dotSeparator"
                 width={32}
                 height={32}
-                fill={Colors.orange60}
+                fill={Colors.neutral250}
               />
               <Text style={styles.detailLabel2}>{`${exerciseReps} reps`}</Text>
             </View>
@@ -114,24 +114,23 @@ const styles = StyleSheet.create({
   },
   exerciseName: {
     fontSize: 20,
-    color: Colors.orange100,
+    color: Colors.orange60,
   },
   exerciseDetails: {
     width: 112,
     flexDirection: "row",
     alignItems: "center",
-    color: Colors.orange60,
   },
   detailLabel1: {
     fontSize: 16,
     fontFamily: "SatoshiBold",
     marginRight: -5,
-    color: Colors.orange60,
+    color: Colors.neutral250,
   },
   detailLabel2: {
     fontSize: 16,
     fontFamily: "SatoshiBold",
     marginLeft: -5,
-    color: Colors.orange60,
+    color: Colors.neutral250,
   },
 });
