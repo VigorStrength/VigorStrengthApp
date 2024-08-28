@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   label: {
-    color: Colors.orange100,
+    color: Colors.orange80,
     fontSize: 16,
   },
   divider: {
