@@ -1,5 +1,9 @@
 # Vigor Strength Mobile App Frontend
 
+
+https://github.com/user-attachments/assets/e33e03b2-bca2-4fc5-9300-2bbd6e2ee118
+
+
 ## Introduction
 
 Seamless, user-centric app, fitness companion of its users built with TypeScript and React Native. Designed from scratch with Figma from the icons, the logo, to every screen of the app. Helps subscribers to manage their subscriptions and personal information, interact with other members of the Vigor Strength fitness community, and eases workout plans and nutritional plans tracking. Leverages a backend currently only deployed locally, allowing the users to perform tasks such as joining a workout plan, being assigned nutritional plans, completing daily meals and workouts, and tracking their progress.
