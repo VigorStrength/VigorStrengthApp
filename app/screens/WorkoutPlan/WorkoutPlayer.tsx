@@ -18,9 +18,11 @@ import {
 
 type Props = {
   workout: any;
+  onNext: () => void;
+  onPrevious: () => void;
 };
 
-const WorkoutPlayer = ({ workout }: Props) => {
+const WorkoutPlayer = ({ workout, onNext, onPrevious }: Props) => {
   const videoRef = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus | null>(null);
   const progress = useSharedValue(
@@ -170,9 +172,16 @@ const WorkoutPlayer = ({ workout }: Props) => {
             height={44}
             fill={Colors.neutral350}
           />
-          <TouchableOpacity onPress={handleRewind}>
+          {/* <TouchableOpacity onPress={handleRewind}>
             <RNIcon source="rewind-15" size={24} color={Colors.neutral350} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <Icon
+            name="skipBack"
+            width={32}
+            height={32}
+            fill={Colors.neutral350}
+            onPress={onPrevious}
+          />
           <Icon
             name={
               (status as AVPlaybackStatusSuccess)?.isPlaying
@@ -184,13 +193,20 @@ const WorkoutPlayer = ({ workout }: Props) => {
             fill={Colors.orange100}
             onPress={handlePlayPause}
           />
-          <TouchableOpacity onPress={handleFastForward}>
+          <Icon
+            name="skipForward"
+            width={32}
+            height={32}
+            fill={Colors.neutral350}
+            onPress={onNext}
+          />
+          {/* <TouchableOpacity onPress={handleFastForward}>
             <RNIcon
               source="fast-forward-15"
               size={24}
               color={Colors.neutral350}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Icon
             name={
               (status as AVPlaybackStatusSuccess)?.isMuted

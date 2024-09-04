@@ -12,6 +12,7 @@ import CoolDowns from "./WorkoutDay/CoolDowns";
 import { ScrollView } from "moti";
 import StandAloneWorkout from "./WorkoutDay/StandAloneWorkout";
 import SuperSet from "./WorkoutDay/SuperSet";
+import WorkoutDayFooterButton from "../../components/WorkoutDayFooterButton";
 
 type Props = {
   navigation: any;
@@ -63,13 +64,7 @@ const WorkoutDay = ({ navigation }: Props) => {
         <CoolDowns coolDowns={coolDowns} navigation={navigation} />
       </ScrollView>
       {/* <BlurView intensity={100} style={styles.buttonContainer} tint="dark"> */}
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          size="xlarge"
-          left="playFilled"
-          children="Start Workout"
-        />
-      </View>
+      <WorkoutDayFooterButton navigation={navigation} day={day} />
       {/* </BlurView> */}
     </View>
   );
@@ -80,7 +75,6 @@ export default WorkoutDay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: "relative",
   },
   body: {
     paddingTop: 8,
