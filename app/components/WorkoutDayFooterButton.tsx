@@ -5,6 +5,7 @@ import { extractExerciseIds } from "../utils/helpers";
 import { useDailySupersets } from "../features/workoutPlan/useDailySupersets";
 import { StandardWorkoutCircuit } from "../utils/constants/types";
 import { useDailyExercises } from "../features/workoutPlan/useDailyExercises";
+import { useWorkoutDayData } from "../features/workoutPlan/useWorkoutDayData";
 
 type Props = {
   day: any;
@@ -13,32 +14,12 @@ type Props = {
 
 const WorkoutDayFooterButton = ({ navigation, day: workoutDay }: Props) => {
   const {
-    warmUpsExerciseIds,
-    coolDownsExerciseIds,
-    standAloneExerciseIds,
-    dailySupersetIds,
-  } = extractExerciseIds(workoutDay);
-  const { dailySupersets, error, isPending } =
-    useDailySupersets(dailySupersetIds);
-  const supersetsExerciseIds =
-    dailySupersets?.flatMap(
-      (superset: StandardWorkoutCircuit) => superset?.exerciseIds
-    ) || [];
-
-  const dailyExercisesIds = [
-    ...warmUpsExerciseIds,
-    ...coolDownsExerciseIds,
-    ...standAloneExerciseIds,
-    ...supersetsExerciseIds,
-  ];
-
-  const {
     dailyExercises: workouts,
-    error: exercisesError,
-    isPending: exercisesPending,
-  } = useDailyExercises(dailyExercisesIds);
+    error,
+    isPending,
+  } = useWorkoutDayData(workoutDay);
 
-  if (isPending || exercisesPending) {
+  if (isPending) {
     return (
       <View>
         <Text>Loading...</Text>
@@ -46,10 +27,10 @@ const WorkoutDayFooterButton = ({ navigation, day: workoutDay }: Props) => {
     );
   }
 
-  if (error || exercisesError) {
+  if (error) {
     return (
       <View>
-        <Text>Error: {error?.message || exercisesError?.message}</Text>
+        <Text>Error: {error?.message}</Text>
       </View>
     );
   }

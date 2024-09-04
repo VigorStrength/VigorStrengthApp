@@ -9,6 +9,7 @@ import {
 import { useDailySupersets } from "../features/workoutPlan/useDailySupersets";
 import { useDailyExercises } from "../features/workoutPlan/useDailyExercises";
 import { extractExerciseIds } from "../utils/helpers";
+import { useWorkoutDayData } from "../features/workoutPlan/useWorkoutDayData";
 
 type Props = {
   min: number;
@@ -17,33 +18,8 @@ type Props = {
 };
 
 const ExerciseActivity = ({ min, max, workoutDay }: Props) => {
-  const {
-    warmUpsExerciseIds,
-    coolDownsExerciseIds,
-    standAloneExerciseIds,
-    dailySupersetIds,
-  } = extractExerciseIds(workoutDay);
-  const { dailySupersets, error, isPending } =
-    useDailySupersets(dailySupersetIds);
-  const supersetsExerciseIds =
-    dailySupersets?.flatMap(
-      (superset: StandardWorkoutCircuit) => superset?.exerciseIds
-    ) || [];
-
-  const dailyExercisesIds = [
-    ...warmUpsExerciseIds,
-    ...coolDownsExerciseIds,
-    ...standAloneExerciseIds,
-    ...supersetsExerciseIds,
-  ];
-
-  const {
-    dailyExercises,
-    error: exercisesError,
-    isPending: exercisesPending,
-  } = useDailyExercises(dailyExercisesIds);
-
-  if (isPending || exercisesPending) {
+  const { dailyExercises, error, isPending } = useWorkoutDayData(workoutDay);
+  if (isPending) {
     return (
       <View>
         <Text>Loading...</Text>
@@ -51,10 +27,10 @@ const ExerciseActivity = ({ min, max, workoutDay }: Props) => {
     );
   }
 
-  if (error || exercisesError) {
+  if (error) {
     return (
       <View>
-        <Text>Error: {error?.message || exercisesError?.message}</Text>
+        <Text>Error: {error?.message}</Text>
       </View>
     );
   }
