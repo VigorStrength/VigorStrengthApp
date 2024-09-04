@@ -20,9 +20,17 @@ type Props = {
   workout: any;
   onNext: () => void;
   onPrevious: () => void;
+  isNextDisabled: boolean;
+  isPrevDisabled: boolean;
 };
 
-const WorkoutPlayer = ({ workout, onNext, onPrevious }: Props) => {
+const WorkoutPlayer = ({
+  workout,
+  onNext,
+  onPrevious,
+  isNextDisabled,
+  isPrevDisabled,
+}: Props) => {
   const videoRef = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus | null>(null);
   const progress = useSharedValue(
@@ -181,6 +189,7 @@ const WorkoutPlayer = ({ workout, onNext, onPrevious }: Props) => {
             height={32}
             fill={Colors.neutral350}
             onPress={onPrevious}
+            disabled={isPrevDisabled}
           />
           <Icon
             name={
@@ -199,6 +208,7 @@ const WorkoutPlayer = ({ workout, onNext, onPrevious }: Props) => {
             height={32}
             fill={Colors.neutral350}
             onPress={onNext}
+            disabled={isNextDisabled}
           />
           {/* <TouchableOpacity onPress={handleFastForward}>
             <RNIcon

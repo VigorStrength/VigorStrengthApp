@@ -11,7 +11,6 @@ type Props = {
 };
 
 type RouteParams = {
-  // workout: any;
   workouts: any;
 };
 
@@ -55,6 +54,8 @@ const Workout = ({ navigation }: Props) => {
         workout={workout}
         onNext={handleNextWorkout}
         onPrevious={handlePreviousWorkout}
+        isNextDisabled={currentWorkoutIndex === workouts.length - 1}
+        isPrevDisabled={currentWorkoutIndex === 0}
       />
     </GestureHandlerRootView>
   );

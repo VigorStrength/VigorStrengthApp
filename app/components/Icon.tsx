@@ -15,6 +15,7 @@ const Icon = ({ name, ...props }: Props) => {
     <TouchableRipple
       style={styles.ripple}
       onPress={props.onPress}
+      disabled={props.disabled}
       rippleColor={Colors.neutralBackgroundChip}
     >
       <View style={styles.iconContainer}>
