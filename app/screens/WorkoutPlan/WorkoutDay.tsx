@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Animated } from "react-native";
-import React, { useRef } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { WorkoutDayParams } from "../../utils/constants/types";
@@ -13,6 +13,10 @@ import { ScrollView } from "moti";
 import StandAloneWorkout from "./WorkoutDay/StandAloneWorkout";
 import SuperSet from "./WorkoutDay/SuperSet";
 import WorkoutDayFooterButton from "../../components/WorkoutDayFooterButton";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 
 type Props = {
   navigation: any;
@@ -26,35 +30,32 @@ const WorkoutDay = ({ navigation }: Props) => {
   const warmUps = day?.warmUps;
   const workouts = day?.workouts;
   const coolDowns = day?.coolDowns;
+  const scrollY = useSharedValue(0);
 
-  const scrollY = useRef(new Animated.Value(0)).current;
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+  });
 
   return (
     <View style={styles.container}>
-      <Animated.ScrollView
-        showsVerticalScrollIndicator={false}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: true }
-        )}
-      >
-        <CustomProgramHeaderCard
-          variant="workout"
-          workoutWeekNumber={day?.workoutWeekNumber}
-          workoutDayNumber={day?.workoutDayNumber}
-          workoutDayName={day?.name}
-          coverUrl={{ uri: day?.imageURL }}
-          navigation={navigation}
-          scrollY={scrollY}
-        />
-        {/* Might want to change it into a context if props drilling gets too deep*/}
+      <CustomProgramHeaderCard
+        variant="workout"
+        workoutWeekNumber={day?.workoutWeekNumber}
+        workoutDayNumber={day?.workoutDayNumber}
+        workoutDayName={day?.name}
+        coverUrl={{ uri: day?.imageURL }}
+        navigation={navigation}
+        scrollY={scrollY}
+      />
+      {/* Might want to change it into a context if props drilling gets too deep*/}
+      <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16}>
         <ExerciseActivity
           min={day.workoutTimeRange[0]}
           max={day.workoutTimeRange[1]}
           workoutDay={day}
         />
         <Text style={styles.sectionLabel}>What you'll do</Text>
+
         <WarmUps warmUps={warmUps} navigation={navigation} />
         {workouts.map((workoutItem) =>
           workoutItem?.itemType === "exercise" ? (
@@ -73,6 +74,7 @@ const WorkoutDay = ({ navigation }: Props) => {
         )}
         <CoolDowns coolDowns={coolDowns} navigation={navigation} />
       </Animated.ScrollView>
+
       {/* <BlurView intensity={100} style={styles.buttonContainer} tint="dark"> */}
       <WorkoutDayFooterButton navigation={navigation} day={day} />
       {/* </BlurView> */}
@@ -86,10 +88,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  body: {
-    paddingTop: 8,
-    paddingHorizontal: 16,
-  },
   sectionLabel: {
     fontSize: 20,
     lineHeight: 25,
@@ -99,11 +97,11 @@ const styles = StyleSheet.create({
     fontFamily: "SatoshiBold",
     color: Colors.neutral350,
   },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 0,
-    opacity: 0.9,
-    paddingVertical: 20,
-    paddingHorizontal: 16,
-  },
+  // buttonContainer: {
+  //   position: "absolute",
+  //   bottom: 0,
+  //   opacity: 0.9,
+  //   paddingVertical: 20,
+  //   paddingHorizontal: 16,
+  // },
 });

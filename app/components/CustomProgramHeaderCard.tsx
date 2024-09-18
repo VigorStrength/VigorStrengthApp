@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-} from "react-native";
+import React from "react";
+import { ImageBackground, StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "../GlobalStyles";
 import Icon from "./Icon";
 import CustomChip from "./CustomChip";
-import { MotiView, useDynamicAnimation } from "moti";
+import Animated, {
+  useAnimatedStyle,
+  interpolate,
+  Extrapolation,
+} from "react-native-reanimated";
 
 type Variant = "workout" | "meal";
 type Props = {
@@ -25,8 +23,8 @@ type Props = {
   scrollY?: any;
 };
 
-const HEADER_MAX_HEIGHT = 355;
-const HEADER_MIN_HEIGHT = 255;
+const MAX_HEADER_HEIGHT = 355;
+const MIN_HEADER_HEIGHT = 110;
 
 const CustomProgramHeaderCard = ({
   variant,
@@ -39,50 +37,37 @@ const CustomProgramHeaderCard = ({
   navigation,
   scrollY,
 }: Props) => {
-  // const animation = useDynamicAnimation(() => ({
-  //   height: HEADER_MAX_HEIGHT,
-  // }));
-  const [headerHeight, setHeaderHeight] = useState(HEADER_MAX_HEIGHT);
+  const animatedLabelStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      scrollY.value,
+      [0, 150],
+      [1, 0],
+      Extrapolation.CLAMP
+    );
 
-  useEffect(() => {
-    if (scrollY) {
-      scrollY.addListener(({ value }: { value: number }) => {
-        const updateHeight = Math.max(
-          HEADER_MIN_HEIGHT,
-          HEADER_MAX_HEIGHT - value
-        );
-        setHeaderHeight(updateHeight);
-        // animation.animateTo({ height: updateHeight });
-      });
-      // console.log(animation.current?.height);
-    }
-
-    return () => {
-      if (scrollY) {
-        scrollY.removeAllListeners();
-      }
+    return {
+      opacity,
     };
-  }, [scrollY]);
+  });
 
-  console.log(headerHeight);
+  const animatedHeaderStyle = useAnimatedStyle(() => {
+    const height = interpolate(
+      scrollY.value,
+      [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+      [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      height,
+    };
+  });
 
   return (
-    <MotiView
-      // state={animation}
-      style={[
-        styles.container,
-        { height: headerHeight },
-        headerHeight === HEADER_MIN_HEIGHT && styles.fixedHeader,
-        // animation.current?.height === HEADER_MIN_HEIGHT && styles.fixedHeader,
-      ]}
-      transition={{
-        type: "timing",
-        duration: 300,
-      }}
-    >
+    <Animated.View style={[styles.container, animatedHeaderStyle]}>
       <ImageBackground
         source={coverUrl}
-        style={styles.background}
+        style={styles.imageBackground}
         resizeMode="cover"
       >
         {variant === "workout" && (
@@ -113,11 +98,14 @@ const CustomProgramHeaderCard = ({
         <View style={styles.contentHeader}>
           {variant === "workout" && (
             <>
-              <View style={styles.workoutPlanDetails}>
+              <Animated.View
+                style={[styles.workoutPlanDetails, animatedLabelStyle]}
+              >
                 <Text
                   style={[styles.workoutText, { marginRight: -4 }]}
                 >{`Week ${workoutWeekNumber}`}</Text>
                 <Icon
+                  // style={animatedLabelStyle}
                   name="dotSeparator"
                   width={32}
                   height={32}
@@ -126,8 +114,12 @@ const CustomProgramHeaderCard = ({
                 <Text
                   style={[styles.workoutText, { marginLeft: -4 }]}
                 >{`Day ${workoutDayNumber}`}</Text>
-              </View>
-              <Text style={styles.workoutDayTitle}>{workoutDayName}</Text>
+              </Animated.View>
+              <Animated.Text
+                style={[styles.workoutDayTitle, animatedLabelStyle]}
+              >
+                {workoutDayName}
+              </Animated.Text>
             </>
           )}
           {variant === "meal" && (
@@ -138,7 +130,7 @@ const CustomProgramHeaderCard = ({
           )}
         </View>
       </ImageBackground>
-    </MotiView>
+    </Animated.View>
   );
 };
 
@@ -146,20 +138,13 @@ export default CustomProgramHeaderCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get("window").width,
-    overflow: "hidden",
+    width: "100%",
+    height: 355,
+    // position: "relative",
   },
-  fixedHeader: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-  },
-  background: {
+  imageBackground: {
     flex: 1,
     justifyContent: "space-between",
-    position: "relative",
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
@@ -204,7 +189,7 @@ const styles = StyleSheet.create({
   },
   mealName: {
     fontSize: 24,
-    fontFamily: "SatoshiStrong",
-    color: Colors.neutral400,
+    fontFamily: "SatoshiBold",
+    color: Colors.orange100,
   },
 });
