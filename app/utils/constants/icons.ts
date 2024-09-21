@@ -14,6 +14,10 @@ import ChevronLeft from "../../../assets/icons/chevron-left.svg";
 import ChevronRight from "../../../assets/icons/chevron-right.svg";
 import Close from "../../../assets/icons/close.svg";
 import CloseCircle from "../../../assets/icons/close-circle.svg";
+import Chip1 from "../../../assets/icons/chip1.svg";
+import Chip2 from "../../../assets/icons/chip2.svg";
+import Chip3 from "../../../assets/icons/chip3.svg";
+import Chip4 from "../../../assets/icons/chip4.svg";
 import Community from "../../../assets/icons/community.svg";
 import DisableAudio from "../../../assets/icons/disable-audio.svg";
 import DotSeparator from "../../../assets/icons/dot-separator.svg";
@@ -65,6 +69,10 @@ export const icons = {
   chevronRight: ChevronRight,
   close: Close,
   closeCircle: CloseCircle,
+  chip1: Chip1,
+  chip2: Chip2,
+  chip3: Chip3,
+  chip4: Chip4,
   community: Community,
   disableAudio: DisableAudio,
   dotSeparator: DotSeparator,

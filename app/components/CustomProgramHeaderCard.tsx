@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
   Extrapolation,
+  interpolateColor,
 } from "react-native-reanimated";
 import ImageHeader from "./ImageHeader";
 
@@ -38,11 +39,24 @@ const CustomProgramHeaderCard = ({
   navigation,
   scrollY,
 }: Props) => {
-  const animatedLabelStyle = useAnimatedStyle(() => {
+  const animatedOpacity = useAnimatedStyle(() => {
     const opacity = interpolate(
       scrollY.value,
       [0, 150],
       [1, 0],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      opacity,
+    };
+  });
+
+  const animatedReverseOpacity = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      scrollY.value,
+      [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+      [0, 1],
       Extrapolation.CLAMP
     );
 
@@ -58,36 +72,63 @@ const CustomProgramHeaderCard = ({
       [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
       Extrapolation.CLAMP
     );
+    const backgroundColor = interpolateColor(
+      scrollY.value,
+      [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+      [Colors.orange60, Colors.neutralGradient]
+    );
 
     return {
       height,
+      backgroundColor,
     };
   });
 
   return (
     <Animated.View style={[styles.container, animatedHeaderStyle]}>
-      <ImageHeader coverUrl={coverUrl} style={animatedHeaderStyle} />
+      <ImageHeader
+        coverUrl={coverUrl}
+        style={[animatedHeaderStyle, animatedOpacity]}
+      />
       <View style={styles.header}>
         <Icon
           onPress={() => navigation.goBack()}
           name={variant === "workout" ? "chevronLeftCircle" : "chevronLeft"}
-          width={64}
-          height={64}
+          width={44}
+          height={44}
           fill={Colors.orange100}
         />
-        <CustomChip
+        <Animated.Text
+          style={[styles.workoutDayTitle2, animatedReverseOpacity]}
+        >
+          {workoutDayName}
+        </Animated.Text>
+        {/* <Icon name="chip3" width={100} height={44} fill={Colors.orange100} /> */}
+        <View style={styles.chipIcons}>
+          <Icon
+            name="favoriteEmpty"
+            width={44}
+            height={44}
+            fill={Colors.orange100}
+          />
+          <Icon
+            name="moreHorizontalCircle"
+            width={44}
+            height={44}
+            fill={Colors.orange100}
+          />
+        </View>
+        {/* <CustomChip
           left="favoriteEmpty"
           right="moreHorizontal"
           children=""
           style={styles.chip}
-        />
+        /> */}
       </View>
       <View style={styles.contentHeader}>
         {variant === "workout" && (
           <>
-            <Animated.View
-              style={[styles.workoutPlanDetails, animatedLabelStyle]}
-            >
+            <Animated.View style={[styles.workoutPlanDetails, animatedOpacity]}>
               <Text
                 style={[styles.workoutText, { marginRight: -4 }]}
               >{`Week ${workoutWeekNumber}`}</Text>
@@ -101,7 +142,7 @@ const CustomProgramHeaderCard = ({
                 style={[styles.workoutText, { marginLeft: -4 }]}
               >{`Day ${workoutDayNumber}`}</Text>
             </Animated.View>
-            <Animated.Text style={[styles.workoutDayTitle, animatedLabelStyle]}>
+            <Animated.Text style={[styles.workoutDayTitle, animatedOpacity]}>
               {workoutDayName}
             </Animated.Text>
           </>
@@ -129,7 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 42,
+    paddingTop: 54,
     paddingHorizontal: 4,
     position: "absolute",
     top: 0,
@@ -139,6 +180,9 @@ const styles = StyleSheet.create({
   },
   chip: {
     backgroundColor: Colors.neutralBackgroundChip,
+  },
+  chipIcons: {
+    flexDirection: "row",
   },
   contentHeader: {
     paddingHorizontal: 18,
@@ -160,6 +204,13 @@ const styles = StyleSheet.create({
     fontFamily: "SatoshiStrong",
     fontSize: 24,
     color: Colors.orange100,
+  },
+  workoutDayTitle2: {
+    fontSize: 18,
+    lineHeight: 25,
+    color: Colors.orange100,
+    fontFamily: "SatoshiBold",
+    marginLeft: 48,
   },
   mealTitle: {
     fontSize: 14,
