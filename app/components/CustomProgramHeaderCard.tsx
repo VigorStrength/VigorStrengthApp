@@ -9,6 +9,7 @@ import Animated, {
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
+import ImageHeader from "./ImageHeader";
 
 type Variant = "workout" | "meal";
 type Props = {
@@ -65,71 +66,53 @@ const CustomProgramHeaderCard = ({
 
   return (
     <Animated.View style={[styles.container, animatedHeaderStyle]}>
-      <ImageBackground
-        source={coverUrl}
-        style={styles.imageBackground}
-        resizeMode="cover"
-      >
+      <ImageHeader coverUrl={coverUrl} style={animatedHeaderStyle} />
+      <View style={styles.header}>
+        <Icon
+          onPress={() => navigation.goBack()}
+          name={variant === "workout" ? "chevronLeftCircle" : "chevronLeft"}
+          width={64}
+          height={64}
+          fill={Colors.orange100}
+        />
+        <CustomChip
+          left="favoriteEmpty"
+          right="moreHorizontal"
+          children=""
+          style={styles.chip}
+        />
+      </View>
+      <View style={styles.contentHeader}>
         {variant === "workout" && (
-          <LinearGradient
-            colors={[Colors.neutralGradient, Colors.orange80, Colors.orange100]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            locations={[0, 0.65, 1]}
-            style={styles.gradient}
-            pointerEvents="none"
-          />
+          <>
+            <Animated.View
+              style={[styles.workoutPlanDetails, animatedLabelStyle]}
+            >
+              <Text
+                style={[styles.workoutText, { marginRight: -4 }]}
+              >{`Week ${workoutWeekNumber}`}</Text>
+              <Icon
+                name="dotSeparator"
+                width={32}
+                height={32}
+                fill={Colors.neutral350}
+              />
+              <Text
+                style={[styles.workoutText, { marginLeft: -4 }]}
+              >{`Day ${workoutDayNumber}`}</Text>
+            </Animated.View>
+            <Animated.Text style={[styles.workoutDayTitle, animatedLabelStyle]}>
+              {workoutDayName}
+            </Animated.Text>
+          </>
         )}
-        <View style={styles.header}>
-          <Icon
-            onPress={() => navigation.goBack()}
-            name={variant === "workout" ? "chevronLeftCircle" : "chevronLeft"}
-            width={64}
-            height={64}
-            fill={Colors.orange100}
-          />
-          <CustomChip
-            left="favoriteEmpty"
-            right="moreHorizontal"
-            children=""
-            style={styles.chip}
-          />
-        </View>
-        <View style={styles.contentHeader}>
-          {variant === "workout" && (
-            <>
-              <Animated.View
-                style={[styles.workoutPlanDetails, animatedLabelStyle]}
-              >
-                <Text
-                  style={[styles.workoutText, { marginRight: -4 }]}
-                >{`Week ${workoutWeekNumber}`}</Text>
-                <Icon
-                  // style={animatedLabelStyle}
-                  name="dotSeparator"
-                  width={32}
-                  height={32}
-                  fill={Colors.neutral350}
-                />
-                <Text
-                  style={[styles.workoutText, { marginLeft: -4 }]}
-                >{`Day ${workoutDayNumber}`}</Text>
-              </Animated.View>
-              <Animated.Text
-                style={[styles.workoutDayTitle, animatedLabelStyle]}
-              >
-                {workoutDayName}
-              </Animated.Text>
-            </>
-          )}
-          {variant === "meal" && (
-            <>
-              <Text style={styles.mealTitle}>{mealTitle}</Text>
-              <Text style={styles.mealName}>{mealName}</Text>
-            </>
-          )}
-        </View>
-      </ImageBackground>
+        {variant === "meal" && (
+          <>
+            <Text style={styles.mealTitle}>{mealTitle}</Text>
+            <Text style={styles.mealName}>{mealName}</Text>
+          </>
+        )}
+      </View>
     </Animated.View>
   );
 };
@@ -140,16 +123,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 355,
-    // position: "relative",
-  },
-  imageBackground: {
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  gradient: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.2,
-    zIndex: 1,
+    position: "relative",
   },
   header: {
     flexDirection: "row",
@@ -157,6 +131,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: 42,
     paddingHorizontal: 4,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
   chip: {
     backgroundColor: Colors.neutralBackgroundChip,
@@ -164,6 +143,8 @@ const styles = StyleSheet.create({
   contentHeader: {
     paddingHorizontal: 18,
     marginBottom: 20,
+    position: "absolute",
+    bottom: 0,
   },
   workoutPlanDetails: {
     flexDirection: "row",

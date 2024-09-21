@@ -27,13 +27,13 @@ const CustomChip = ({ left, right, children, ...props }: Props) => {
     >
       <View style={styles.content}>
         {left && (
-          <Icon name={left} width={44} height={44} fill={Colors.orange100} />
+          <Icon name={left} width={40} height={40} fill={Colors.orange100} />
         )}
         {children && (
           <Text style={styles.label}>{children as React.ReactNode}</Text>
         )}
         {right && (
-          <Icon name={right} width={44} height={44} fill={Colors.orange100} />
+          <Icon name={right} width={40} height={40} fill={Colors.orange100} />
         )}
       </View>
     </TouchableRipple>
