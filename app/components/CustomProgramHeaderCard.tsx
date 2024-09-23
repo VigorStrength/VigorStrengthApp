@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 1,
   },
   chip: {
     backgroundColor: Colors.neutralBackgroundChip,
