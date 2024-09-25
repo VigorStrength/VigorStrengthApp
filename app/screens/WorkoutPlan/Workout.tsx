@@ -54,7 +54,7 @@ const Workout = ({ navigation }: Props) => {
         workout={workout}
         onNext={handleNextWorkout}
         onPrevious={handlePreviousWorkout}
-        isNextDisabled={currentWorkoutIndex === workouts.length - 1}
+        isNextDisabled={currentWorkoutIndex === workouts?.length - 1}
         isPrevDisabled={currentWorkoutIndex === 0}
       />
     </GestureHandlerRootView>

@@ -97,6 +97,7 @@ const CustomProgramHeaderCard = ({
           width={44}
           height={44}
           fill={Colors.orange100}
+          style={styles.iconStyle}
         />
         <Animated.Text
           style={[styles.workoutDayTitle2, animatedReverseOpacity]}
@@ -176,6 +177,14 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+  },
+  iconStyle: {
+    zIndex: 10,
+    // position: "absolute",
+    // // top: 0,
+    // top: 54,
+    // left: 10,
+    // right: 10,
   },
   chip: {
     backgroundColor: Colors.neutralBackgroundChip,

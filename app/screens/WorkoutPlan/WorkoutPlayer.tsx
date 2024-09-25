@@ -132,7 +132,7 @@ const WorkoutPlayer = ({
       <Video
         ref={videoRef}
         style={styles.video}
-        source={{ uri: workout.videoURL }}
+        source={{ uri: workout?.videoURL }}
         useNativeControls={false}
         resizeMode={ResizeMode.CONTAIN}
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
