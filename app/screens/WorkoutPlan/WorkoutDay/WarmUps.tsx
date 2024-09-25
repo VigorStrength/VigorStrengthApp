@@ -24,6 +24,10 @@ const WarmUps = ({ warmUps, navigation }: Props) => {
 
   const restTime = formatSecondsToMinutes(warmUps[0]?.restTime);
 
+  const handlePress = (exercise: Workout) => {
+    navigation.navigate("Workout", { workout: exercise });
+  };
+
   // To replace with Skeleton later
   if (isPending) {
     return <Text>Loading...</Text>;
@@ -44,9 +48,7 @@ const WarmUps = ({ warmUps, navigation }: Props) => {
             exerciseTime={exercise.time}
             exerciseReps={exercise.proposedLog?.proposedReps}
             exerciseCoverUrl={{ uri: exercise.coverURL }}
-            onPress={() =>
-              navigation.navigate("Workout", { workout: exercise })
-            }
+            onPress={() => handlePress(exercise)}
             status="active"
             children=""
           />

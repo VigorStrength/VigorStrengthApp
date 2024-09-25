@@ -31,6 +31,12 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
   } = useDailyExercises(supersetExercisesIds);
   const restTime = formatSecondsToMinutes(superset?.restTime);
 
+  const lastIndex = (index: number) => index === supersetExercises.length - 1;
+
+  const handlePress = (exercise: Workout) => {
+    navigation.navigate("Workout", { workout: exercise });
+  };
+
   if (isSupersetPending || isExercisesPending) {
     return (
       <View>
@@ -57,20 +63,14 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
       {supersetExercises?.map((exercise: Workout, index: number) => (
         <View
           key={exercise.id}
-          style={
-            index === supersetExercises.length - 1
-              ? styles.lastItemStyle
-              : styles.cardStyle
-          }
+          style={lastIndex(index) ? styles.lastItemStyle : styles.cardStyle}
         >
           <CustomExerciseItemCard
             exerciseName={exercise.name}
             exerciseTime={exercise.time}
             exerciseReps={exercise.proposedLog?.proposedReps}
             exerciseCoverUrl={{ uri: exercise.coverURL }}
-            onPress={() =>
-              navigation.navigate("Workout", { workout: exercise })
-            }
+            onPress={() => handlePress(exercise)}
             status="active"
             children=""
           />

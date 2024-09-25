@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
+import { Workout } from "../../../utils/constants/types";
 
 type Props = {
   key: string;
@@ -15,6 +16,11 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
     error,
     isPending,
   } = useDailyExercises(workoutItemId);
+
+  const handlePress = (exercise: Workout) => {
+    navigation.navigate("Workout", { workout: exercise });
+  };
+
   if (isPending) {
     return (
       <View>
@@ -37,7 +43,7 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
         exerciseTime={workout[0].time}
         exerciseReps={workout[0].proposedLog?.proposedReps}
         exerciseCoverUrl={{ uri: workout[0].coverURL }}
-        onPress={() => navigation.navigate("Workout", { workout })}
+        onPress={() => handlePress(workout[0])}
         status="active"
         children=""
       />

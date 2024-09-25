@@ -23,6 +23,10 @@ const CoolDowns = ({ coolDowns, navigation }: Props) => {
     isPending,
   } = useDailyExercises(coolDownIDs);
 
+  const handlePress = (exercise: Workout) => {
+    navigation.navigate("Workout", { workout: exercise });
+  };
+
   if (isPending) {
     return (
       <View>
@@ -49,9 +53,7 @@ const CoolDowns = ({ coolDowns, navigation }: Props) => {
             exerciseTime={exercise.time}
             exerciseReps={exercise.proposedLog?.proposedReps}
             exerciseCoverUrl={{ uri: exercise.coverURL }}
-            onPress={() =>
-              navigation.navigate("Workout", { workout: exercise })
-            }
+            onPress={() => handlePress(exercise)}
             status="active"
             children=""
           />
