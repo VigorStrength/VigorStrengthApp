@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   lastItemStyle: {
-    marginBottom: 86,
+    marginBottom: 92,
   },
   dividerStyle: {
     width: "100%",
