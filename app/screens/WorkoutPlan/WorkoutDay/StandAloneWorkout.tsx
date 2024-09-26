@@ -40,7 +40,7 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
   return (
     <View style={styles.container}>
       <CustomDivider
-        leftLabel="Stand alone Exercise"
+        leftLabel="Stand Alone Exercise"
         style={styles.dividerStyle}
       />
       <CustomExerciseItemCard
