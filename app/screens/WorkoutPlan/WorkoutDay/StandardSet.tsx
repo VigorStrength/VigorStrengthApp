@@ -20,6 +20,7 @@ const StandardSet = ({ navigation, workoutItemId }: Props) => {
   } = useDailySet(workoutItemId);
 
   const setExercisesIds = set?.exerciseIds;
+  const setLaps: number = set?.proposedLaps;
 
   const {
     dailyExercises: setExercises,
@@ -51,7 +52,11 @@ const StandardSet = ({ navigation, workoutItemId }: Props) => {
 
   return (
     <View style={styles.container}>
-      <CustomDivider leftLabel="Standard Set" style={styles.dividerStyle} />
+      <CustomDivider
+        leftLabel="Standard Set"
+        rightLabel={`${setLaps} Laps`}
+        style={styles.dividerStyle}
+      />
       {setExercises?.map((exercise: Workout, index: number) => (
         <View
           key={exercise.id}
