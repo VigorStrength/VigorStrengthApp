@@ -48,7 +48,7 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
         exerciseTime={workout[0].time}
         exerciseReps={workout[0].proposedLog?.proposedReps}
         exerciseCoverUrl={{ uri: workout[0].coverURL }}
-        onPress={() => handlePress(workout[0])}
+        // onPress={() => handlePress(workout[0])}
         status="active"
         children=""
       />

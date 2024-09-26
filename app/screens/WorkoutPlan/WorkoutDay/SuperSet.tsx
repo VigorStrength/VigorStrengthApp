@@ -73,7 +73,7 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
             exerciseTime={exercise.time}
             exerciseReps={exercise.proposedLog?.proposedReps}
             exerciseCoverUrl={{ uri: exercise.coverURL }}
-            onPress={() => handlePress(exercise)}
+            // onPress={() => handlePress(exercise)}
             status="active"
             children=""
           />
