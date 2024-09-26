@@ -23,6 +23,8 @@ const CoolDowns = ({ coolDowns, navigation }: Props) => {
     isPending,
   } = useDailyExercises(coolDownIDs);
 
+  const lastIndex = (index: number) => index === coolDownExercises.length - 1;
+
   const handlePress = (exercise: Workout) => {
     navigation.navigate("Workout", { workout: exercise });
   };
@@ -46,8 +48,11 @@ const CoolDowns = ({ coolDowns, navigation }: Props) => {
   return (
     <View style={styles.container}>
       <CustomDivider leftLabel="Cool Down" style={styles.dividerStyle} />
-      {coolDownExercises.map((exercise: Workout) => (
-        <View key={exercise.id} style={styles.cardStyle}>
+      {coolDownExercises.map((exercise: Workout, index: number) => (
+        <View
+          key={exercise.id}
+          style={[styles.cardStyle, lastIndex(index) && styles.lastItemStyle]}
+        >
           <CustomExerciseItemCard
             exerciseName={exercise.name}
             exerciseTime={exercise.time}
@@ -71,6 +76,9 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     width: "100%",
+  },
+  lastItemStyle: {
+    marginBottom: 86,
   },
   dividerStyle: {
     width: "100%",
