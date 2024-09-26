@@ -22,8 +22,6 @@ const WarmUps = ({ warmUps, navigation }: Props) => {
     isPending,
   } = useDailyExercises(warmUpIDs);
 
-  const restTime = formatSecondsToMinutes(warmUps[0]?.restTime);
-
   const handlePress = (exercise: Workout) => {
     navigation.navigate("Workout", { workout: exercise });
   };
@@ -54,11 +52,6 @@ const WarmUps = ({ warmUps, navigation }: Props) => {
           />
         </View>
       ))}
-      <CustomDivider
-        leftLabel="Rest"
-        rightLabel={restTime.toString()}
-        style={styles.dividerStyle}
-      />
     </View>
   );
 };

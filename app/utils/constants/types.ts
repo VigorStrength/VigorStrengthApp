@@ -34,6 +34,8 @@ export type StandardWorkoutItem = {
   itemType: string;
 };
 
+export type WorkoutItemType = "exercise" | "set" | "superset";
+
 export type StandardWorkoutDay = {
   id: string;
   name: string;

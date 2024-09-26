@@ -26,6 +26,10 @@ export const extractExerciseIds = (workoutDay: StandardWorkoutDay) => {
     workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
       workoutItem.itemType === "exercise" ? workoutItem.itemId : []
     ) || [];
+  const dailySetsIds =
+    workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
+      workoutItem.itemType === "set" ? workoutItem.itemId : []
+    ) || [];
   const dailySupersetIds =
     workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
       workoutItem.itemType === "superset" ? workoutItem.itemId : []
@@ -35,6 +39,7 @@ export const extractExerciseIds = (workoutDay: StandardWorkoutDay) => {
     warmUpsExerciseIds,
     coolDownsExerciseIds,
     standAloneExerciseIds,
+    dailySetsIds,
     dailySupersetIds,
   };
 };

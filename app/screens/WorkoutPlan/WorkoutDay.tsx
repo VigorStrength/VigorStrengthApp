@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { ComponentType } from "react";
 import CustomProgramHeaderCard from "../../components/CustomProgramHeaderCard";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { WorkoutDayParams } from "../../utils/constants/types";
+import { WorkoutDayParams, WorkoutItemType } from "../../utils/constants/types";
 import { Colors } from "../../GlobalStyles";
 import CustomButton from "../../components/CustomButton";
 import { BlurView } from "expo-blur";
@@ -17,6 +17,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import StandardSet from "./WorkoutDay/StandardSet";
 
 type Props = {
   navigation: any;
@@ -31,6 +32,12 @@ const WorkoutDay = ({ navigation }: Props) => {
   const workouts = day?.workouts;
   const coolDowns = day?.coolDowns;
   const scrollY = useSharedValue(0);
+
+  const workoutComponents = {
+    exercise: StandAloneWorkout,
+    set: StandardSet,
+    superset: SuperSet,
+  };
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
@@ -57,21 +64,19 @@ const WorkoutDay = ({ navigation }: Props) => {
         <Text style={styles.sectionLabel}>What you'll do</Text>
 
         <WarmUps warmUps={warmUps} navigation={navigation} />
-        {workouts.map((workoutItem) =>
-          workoutItem?.itemType === "exercise" ? (
-            <StandAloneWorkout
+        {workouts.map((workoutItem) => {
+          const WorkoutComponent =
+            workoutComponents[
+              (workoutItem?.itemType as WorkoutItemType) ?? "exercise"
+            ];
+          return (
+            <WorkoutComponent
               key={workoutItem?.itemId}
-              workoutItemId={workoutItem?.itemId}
               navigation={navigation}
-            />
-          ) : (
-            <SuperSet
-              key={workoutItem?.itemId}
               workoutItemId={workoutItem?.itemId}
-              navigation={navigation}
             />
-          )
-        )}
+          );
+        })}
         <CoolDowns coolDowns={coolDowns} navigation={navigation} />
       </Animated.ScrollView>
 

@@ -3,6 +3,7 @@ import React from "react";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
 import { Workout } from "../../../utils/constants/types";
+import CustomDivider from "../../../components/CustomDivider";
 
 type Props = {
   key: string;
@@ -37,7 +38,11 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
+      <CustomDivider
+        leftLabel="Stand alone Exercise"
+        style={styles.dividerStyle}
+      />
       <CustomExerciseItemCard
         exerciseName={workout[0].name}
         exerciseTime={workout[0].time}
@@ -53,4 +58,15 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
 
 export default StandAloneWorkout;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
+  cardStyle: {
+    marginBottom: 0,
+  },
+  dividerStyle: {
+    width: "100%",
+    paddingHorizontal: 16,
+  },
+});

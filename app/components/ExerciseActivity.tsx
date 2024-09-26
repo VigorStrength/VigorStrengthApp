@@ -2,13 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import DurationLabel from "./DurationLabel";
 import TargetMusclesList from "./TargetMusclesList";
-import {
-  StandardWorkoutCircuit,
-  StandardWorkoutItem,
-} from "../utils/constants/types";
-import { useDailySupersets } from "../features/workoutPlan/useDailySupersets";
-import { useDailyExercises } from "../features/workoutPlan/useDailyExercises";
-import { extractExerciseIds } from "../utils/helpers";
 import { useWorkoutDayData } from "../features/workoutPlan/useWorkoutDayData";
 
 type Props = {

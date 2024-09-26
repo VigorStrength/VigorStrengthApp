@@ -1,6 +1,7 @@
 import { StandardWorkoutCircuit } from "../../utils/constants/types";
 import { extractExerciseIds } from "../../utils/helpers";
 import { useDailyExercises } from "./useDailyExercises";
+import { useDailySet } from "./useDailySet";
 import { useDailySupersets } from "./useDailySupersets";
 
 export function useWorkoutDayData(workoutDay: any) {

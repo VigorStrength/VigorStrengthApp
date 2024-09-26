@@ -1,14 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import {
-  StandardWorkoutCircuit,
-  Workout,
-} from "../../../utils/constants/types";
+import { useDailySet } from "../../../features/workoutPlan/useDailySet";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
+import { Workout } from "../../../utils/constants/types";
 import CustomDivider from "../../../components/CustomDivider";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
-import { useDailySuperset } from "../../../features/workoutPlan/useDailySuperset";
-import { formatSecondsToMinutes } from "../../../utils/helpers";
 
 type Props = {
   key: string;
@@ -16,31 +12,28 @@ type Props = {
   workoutItemId: string;
 };
 
-const SuperSet = ({ navigation, workoutItemId }: Props) => {
+const StandardSet = ({ navigation, workoutItemId }: Props) => {
   const {
-    dailySuperset: superset,
-    error: supersetError,
-    isPending: isSupersetPending,
-  } = useDailySuperset(workoutItemId);
+    dailySet: set,
+    error: setError,
+    isPending: isSetPending,
+  } = useDailySet(workoutItemId);
 
-  const supersetExercisesIds = superset?.exerciseIds;
-  const supersetLaps = superset?.proposedLaps;
+  const setExercisesIds = set?.exerciseIds;
 
   const {
-    dailyExercises: supersetExercises,
+    dailyExercises: setExercises,
     error: exercisesError,
     isPending: isExercisesPending,
-  } = useDailyExercises(supersetExercisesIds);
+  } = useDailyExercises(setExercisesIds);
 
-  // const restTime = formatSecondsToMinutes(superset?.restTime);
-
-  const lastIndex = (index: number) => index === supersetExercises.length - 1;
+  const lastIndex = (index: number) => index === setExercises.length - 1;
 
   const handlePress = (exercise: Workout) => {
     navigation.navigate("Workout", { workout: exercise });
   };
 
-  if (isSupersetPending || isExercisesPending) {
+  if (isSetPending || isExercisesPending) {
     return (
       <View>
         <Text>Loading...</Text>
@@ -48,25 +41,21 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
     );
   }
 
-  if (supersetError || exercisesError) {
+  if (setError || exercisesError) {
     return (
       <View>
-        <Text>Error: {supersetError?.message || exercisesError?.message}</Text>
+        <Text>Error: {setError?.message || exercisesError?.message}</Text>;
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <CustomDivider
-        leftLabel="Super Set"
-        rightLabel={`${supersetLaps} Laps`}
-        style={styles.dividerStyle}
-      />
-      {supersetExercises?.map((exercise: Workout, index: number) => (
+      <CustomDivider leftLabel="Set" style={styles.dividerStyle} />
+      {setExercises?.map((exercise: Workout, index: number) => (
         <View
           key={exercise.id}
-          style={lastIndex(index) ? styles.lastItemStyle : styles.cardStyle}
+          style={[styles.cardStyle, lastIndex(index) && styles.lastItemStyle]}
         >
           <CustomExerciseItemCard
             exerciseName={exercise.name}
@@ -83,7 +72,7 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
   );
 };
 
-export default SuperSet;
+export default StandardSet;
 
 const styles = StyleSheet.create({
   container: {

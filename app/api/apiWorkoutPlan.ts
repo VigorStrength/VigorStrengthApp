@@ -44,6 +44,31 @@ export async function getActiveWorkoutPlan() {
   }
 }
 
+export async function getDailySetById(dailySetId: string) {
+  try {
+    const response = await axiosInstance.get(
+      `${baseURL}/user/workout-plans/daily-sets/${dailySetId}`
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Failed to fetch daily set: ${error?.message}`);
+  }
+}
+
+export async function getDailySetsById(dailySetsIDs: string[]) {
+  try {
+    const response = await axiosInstance.post(
+      `${baseURL}/user/workout-plans/daily-sets`,
+      { dailySetsIDs }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Failed to fetch daily sets: ${error?.message}`);
+  }
+}
+
 export async function getDailySupersetById(dailySupersetId: string) {
   try {
     const response = await axiosInstance.get(

@@ -1,10 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomButton from "./CustomButton";
-import { extractExerciseIds } from "../utils/helpers";
-import { useDailySupersets } from "../features/workoutPlan/useDailySupersets";
-import { StandardWorkoutCircuit } from "../utils/constants/types";
-import { useDailyExercises } from "../features/workoutPlan/useDailyExercises";
 import { useWorkoutDayData } from "../features/workoutPlan/useWorkoutDayData";
 
 type Props = {
