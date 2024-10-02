@@ -22,25 +22,26 @@ export const extractExerciseIds = (workoutDay: StandardWorkoutDay) => {
     workoutDay?.coolDowns?.flatMap(
       (coolDown: StandardWorkoutCircuit) => coolDown?.exerciseIds
     ) || [];
-  const standAloneExerciseIds =
+  const dailyStandAloneWorkoutItemsIds =
     workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
-      workoutItem.itemType === "exercise" ? workoutItem.itemId : []
+      workoutItem.itemType === "standalone" ? workoutItem?.itemId : []
     ) || [];
+
   const dailySetsIds =
     workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
-      workoutItem.itemType === "set" ? workoutItem.itemId : []
+      workoutItem.itemType === "set" ? workoutItem?.itemId : []
     ) || [];
-  const dailySupersetIds =
+  const dailySupersetsIds =
     workoutDay?.workouts?.flatMap((workoutItem: StandardWorkoutItem) =>
-      workoutItem.itemType === "superset" ? workoutItem.itemId : []
+      workoutItem.itemType === "superset" ? workoutItem?.itemId : []
     ) || [];
 
   return {
     warmUpsExerciseIds,
     coolDownsExerciseIds,
-    standAloneExerciseIds,
+    dailyStandAloneWorkoutItemsIds,
     dailySetsIds,
-    dailySupersetIds,
+    dailySupersetsIds,
   };
 };
 

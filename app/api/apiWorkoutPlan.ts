@@ -44,6 +44,37 @@ export async function getActiveWorkoutPlan() {
   }
 }
 
+export async function getDailyStandAloneWorkoutItemById(workoutItemId: string) {
+  try {
+    const response = await axiosInstance.get(
+      `${baseURL}/user/workout-plans/daily-standalone-workouts/${workoutItemId}`
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      `Failed to fetch daily stand alone workout item: ${error?.message}`
+    );
+  }
+}
+
+export async function getDailyStandAloneWorkoutItemsByIds(
+  dailyStandAloneWorkoutsIDs: string[]
+) {
+  try {
+    const response = await axiosInstance.post(
+      `${baseURL}/user/workout-plans/daily-standalone-workouts`,
+      { dailyStandAloneWorkoutsIDs }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      `Failed to fetch daily stand alone workout items: ${error?.message}`
+    );
+  }
+}
+
 export async function getDailySetById(dailySetId: string) {
   try {
     const response = await axiosInstance.get(
@@ -56,7 +87,7 @@ export async function getDailySetById(dailySetId: string) {
   }
 }
 
-export async function getDailySetsById(dailySetsIDs: string[]) {
+export async function getDailySetsByIds(dailySetsIDs: string[]) {
   try {
     const response = await axiosInstance.post(
       `${baseURL}/user/workout-plans/daily-sets`,

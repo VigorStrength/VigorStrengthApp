@@ -8,7 +8,6 @@ import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercis
 import CustomDivider from "../../../components/CustomDivider";
 import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 import { useDailySuperset } from "../../../features/workoutPlan/useDailySuperset";
-import { formatSecondsToMinutes } from "../../../utils/helpers";
 
 type Props = {
   key: string;
@@ -69,10 +68,10 @@ const SuperSet = ({ navigation, workoutItemId }: Props) => {
           style={lastIndex(index) ? styles.lastItemStyle : styles.cardStyle}
         >
           <CustomExerciseItemCard
-            exerciseName={exercise.name}
-            exerciseTime={exercise.time}
-            exerciseReps={exercise.proposedLog?.proposedReps}
-            exerciseCoverUrl={{ uri: exercise.coverURL }}
+            exerciseName={exercise?.name}
+            exerciseTime={exercise?.time}
+            exerciseReps={exercise?.proposedLog?.proposedReps}
+            exerciseCoverUrl={{ uri: exercise?.coverURL }}
             // onPress={() => handlePress(exercise)}
             status="active"
             children=""

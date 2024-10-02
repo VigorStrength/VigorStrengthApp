@@ -34,7 +34,7 @@ const WorkoutDay = ({ navigation }: Props) => {
   const scrollY = useSharedValue(0);
 
   const workoutComponents = {
-    exercise: StandAloneWorkout,
+    standalone: StandAloneWorkout,
     set: StandardSet,
     superset: SuperSet,
   };
@@ -67,7 +67,7 @@ const WorkoutDay = ({ navigation }: Props) => {
         {workouts.map((workoutItem) => {
           const WorkoutComponent =
             workoutComponents[
-              (workoutItem?.itemType as WorkoutItemType) ?? "exercise"
+              (workoutItem?.itemType as WorkoutItemType) ?? "standalone"
             ];
           return (
             <WorkoutComponent

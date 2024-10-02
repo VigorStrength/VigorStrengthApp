@@ -12,6 +12,7 @@ type Props = {
 
 const ExerciseActivity = ({ min, max, workoutDay }: Props) => {
   const { dailyExercises, error, isPending } = useWorkoutDayData(workoutDay);
+
   if (isPending) {
     return (
       <View>

@@ -4,6 +4,7 @@ import CustomExerciseItemCard from "../../../components/CustomExerciseItemCard";
 import { useDailyExercises } from "../../../features/workoutPlan/useDailyExercises";
 import { Workout } from "../../../utils/constants/types";
 import CustomDivider from "../../../components/CustomDivider";
+import { useDailyStandAloneWorkoutItem } from "../../../features/workoutPlan/useDailyStandAloneWorkoutItem";
 
 type Props = {
   key: string;
@@ -13,26 +14,43 @@ type Props = {
 
 const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
   const {
-    dailyExercises: workout,
-    error,
-    isPending,
-  } = useDailyExercises(workoutItemId);
+    dailyStandAloneWorkoutItem: standAloneWorkoutItem,
+    error: standAloneWorkoutItemError,
+    isPending: isStandAloneWorkoutItemPending,
+  } = useDailyStandAloneWorkoutItem(workoutItemId);
+
+  const standAloneWorkoutId: string = standAloneWorkoutItem?.exerciseId;
+  const standAloneWorkoutLaps: number = standAloneWorkoutItem?.proposedLaps;
+
+  // const {
+  //   dailyExercise: workout,
+  //   error: workoutError,
+  //   isPending: isWorkoutPending,
+  // } = useDailyExercises(standAloneWorkoutId);
+  const {
+    dailyExercises: exercises,
+    error: exerciseError,
+    isPending: isExercisePending,
+  } = useDailyExercises(standAloneWorkoutId);
 
   const handlePress = (exercise: Workout) => {
     navigation.navigate("Workout", { workout: exercise });
   };
 
-  if (isPending) {
+  if (isStandAloneWorkoutItemPending || exerciseError) {
     return (
       <View>
         <Text>Loading...</Text>
       </View>
     );
   }
-  if (error) {
+  if (standAloneWorkoutItemError || isExercisePending) {
     return (
       <View>
-        <Text>Error: {error.message}</Text>
+        <Text>
+          Error: {standAloneWorkoutItemError?.message}
+          {/* Error: {standAloneWorkoutItemError?.message || exerciseError?.message} */}
+        </Text>
       </View>
     );
   }
@@ -41,13 +59,14 @@ const StandAloneWorkout = ({ navigation, workoutItemId }: Props) => {
     <View style={styles.container}>
       <CustomDivider
         leftLabel="Stand Alone Exercise"
+        rightLabel={`${standAloneWorkoutLaps} Laps`}
         style={styles.dividerStyle}
       />
       <CustomExerciseItemCard
-        exerciseName={workout[0].name}
-        exerciseTime={workout[0].time}
-        exerciseReps={workout[0].proposedLog?.proposedReps}
-        exerciseCoverUrl={{ uri: workout[0].coverURL }}
+        exerciseName={exercises[0]?.name}
+        exerciseTime={exercises[0]?.time}
+        exerciseReps={exercises[0]?.proposedLog?.proposedReps}
+        exerciseCoverUrl={{ uri: exercises[0]?.coverURL }}
         // onPress={() => handlePress(workout[0])}
         status="active"
         children=""

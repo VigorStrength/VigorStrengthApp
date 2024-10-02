@@ -28,13 +28,20 @@ export type StandardWorkoutCircuit = {
   proposedLaps: number;
 };
 
+export type StandardStandAloneWorkout = {
+  id: string;
+  exerciseId: string;
+  restTime: number;
+  proposedLaps: number;
+};
+
 export type StandardWorkoutItem = {
   id: string;
   itemId: string;
   itemType: string;
 };
 
-export type WorkoutItemType = "exercise" | "set" | "superset";
+export type WorkoutItemType = "standalone" | "set" | "superset";
 
 export type StandardWorkoutDay = {
   id: string;

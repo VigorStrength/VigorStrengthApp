@@ -1,21 +1,50 @@
-import { StandardWorkoutCircuit } from "../../utils/constants/types";
+import {
+  StandardStandAloneWorkout,
+  StandardWorkoutCircuit,
+} from "../../utils/constants/types";
 import { extractExerciseIds } from "../../utils/helpers";
 import { useDailyExercises } from "./useDailyExercises";
 import { useDailySet } from "./useDailySet";
+import { useDailySets } from "./useDailySets";
+import { useDailyStandAloneWorkoutItems } from "./useDailyStandAloneWorkoutItems";
 import { useDailySupersets } from "./useDailySupersets";
 
 export function useWorkoutDayData(workoutDay: any) {
   const {
     warmUpsExerciseIds,
     coolDownsExerciseIds,
-    standAloneExerciseIds,
-    dailySupersetIds,
+    dailyStandAloneWorkoutItemsIds,
+    dailySetsIds,
+    dailySupersetsIds,
   } = extractExerciseIds(workoutDay);
+
+  const {
+    dailyStandAloneWorkoutItems,
+    error: standAloneWorkoutItemsError,
+    isPending: isStandAloneWorkoutItemsPending,
+  } = useDailyStandAloneWorkoutItems(dailyStandAloneWorkoutItemsIds);
+
+  const {
+    dailySets,
+    error: setsError,
+    isPending: setsPending,
+  } = useDailySets(dailySetsIds);
+
   const {
     dailySupersets,
     error: supersetError,
     isPending: supersetPending,
-  } = useDailySupersets(dailySupersetIds);
+  } = useDailySupersets(dailySupersetsIds);
+
+  const standAloneExerciseIds =
+    dailyStandAloneWorkoutItems?.flatMap(
+      (standAloneWorkoutItem: StandardStandAloneWorkout) =>
+        standAloneWorkoutItem?.exerciseId
+    ) || [];
+
+  const setsExerciseIds =
+    dailySets?.flatMap((set: StandardWorkoutCircuit) => set?.exerciseIds) || [];
+
   const supersetsExerciseIds =
     dailySupersets?.flatMap(
       (superset: StandardWorkoutCircuit) => superset?.exerciseIds
@@ -25,6 +54,7 @@ export function useWorkoutDayData(workoutDay: any) {
     ...warmUpsExerciseIds,
     ...coolDownsExerciseIds,
     ...standAloneExerciseIds,
+    ...setsExerciseIds,
     ...supersetsExerciseIds,
   ];
 
@@ -35,8 +65,9 @@ export function useWorkoutDayData(workoutDay: any) {
   } = useDailyExercises(dailyExercisesIds);
 
   const isPending = supersetPending || exercisesPending;
-  const error = supersetError || exercisesError;
-
+  setsPending || isStandAloneWorkoutItemsPending;
+  const error =
+    supersetError || exercisesError || setsError || standAloneWorkoutItemsError;
   return {
     dailyExercises,
     error,

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getDailySupersetsByIds } from "../../api/apiWorkoutPlan";
+import { getDailySetsByIds } from "../../api/apiWorkoutPlan";
 
 export function useDailySets(dailySetIds: string[]) {
   const {
@@ -8,7 +8,7 @@ export function useDailySets(dailySetIds: string[]) {
     isPending,
   } = useQuery({
     queryKey: ["dailySets", dailySetIds],
-    queryFn: () => getDailySupersetsByIds(dailySetIds),
+    queryFn: () => getDailySetsByIds(dailySetIds),
     enabled: !!dailySetIds.length,
     throwOnError: true,
   });
